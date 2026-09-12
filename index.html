@@ -16,7 +16,9 @@ Kakao.init("3fc477a2de7052bb8c3cbafdd8e1f779");
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{
+    scroll-behavior:auto;
+}
 body{
     background-color:#f4f0e7;
     background-image:url("images/main/paper-texture.jpg");
@@ -534,27 +536,7 @@ button,input,textarea,a,
     width:min(100%,600px);
     margin:22px auto 0;
 }
-.location-links{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-    width:min(100%,600px);
-    margin:0 auto;
-}
-.location-link{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    min-height:38px;
-    border:0;
-    border-radius:9px;
-    background:#fff;
-    color:#575249;
-    text-decoration:none;
-    font-size:16px;
-    line-height:1;
-    box-shadow:var(--shadow);
-}
+
 .location-map-button{
     width:100%;
     min-height:46px;
@@ -564,6 +546,48 @@ button,input,textarea,a,
     color:var(--green);
     font-size:18px;
     box-shadow:var(--shadow);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+}
+
+.location-map-button img{
+    width:24px;
+    height:24px;
+    object-fit:contain;
+    display:block;
+}
+
+.location-links{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    width:min(100%,600px);
+    margin:0 auto;
+}
+
+.location-link{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    min-height:46px;
+    border:0;
+    border-radius:9px;
+    background:#fff;
+    color:#575249;
+    text-decoration:none;
+    font-size:16px;
+    line-height:1;
+    box-shadow:var(--shadow);
+}
+
+.location-link img{
+    width:24px;
+    height:24px;
+    object-fit:contain;
+    display:block;
 }
 .transport-accordion{
     width:min(100%,600px);
@@ -668,7 +692,7 @@ button,input,textarea,a,
 }
 .guestbook-header{margin-bottom:29px}
 .guestbook-description{
-    margin:30px 0 0;
+    margin:50px 0 60px;
     font-size:18px;
     line-height:1.45;
     color:#555047;
@@ -685,10 +709,13 @@ button,input,textarea,a,
     line-height:1;
 }
 .guestbook-write-button{
-    width:170px;height:48px;
+    width:170px;
+    height:48px;
     padding:0 22px;
     margin-top:0;
+    font-family:"Gowun Batang",serif;
     font-size:16px;
+    font-weight:400;
 }
 .guestbook-written-screen{
     width:min(100%,600px);
@@ -1320,8 +1347,11 @@ button,input,textarea,a,
     </div>
 
     <div class="location-map-button-wrap">
-        <button type="button" class="location-map-button" id="locationMapButton">약도 이미지 보기</button>
-    </div>
+    <button type="button" class="location-map-button" id="locationMapButton">
+        <img src="images/location/map-icon.png" alt="">
+        <span>약도 이미지 보기</span>
+    </button>
+</div>
 
     <div class="navigation-copy">
         <h3>내비게이션</h3>
@@ -1329,10 +1359,21 @@ button,input,textarea,a,
     </div>
 
     <div class="location-links">
-        <a href="https://map.naver.com/p/entry/place/11872992" class="location-link" target="_blank" rel="noopener">네이버지도</a>
-        <a href="https://tmap.life/674d14ec" class="location-link" target="_blank" rel="noopener">티맵</a>
-        <a href="https://map.kakao.com/?itemId=936406406" class="location-link" target="_blank" rel="noopener">카카오맵</a>
-    </div>
+    <a href="https://map.naver.com/p/entry/place/11872992" class="location-link" target="_blank" rel="noopener">
+        <img src="images/location/naver.png" alt="">
+        <span>네이버지도</span>
+    </a>
+
+    <a href="https://tmap.life/674d14ec" class="location-link" target="_blank" rel="noopener">
+        <img src="images/location/tmap.png" alt="">
+        <span>티맵</span>
+    </a>
+
+    <a href="https://map.kakao.com/?itemId=936406406" class="location-link" target="_blank" rel="noopener">
+        <img src="images/location/kakaomap.png" alt="">
+        <span>카카오맵</span>
+    </a>
+</div>
 
     <div class="transport-accordion">
         <div class="transport-box">
@@ -1702,19 +1743,39 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
 
 <script>
 /* ==================================================
-   인트로 — 기존 동작 유지
+   인트로
 ================================================== */
 const intro=document.getElementById("intro");
 const introLayers=document.querySelectorAll(".intro-layer");
+
 window.addEventListener("load",()=>{
-    introLayers.forEach((layer,index)=>setTimeout(()=>layer.classList.add("show"),300+(index*350)));
-});
-intro.addEventListener("click",()=>{
-    window.scrollTo(0,0);
-    intro.classList.add("hide");
-    document.body.style.overflow="";
+    introLayers.forEach((layer,index)=>{
+        setTimeout(()=>{
+            layer.classList.add("show");
+        },300+(index*350));
+    });
 });
 
+intro.addEventListener("click",()=>{
+
+    /* 먼저 스크롤 위치를 맨 위로 고정 */
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
+
+    /* 인트로 숨기기 */
+    intro.classList.add("hide");
+
+    /* 스크롤 잠금 해제 */
+    document.body.style.overflow="";
+
+    /* 인트로가 사라진 뒤에도 맨 위 유지 */
+    requestAnimationFrame(()=>{
+        window.scrollTo(0,0);
+        document.documentElement.scrollTop=0;
+        document.body.scrollTop=0;
+    });
+
+});
 /* ==================================================
    스크롤 등장 / 사라짐
 ================================================== */
@@ -2052,85 +2113,42 @@ let pointerStartY=0;
 let pointerActive=false;
 
 gallerySlider.addEventListener("pointerdown",e=>{
-
-    if(
-        e.pointerType==="mouse" &&
-        e.button!==0
-    ){
-        return;
-    }
-
-    if(galleryAnimating){
-        return;
-    }
+    if(e.pointerType==="mouse"&&e.button!==0)return;
+    if(galleryAnimating)return;
 
     pointerStartX=e.clientX;
     pointerStartY=e.clientY;
-
     pointerActive=true;
-
     galleryDidSwipe=false;
 
     try{
         gallerySlider.setPointerCapture(e.pointerId);
     }catch(err){}
-
 });
-
 
 gallerySlider.addEventListener("pointerup",e=>{
-
-    if(!pointerActive){
-        return;
-    }
+    if(!pointerActive)return;
 
     pointerActive=false;
 
-    const dx=
-        e.clientX-pointerStartX;
+    const dx=e.clientX-pointerStartX;
+    const dy=e.clientY-pointerStartY;
 
-    const dy=
-        e.clientY-pointerStartY;
+    /* 가로 스와이프만 인식 */
+    if(Math.abs(dx)<15)return;
+    if(Math.abs(dx)<=Math.abs(dy))return;
 
-
-    /*
-       가로 스와이프인지 확인
-    */
-    if(
-        Math.abs(dx)<30 ||
-        Math.abs(dx)<=Math.abs(dy)
-    ){
-        return;
-    }
-
-
-    /*
-       스와이프가 발생했다는 표시
-       사진 클릭으로 잘못 인식되지 않게 함
-    */
     galleryDidSwipe=true;
 
-
-    /*
-       왼쪽으로 밀면 다음 사진
-       오른쪽으로 밀면 이전 사진
-    */
     if(dx<0){
-
         goGallery(1);
-
     }else{
-
         goGallery(-1);
     }
-
 });
 
-
 gallerySlider.addEventListener("pointercancel",()=>{
-
     pointerActive=false;
-
 });
 
 
