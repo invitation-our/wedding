@@ -18,7 +18,10 @@ Kakao.init("3fc477a2de7052bb8c3cbafdd8e1f779");
 html,body{margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-    background:#f4f0e7;
+    background-color:#f4f0e7;
+    background-image:url("images/main/paper-texture.jpg");
+    background-repeat:repeat;
+    background-position:top left;
     color:#555;
     font-family:"Gowun Batang",serif;
     overflow-x:hidden;
@@ -32,9 +35,11 @@ button{cursor:pointer}
     --text:#565247;
     --green:#68734d;
     --line:#d8d1c4;
-    --shadow:0 3px 12px rgba(70,60,45,.08);
+    --shadow:0 1px 3px rgba(100,100,100,.20);
 }
-section{background:var(--paper)}
+section{
+    background:transparent;
+}
 button,input,textarea,a,
 .hero-kicker,.hero-date,.hero-place,
 .section-kicker,.section-title,
@@ -303,7 +308,10 @@ button,input,textarea,a,
 /* ==================================================
    MIDDLE 이미지
 ================================================== */
-.middle-scroll,.middle2-scroll{position:relative;background:var(--paper)}
+.middle-scroll,.middle2-scroll{
+    position:relative;
+    background:transparent;
+}
 .middle-section,.middle2-section{position:relative;width:100%;line-height:0}
 .middle-layer{
     display:block;width:100%;height:auto;
@@ -353,7 +361,10 @@ button,input,textarea,a,
     user-select:none;
     -webkit-user-select:none;
     cursor:pointer;
-    transition:transform .25s ease,opacity .25s ease,filter .25s ease;
+    transform:scale(.88);
+    opacity:.42;
+    filter:blur(.7px);
+    transition:transform .32s ease,opacity .32s ease,filter .32s ease;
 }
 .gallery-slide img{
     width:100%;height:100%;display:block;
@@ -434,12 +445,17 @@ button,input,textarea,a,
     text-shadow:0 1px 4px rgba(0,0,0,.35);
 }
 .gallery-prev,.gallery-next{
-    position:absolute;top:50%;
+    position:absolute;
+    top:50%;
     transform:translateY(-50%);
-    border:0;background:none;color:#fff;
+    border:0;
+    background:none;
+    color:#fff;
     font-family:"Gowun Batang",serif;
-    font-size:48px;font-weight:400;
-    line-height:1;z-index:10002;
+    font-size:28px;
+    font-weight:400;
+    line-height:1;
+    z-index:10002;
     padding:15px 8px;
     text-shadow:0 2px 8px rgba(0,0,0,.35);
 }
@@ -672,7 +688,7 @@ button,input,textarea,a,
     width:170px;height:48px;
     padding:0 22px;
     margin-top:0;
-    font-size:14px;
+    font-size:16px;
 }
 .guestbook-written-screen{
     width:min(100%,600px);
@@ -718,7 +734,7 @@ button,input,textarea,a,
     height:38px;
     padding:0 10px;
     font-family:"Gowun Batang",serif;
-    font-size:14px;
+    font-size:16px;
 }
 
 /* 방명록 전체화면 */
@@ -777,11 +793,15 @@ button,input,textarea,a,
     height:38px;
     margin:8px 0 0 auto;
     padding:0 10px;
-    border:0;
+
+    border:1px solid #e7e1d7;
     border-radius:8px;
-    background:#fff;
+
+    background:transparent;
     color:#555;
-    box-shadow:var(--shadow);
+
+    box-shadow:none;
+
     font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
     font-size:14px;
     line-height:1;
@@ -879,14 +899,24 @@ button,input,textarea,a,
     font-size:15px;letter-spacing:.3px;color:#333
 }
 .account-copy-button{
-    flex:0 0 38px;
-    width:38px;height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:30px;
+    height:30px;
+    padding:0;
     margin:0;
     border:0;
-    border-radius:0;
     background:transparent;
-    padding:6px;
-    display:flex;align-items:center;justify-content:center;
+    box-shadow:none;
+    cursor:pointer;
+}
+
+.account-copy-button img{
+    display:block;
+    width:30px;
+    height:30px;
+    object-fit:contain;
 }
 .account-copy-button img{
     width:100%;height:100%;object-fit:contain
@@ -1017,7 +1047,7 @@ button,input,textarea,a,
 ================================================== */
 .end-section{
     width:100%;margin:0;padding:0;
-    line-height:0;background:var(--paper);
+    line-height:0;background:transparent;
 }
 .end-image{display:block;width:100%;height:auto;margin:0}
 
@@ -1430,55 +1460,104 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
     </p>
 
     <div class="account-accordion">
+
         <div class="account-box">
             <button type="button" class="account-button">신랑측</button>
+
             <div class="account-info">
+
                 <div class="account-person">
                     <div class="account-person-copy">
-                        <div class="account-bank-title">신랑 <span>민경진</span></div>
-                        <div class="account-bank">신한은행 · 110-508-795337</div>
+                        <div class="account-bank-title">
+                            신랑 <span>민경진</span>
+                        </div>
+                        <div class="account-bank">
+                            신한은행 · 110-508-795337
+                        </div>
                     </div>
-                    <button type="button" class="account-copy-button" data-account="110508795337" aria-label="계좌번호 복사">
-                        <img src="images/account/account-copy.png" alt="계좌번호 복사">
+
+                    <button
+                        type="button"
+                        class="account-copy-button"
+                        data-account="110508795337"
+                        aria-label="계좌번호 복사"
+                    >
+                        <img src="images/account/copy-icon.png" alt="계좌번호 복사">
                     </button>
                 </div>
 
                 <div class="account-person">
                     <div class="account-person-copy">
-                        <div class="account-bank-title">신랑 <span>민도선</span></div>
-                        <div class="account-bank">우리은행 · 1002-033-848184</div>
+                        <div class="account-bank-title">
+                            아버지 <span>민도선</span>
+                        </div>
+                        <div class="account-bank">
+                            우리은행 · 1002-033-848184
+                        </div>
                     </div>
-                    <button type="button" class="account-copy-button" data-account="1002033848184" aria-label="계좌번호 복사">
-                        <img src="images/account/account-copy.png" alt="계좌번호 복사">
+
+                    <button
+                        type="button"
+                        class="account-copy-button"
+                        data-account="1002033848184"
+                        aria-label="계좌번호 복사"
+                    >
+                        <img src="images/account/copy-icon.png" alt="계좌번호 복사">
                     </button>
                 </div>
+
             </div>
         </div>
+
 
         <div class="account-box">
             <button type="button" class="account-button">신부측</button>
+
             <div class="account-info">
+
                 <div class="account-person">
                     <div class="account-person-copy">
-                        <div class="account-bank-title">신부 <span>YANHONGYAN</span></div>
-                        <div class="account-bank">NH농협은행 · 302-0757-9934-11</div>
+                        <div class="account-bank-title">
+                            신부 <span>YANHONGYAN</span>
+                        </div>
+                        <div class="account-bank">
+                            NH농협은행 · 302-0757-9934-11
+                        </div>
                     </div>
-                    <button type="button" class="account-copy-button" data-account="3020757993411" aria-label="계좌번호 복사">
-                        <img src="images/account/account-copy.png" alt="계좌번호 복사">
+
+                    <button
+                        type="button"
+                        class="account-copy-button"
+                        data-account="3020757993411"
+                        aria-label="계좌번호 복사"
+                    >
+                        <img src="images/account/copy-icon.png" alt="계좌번호 복사">
                     </button>
                 </div>
 
                 <div class="account-person">
                     <div class="account-person-copy">
-                        <div class="account-bank-title">신부 <span>ZHENGZHENZI</span></div>
-                        <div class="account-bank">신한은행 · 110-400-976752</div>
+                        <div class="account-bank-title">
+                            어머니 <span>ZHENGZHENZI</span>
+                        </div>
+                        <div class="account-bank">
+                            신한은행 · 110-400-976752
+                        </div>
                     </div>
-                    <button type="button" class="account-copy-button" data-account="110400976752" aria-label="계좌번호 복사">
-                        <img src="images/account/account-copy.png" alt="계좌번호 복사">
+
+                    <button
+                        type="button"
+                        class="account-copy-button"
+                        data-account="110400976752"
+                        aria-label="계좌번호 복사"
+                    >
+                        <img src="images/account/copy-icon.png" alt="계좌번호 복사">
                     </button>
                 </div>
+
             </div>
         </div>
+
     </div>
 </section>
 
@@ -1486,7 +1565,9 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
 <div class="copy-popup" id="copy-popup">
     <div class="copy-popup-content">
         <div class="copy-popup-message">계좌번호가 복사되었습니다.</div>
-        <button type="button" class="copy-confirm-button" id="copy-confirm-button">확인</button>
+        <button type="button" class="copy-confirm-button" id="copy-confirm-button">
+            확인
+        </button>
     </div>
 </div>
 
@@ -1790,7 +1871,11 @@ function getSlideStep(){
         return 0;
     }
 
-    const slideWidth=slide.getBoundingClientRect().width;
+    /*
+       transform:scale()의 영향을 받지 않는
+       실제 CSS 너비를 사용
+    */
+    const slideWidth=slide.offsetWidth;
 
     const gap=
         parseFloat(
@@ -1812,8 +1897,7 @@ function updateGallery(animate=true){
         return;
     }
 
-    const slideWidth=
-        slide.getBoundingClientRect().width;
+    const slideWidth=slide.offsetWidth;
 
     const step=getSlideStep();
 
@@ -1861,6 +1945,7 @@ function updateGallery(animate=true){
             slide.style.opacity=".42";
             slide.style.filter="blur(.7px)";
         }
+
     });
 
 
@@ -1879,11 +1964,10 @@ function updateGallery(animate=true){
         realIndex=0;
     }
 
-    galleryCounter.textContent=
-        `${String(realIndex+1).padStart(2,"0")} / ${String(galleryFiles.length).padStart(2,"0")}`;
+galleryCounter.textContent=
+    `${String(realIndex+1).padStart(2,"0")} / ${String(galleryFiles.length).padStart(2,"0")}`;
+
 }
-
-
 /* ==================================================
    사진 한 장 이동
 ================================================== */
@@ -2062,19 +2146,22 @@ window.addEventListener("resize",()=>{
     }
 
 });
-
-
 /* ==================================================
-   처음 갤러리 위치
+   갤러리 최초 위치
 ================================================== */
 
-requestAnimationFrame(()=>{
+window.addEventListener("load",()=>{
 
-    updateGallery(false);
+    galleryIndex=1;
+    galleryAnimating=false;
+
+    requestAnimationFrame(()=>{
+        requestAnimationFrame(()=>{
+            updateGallery(false);
+        });
+    });
 
 });
-
-
 /* ==================================================
    갤러리 전체화면 팝업
 ================================================== */
@@ -2389,6 +2476,17 @@ document.querySelectorAll(".account-copy-button").forEach(button=>button.addEven
 document.getElementById("copy-confirm-button").addEventListener("click",()=>{copyPopup.classList.remove("show");selectedAccountNumber=""});
 copyPopup.addEventListener("click",e=>{if(e.target===copyPopup){copyPopup.classList.remove("show");selectedAccountNumber=""}});
 
+document.querySelectorAll(".account-copy-button").forEach(button=>{
+    button.addEventListener("click",()=>{
+        const accountNumber=button.closest(".account-info").querySelector(".account-number").textContent.trim();
+
+        navigator.clipboard.writeText(accountNumber).then(()=>{
+            alert("계좌번호가 복사되었습니다.");
+        }).catch(()=>{
+            alert("계좌번호 복사에 실패했습니다.");
+        });
+    });
+});
 /* ==================================================
    연락하기 팝업
 ================================================== */
@@ -2429,6 +2527,8 @@ document.getElementById("shareMoreButton").addEventListener("click",async()=>{
 });
 document.getElementById("shareSmsButton").addEventListener("click",()=>{shareMenu.classList.remove("open");window.location.href="sms:?body="+encodeURIComponent("저희 결혼식에 초대합니다.\n\n"+window.location.href)});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){shareMenu.classList.remove("open");closeGalleryModal();locationMapModal.classList.remove("active");contactPopup.classList.remove("show");guestbookFormScreen.classList.remove("show");copyPopup.classList.remove("show");document.body.style.overflow=""}});
+
+
 </script>
 </body>
 </html>
