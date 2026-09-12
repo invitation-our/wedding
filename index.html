@@ -1,4920 +1,912 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>우리의 결혼식</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>우리의 결혼식</title>
 
-<!-- 카카오 JavaScript SDK -->
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.3/kakao.min.js"
-        crossorigin="anonymous"></script>
-
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.3/kakao.min.js" crossorigin="anonymous"></script>
 <script>
-    Kakao.init("3fc477a2de7052bb8c3cbafdd8e1f779");
+Kakao.init("3fc477a2de7052bb8c3cbafdd8e1f779");
 </script>
 
-    <!-- =====================================
-         고운바탕 폰트
-    ====================================== -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
-        rel="stylesheet"
-    >
-
-    <style>
-
-        /* ==================================================
-           전체
-        ================================================== */
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-image: url("images/main/paper-texture.jpg");
-            background-repeat: repeat;
-            background-position: center top;
-            background-size: 600px auto;
-
-            font-family:
-                "Gowun Batang",
-                serif;
-
-            color: #585858;
-        }
-
-
-        /* ==================================================
-           인트로
-        ================================================== */
-
-        .intro {
-            position: fixed;
-            inset: 0;
-
-            width: 100%;
-            height: 100vh;
-
-            z-index: 99999;
-
-            background: #fdfaf5;
-
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-
-            overflow: hidden;
-
-            cursor: pointer;
-
-            opacity: 1;
-            visibility: visible;
-
-            transition:
-                opacity 0.8s ease,
-                visibility 0.8s ease;
-        }
-
-        .intro.hide {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .intro-inner {
-            position: relative;
-
-            width: min(600px, 100vw);
-            height: 100%;
-
-            overflow: hidden;
-        }
-
-        .intro-01 {
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            opacity: 1;
-        }
-
-        .intro-layer {
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            opacity: 0;
-
-            transform: translateY(35px);
-
-            transition:
-                opacity 0.9s ease,
-                transform 0.9s ease;
-        }
-
-        .intro-layer.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .intro-02 {
-            transition-delay: 0.15s;
-        }
-
-        .intro-03 {
-            transition-delay: 0.35s;
-        }
-
-        .intro-04 {
-            transition-delay: 0.55s;
-        }
-
-        .intro-05 {
-            transition-delay: 0.75s;
-        }
-
-
-        /* ==================================================
-           인트로 종료 후 고정 오버레이
-        ================================================== */
-
-        .envelope-overlay {
-            position: fixed;
-
-            top: 0;
-            left: 50%;
-
-            width: min(600px, 100vw);
-            height: 100vh;
-
-            transform: translateX(-50%);
-
-            object-fit: fill;
-
-            z-index: 9000;
-
-            opacity: 0;
-            visibility: hidden;
-
-            pointer-events: none;
-        }
-
-        .envelope-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-
-        /* ==================================================
-           메인
-        ================================================== */
-
-        .main-section {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        .main-image {
-            display: block;
-
-            width: 100%;
-            height: auto;
-        }
-
-
-        /* ==================================================
-           스크롤 등장 애니메이션
-        ================================================== */
-
-        .scroll-reveal {
-            opacity: 0;
-
-            transform: translateY(35px);
-
-            transition:
-                opacity 0.1s ease,
-                transform 0.1s ease;
-
-            will-change:
-                opacity,
-                transform;
-        }
-
-        .scroll-reveal.show {
-            opacity: 1;
-
-            transform: translateY(0);
-
-            transition:
-                opacity 0.8s ease,
-                transform 0.8s ease;
-        }
-
-
-        /* ==================================================
-           초대장
-        ================================================== */
-
-        .invite-section {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        .invite-image {
-            display: block;
-
-            width: 100%;
-            height: auto;
-        }
-
-
-        /* ==================================================
-           달력
-        ================================================== */
-
-        .calendar-section {
-            width: 100%;
-
-            padding: 45px 0 100px;
-
-            margin-top: 0;
-
-            text-align: center;
-        }
-
-        .calendar-image {
-            display: block;
-
-            width: 100%;
-            height: auto;
-
-            margin: 0;
-        }
-
-
-        /* ==================================================
-           D-Day
-        ================================================== */
-
-        .countdown {
-            width: 100%;
-
-            margin: 50px auto 0;
-
-            display: flex;
-
-            flex-direction: row;
-            flex-wrap: nowrap;
-
-            align-items: flex-end;
-            justify-content: center;
-
-            white-space: nowrap;
-
-            color: #585858;
-        }
-
-        .countdown-item {
-            flex: 0 0 auto;
-
-            width: 55px;
-            min-width: 55px;
-
-            text-align: center;
-        }
-
-        .countdown-title {
-            font-size: 10pt;
-
-            margin-bottom: 8px;
-
-            letter-spacing: 1px;
-
-            color: #585858;
-        }
-
-        .countdown-number {
-            font-size: 16pt;
-
-            line-height: 1;
-
-            color: #585858;
-        }
-
-        .countdown-colon {
-            flex: 0 0 auto;
-
-            font-size: 9pt;
-
-            margin:
-                0 5px 1px;
-
-            color: #585858;
-        }
-
-        .wedding-dday {
-            margin-top: 10px;
-
-            font-size: 11pt;
-
-            letter-spacing: 1px;
-
-            line-height: 1.8;
-
-            color: #585858;
-        }
-
-        .wedding-dday #dday {
-            font-weight: bold;
-            color: #7a8c3d;
-        }
-
-
-        /* ==================================================
-           middle
-        ================================================== */
-
-        .middle-scroll {
-            position: relative;
-        }
-
-        .middle-section {
-            position: relative;
-
-            width: 100%;
-        }
-
-        .middle-layer {
-            display: block;
-
-            width: 100%;
-            height: auto;
-
-            opacity: 0;
-
-            transform: translateY(30px);
-        }
-
-        .middle-layer:first-child {
-            position: relative;
-        }
-
-        .middle-layer:not(:first-child) {
-            position: absolute;
-
-            left: 0;
-            top: 0;
-        }
-
-
-        /* ==================================================
-           갤러리
-        ================================================== */
-
-        .gallery-section {
-            width: 100%;
-
-            margin: 0;
-
-            padding: 0 15px;
-        }
-
-        .gallery-image {
-            display: block;
-
-            width: 100%;
-            height: auto;
-        }
-
-        .gallery-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 5px;
-        }
-
-        .gallery-item {
-            width: 100%;
-
-            aspect-ratio: 1 / 1;
-
-            object-fit: cover;
-
-            display: block;
-
-            cursor: pointer;
-        }
-
-        .gallery-item:nth-child(1) {
-            object-position: center top;
-        }
-
-        .gallery-item:nth-child(2) {
-            object-position: center 70%;
-        }
-
-        .gallery-item:nth-child(3) {
-            object-position: center top;
-        }
-
-        .gallery-item:nth-child(4) {
-            object-position: center 30%;
-        }
-
-        .gallery-item:nth-child(5) {
-            object-position: center;
-        }
-
-        .gallery-item:nth-child(6) {
-            object-position: center;
-        }
-
-        .gallery-item:nth-child(7) {
-            object-position: center bottom;
-        }
-
-        .gallery-item:nth-child(8) {
-            object-position: center bottom;
-        }
-
-        .gallery-item:nth-child(9) {
-            object-position: center 10%;
-        }
-
-        .gallery-item:nth-child(10) {
-            object-position: center 70%;
-        }
-
-        .gallery-item:nth-child(11) {
-            object-position: center bottom;
-        }
-
-        .gallery-item:nth-child(12) {
-            object-position: center top;
-        }
-
-        .gallery-item:nth-child(13) {
-            object-position: center;
-        }
-
-        .gallery-item:nth-child(14) {
-            object-position: center 80%;
-        }
-
-        .gallery-item:nth-child(15) {
-            object-position: center bottom;
-        }
-
-
-        /* ==================================================
-           갤러리 큰 이미지
-        ================================================== */
-
-        .gallery-modal {
-            display: none;
-
-            position: fixed;
-            inset: 0;
-
-            z-index: 9999;
-
-            background:
-                rgba(0, 0, 0, 0.8);
-
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-modal.active {
-            display: flex;
-        }
-
-        .gallery-modal-image {
-            width: 100%;
-            max-width: 100%;
-            max-height: 100%;
-
-            object-fit: contain;
-        }
-
-        .gallery-close {
-            position: absolute;
-
-            top: 20px;
-            right: 20px;
-
-            font-size: 32px;
-
-            color: white;
-
-            cursor: pointer;
-
-            z-index: 10001;
-        }
-
-        .gallery-prev,
-        .gallery-next {
-            position: absolute;
-
-            top: 50%;
-
-            transform:
-                translateY(-50%);
-
-            border: none;
-            background: none;
-
-            color: white;
-
-            font-size: 32px;
-            font-weight: 300;
-
-            cursor: pointer;
-
-            z-index: 10001;
-        }
-
-        .gallery-prev {
-            left: 3px;
-        }
-
-        .gallery-next {
-            right: 3px;
-        }
-
-
-        /* ==================================================
-           오시는길
-        ================================================== */
-
-        .location-section {
-            width: 100%;
-
-            margin: 0;
-            padding: 0;
-        }
-
-        .location-image {
-            display: block;
-
-            width: 100%;
-            height: auto;
-        }
-
-
-        /* ==================================================
-           카카오맵
-        ================================================== */
-
-        #daumRoughmapContainer1788964418676 {
-            width: 100% !important;
-            max-width: 600px !important;
-
-            margin: 0 auto !important;
-            padding: 0 !important;
-
-            height: 300px !important;
-
-            overflow: hidden !important;
-        }
-
-        #daumRoughmapContainer1788964418676 .wrap_map {
-            width: 100% !important;
-            height: 300px !important;
-        }
-
-        #daumRoughmapContainer1788964418676 .map {
-            width: 100% !important;
-            height: 300px !important;
-        }
-
-        #daumRoughmapContainer1788964418676 .roughmap_maker_label,
-        #daumRoughmapContainer1788964418676 .wrap_cont,
-        #daumRoughmapContainer1788964418676 .map_info {
-            display: none !important;
-        }
-
-
-        /* ==================================================
-           지도 버튼
-        ================================================== */
-
-        .location-button-wrap {
-            position: relative;
-
-            width: 100%;
-            max-width: 600px;
-
-            margin: 0 auto;
-        }
-
-        .location-button-image {
-            display: block;
-
-            width: 100%;
-            height: auto;
-        }
-
-        .location-button-area {
-            position: absolute;
-
-            display: block;
-
-            cursor: pointer;
-
-            z-index: 2;
-        }
-
-        .location-map-button {
-            left: 4.8333%;
-            top: 10.1399%;
-
-            width: 90.5%;
-            height: 16.7832%;
-        }
-
-        .location-naver-button {
-            left: 4.8333%;
-            top: 74.8252%;
-
-            width: 29.2733%;
-            height: 14.6853%;
-        }
-
-        .location-tmap-button {
-            left: 35.4483%;
-            top: 74.8252%;
-
-            width: 29.2733%;
-            height: 14.6853%;
-        }
-
-        .location-kakao-button {
-            left: 66.0633%;
-            top: 74.8252%;
-
-            width: 29.2733%;
-            height: 14.6853%;
-        }
-
-
-        /* ==================================================
-           교통 이용 안내
-        ================================================== */
-
-        .transport-accordion {
-            width: 100%;
-            max-width: 600px;
-
-            margin: 20px auto 0;
-            padding: 0;
-        }
-
-        .transport-box {
-            width: 100%;
-
-            margin: 0 0 8px;
-            padding: 0;
-
-            overflow: hidden;
-
-            display: grid;
-        }
-
-        .transport-button,
-        .transport-info {
-            grid-area: 1 / 1;
-        }
-
-        .transport-button {
-            display: block;
-
-            width: 100%;
-
-            margin: 0;
-            padding: 0;
-
-            border: 0;
-
-            background: none;
-
-            cursor: pointer;
-
-            z-index: 1;
-        }
-
-        .transport-button img {
-            display: block;
-
-            width: 100%;
-            height: auto;
-        }
-
-        .transport-info {
-            display: none;
-
-            width: 100%;
-
-            margin: 0;
-            padding: 0;
-
-            z-index: 2;
-        }
-
-        .transport-info img {
-            display: block;
-
-            width: 100%;
-            height: auto;
-        }
-
-        .transport-box.open .transport-info {
-            display: block;
-        }
-
-
-        /* ==================================================
-           약도 팝업
-        ================================================== */
-
-        .location-map-modal {
-            display: none;
-
-            position: fixed;
-            inset: 0;
-
-            z-index: 10000;
-
-            background:
-                rgba(0, 0, 0, 0.85);
-
-            align-items: center;
-            justify-content: center;
-
-            padding: 0;
-        }
-
-        .location-map-modal.active {
-            display: flex;
-        }
-
-        .location-map-modal-image {
-            display: block;
-
-            max-width: 100%;
-            max-height: 90vh;
-
-            width: auto;
-            height: auto;
-
-            object-fit: contain;
-        }
-
-        .location-map-close {
-            position: absolute;
-
-            top: 15px;
-            right: 18px;
-
-            color: white;
-
-            font-size: 34px;
-            line-height: 1;
-
-            cursor: pointer;
-
-            z-index: 10001;
-        }
-
-
-        /* ==================================================
-           middle2
-        ================================================== */
-
-        .middle2-scroll {
-            position: relative;
-        }
-
-        .middle2-section {
-            position: relative;
-
-            width: 100%;
-        }
-
-        .middle2-layer {
-            display: block;
-
-            width: 100%;
-            height: auto;
-        }
-
-        .middle2-background {
-            position: relative;
-
-            opacity: 1;
-
-            z-index: 1;
-        }
-
-        .middle2-layer:not(.middle2-background) {
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            opacity: 0;
-
-            z-index: 2;
-        }
-
-
-        /* ==================================================
-           방명록
-        ================================================== */
-
-        .guestbook-section {
-            position: relative;
-
-            width: 100%;
-
-            background: transparent;
-
-            overflow: hidden;
-        }
-
-        .guestbook-list-screen {
-            position: relative;
-
-            width: 100%;
-            max-width: 600px;
-
-            aspect-ratio: 600 / 443;
-
-            margin: 0 auto;
-
-            overflow: hidden;
-
-            background: transparent;
-        }
-
-        .guestbook-01 {
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            width: 100%;
-            height: 100%;
-
-            display: block;
-
-            z-index: 1;
-        }
-
-        .guestbook-02 {
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            width: 100%;
-            height: 100%;
-
-            display: block;
-
-            z-index: 2;
-        }
-
-        .guestbook-write-button {
-            position: absolute;
-
-            left: 26.5%;
-            top: 70.203%;
-
-            width: 47%;
-            height: 12.415%;
-
-            padding: 0;
-            margin: 0;
-
-            border: none;
-
-            background: transparent;
-
-            cursor: pointer;
-
-            z-index: 5;
-        }
-
-
-        /* ==================================================
-           작성된 방명록
-        ================================================== */
-
-        .guestbook-written-screen {
-            display: none;
-
-            position: relative;
-
-            width: 100%;
-            max-width: 600px;
-
-            margin: 0 auto;
-
-            padding: 0 20px 80px;
-
-            box-sizing: border-box;
-
-            background: transparent;
-        }
-
-        .guestbook-03-wrap {
-            width: 100%;
-
-            margin: 0;
-            padding: 0;
-        }
-
-        .guestbook-03 {
-            width: 100%;
-            height: auto;
-
-            display: block;
-        }
-
-        .guestbook-entry-list {
-            width: 100%;
-
-            margin: 20px auto 0;
-        }
-
-        .guestbook-entry {
-            width: 100%;
-
-            background: #ffffff;
-
-            border-radius: 10px;
-
-            padding: 25px 22px;
-
-            margin: 0 0 20px;
-
-            box-shadow:
-                0 2px 10px
-                rgba(0, 0, 0, 0.06);
-        }
-
-        .guestbook-entry-header {
-            display: flex;
-
-            justify-content: space-between;
-            align-items: center;
-
-            width: 100%;
-
-            margin-bottom: 20px;
-        }
-
-        .guestbook-entry-name {
-            font-size: 17px;
-            font-weight: 600;
-
-            color: #222;
-        }
-
-        .guestbook-entry-right {
-            display: flex;
-
-            align-items: center;
-
-            gap: 10px;
-        }
-
-        .guestbook-entry-date {
-            font-size: 14px;
-
-            color: #999;
-        }
-
-        .guestbook-entry-content {
-            display: block;
-
-            width: 100%;
-
-            margin: 0;
-            padding: 0;
-
-            font-family:
-                "Gowun Batang",
-                serif;
-
-            font-size: 16px;
-            font-weight: 400;
-
-            line-height: 1.7;
-
-            color: #444;
-
-            white-space: pre-wrap;
-
-            text-indent: 0;
-            text-align: left;
-        }
-
-        .guestbook-delete-button {
-            border: none;
-
-            background: transparent;
-
-            padding: 0;
-
-            font-size: 22px;
-            line-height: 1;
-
-            color: #999;
-
-            cursor: pointer;
-        }
-
-        .guestbook-04-wrap {
-            position: relative;
-
-            width: calc(100% + 40px);
-
-            margin-left: -20px;
-
-            aspect-ratio: 600 / 53;
-
-            overflow: hidden;
-        }
-
-        .guestbook-04 {
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            width: 100%;
-            height: 100%;
-
-            display: block;
-        }
-
-        .guestbook-write-again-button {
-            position: absolute;
-
-            right: 0;
-            top: 5px;
-
-            width: 97.26px;
-            height: 32.7px;
-
-            margin: 0;
-            padding: 0;
-
-            border: none;
-
-            background: transparent;
-
-            cursor: pointer;
-
-            font-size: 0;
-
-            z-index: 10;
-        }
-
-
-        /* ==================================================
-           방명록 작성 팝업
-        ================================================== */
-
-        .guestbook-form-screen {
-            position: fixed;
-            inset: 0;
-
-            display: none;
-
-            width: 100%;
-            height: 100%;
-
-            background-image:
-                url("images/main/paper-texture.jpg");
-
-            background-repeat: no-repeat;
-
-            background-position: center top;
-
-            background-size: 600px auto;
-
-            padding: 60px 20px 0;
-
-            overflow-y: auto;
-            overflow-x: hidden;
-
-            z-index: 99998;
-        }
-
-        .guestbook-form-screen.show {
-            display: block;
-        }
-
-        .guestbook-form-inner {
-            position: relative;
-
-            width: 100%;
-            max-width: 600px;
-
-            min-height: 100%;
-
-            margin: 0 auto;
-
-            padding: 0 0 50px;
-        }
-
-        .guestbook-form-header {
-            position: relative;
-
-            width: 100%;
-            height: 58px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-        }
-
-        .guestbook-form-title {
-            margin: 0;
-
-            font-family:
-                Arial,
-                "Malgun Gothic",
-                "맑은 고딕",
-                sans-serif;
-
-            font-size: 17px;
-            font-weight: 500;
-
-            letter-spacing: -0.5px;
-
-            color: #222;
-        }
-
-        .guestbook-form-close {
-            position: absolute;
-
-            top: 0;
-            right: 0;
-
-            width: 58px;
-            height: 58px;
-
-            margin: 0;
-            padding: 0;
-
-            border: none;
-
-            background: transparent;
-
-            font-family:
-                Arial,
-                "Malgun Gothic",
-                "맑은 고딕",
-                sans-serif;
-
-            font-size: 20px;
-            font-weight: 100;
-
-            color: #222;
-
-            cursor: pointer;
-
-            z-index: 20;
-        }
-
-        .guestbook-form-body {
-            width: 100%;
-
-            padding: 20px 4px 0;
-        }
-
-        .guestbook-form-item {
-            margin-bottom: 30px;
-        }
-
-        .guestbook-form-item:nth-of-type(3) {
-            margin-bottom: 10px;
-        }
-
-        .guestbook-form-item label {
-            display: block;
-
-            font-family:
-                Arial,
-                "Apple SD Gothic Neo",
-                "Noto Sans KR",
-                sans-serif;
-
-            font-size: 16px;
-            font-weight: 400;
-
-            margin-bottom: 18px;
-
-            color: #222;
-        }
-
-        .guestbook-form-item label span {
-            color: #e14b42;
-
-            margin-right: 4px;
-        }
-
-        .guestbook-form-item input,
-        .guestbook-form-item textarea {
-            width: 100%;
-
-            border: none;
-
-            border-bottom:
-                1px solid #ddd;
-
-            background: transparent;
-
-            border-radius: 0;
-
-            padding:
-                8px 0 15px;
-
-            font-family:
-                Arial,
-                "Apple SD Gothic Neo",
-                "Noto Sans KR",
-                sans-serif;
-
-            font-size: 16px;
-            font-weight: 400;
-
-            line-height: 1.6;
-
-            color: #222;
-
-            outline: none;
-        }
-
-        .guestbook-form-item textarea {
-            height: 110px;
-
-            resize: none;
-        }
-
-        .guestbook-form-item input::placeholder,
-        .guestbook-form-item textarea::placeholder {
-            color: #aaa;
-        }
-
-        .guestbook-submit-button {
-            display: block;
-
-            width: 90px;
-            height: 44px;
-
-            margin:
-                8px 0 0 auto;
-
-            padding: 0;
-
-            border:
-                1px solid #ddd;
-
-            border-radius: 10px;
-
-            background: #fdfaf5;
-
-            font-family:
-                Arial,
-                "Apple SD Gothic Neo",
-                "Noto Sans KR",
-                sans-serif;
-
-            font-size: 14px;
-            font-weight: 400;
-
-            color: #777;
-
-            cursor: pointer;
-        }
-
-
-        /* ==================================================
-           계좌번호
-        ================================================== */
-
-        .account-section {
-            width: 100%;
-            max-width: 600px;
-
-            margin: 0 auto;
-            padding: 0;
-
-            background: transparent;
-        }
-
-        .account-background {
-            display: block;
-
-            width: 100%;
-            height: auto;
-        }
-
-        .account-accordion {
-            width: 100%;
-
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        .account-box {
-            position: relative;
-
-            width: 100%;
-
-            margin: 0 0 8px;
-            padding: 0;
-
-            overflow: hidden;
-
-            display: grid;
-
-            grid-template-columns: 100%;
-        }
-
-        .account-button {
-            grid-area: 1 / 1;
-
-            display: block;
-
-            width: 100%;
-            height: auto;
-
-            margin: 0;
-            padding: 0;
-
-            border: none;
-
-            background: transparent;
-
-            cursor: pointer;
-
-            position: relative;
-
-            z-index: 1;
-        }
-
-.account-button img {
-    display: block;
-
-    width: 100%;
-    height: auto;
-
-    margin: 0;
-    padding: 0;
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+
+<style>
+/* ==================================================
+   전체
+================================================== */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+    background:#f8f5ef;
+    font-family:"Gowun Batang",serif;
+    color:#555;
+    overflow-x:hidden;
+}
+button,input,textarea{font:inherit}
+button,a{ -webkit-tap-highlight-color:transparent }
+button{cursor:pointer}
+
+:root{
+    --paper:#f8f5ef;
+    --paper-dark:#eee9df;
+    --text:#555;
+    --green:#72853d;
+    --line:#ddd7cc;
+    --white:#fffdf9;
 }
 
-.account-button-image {
-    opacity: 0;
-
-    transform: translateY(35px);
-
-    transition:
-        opacity 3s ease,
-        transform 3s ease;
-
-    will-change:
-        opacity,
-        transform;
+.section-inner{width:min(92vw,600px);margin:0 auto}
+.scroll-reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:opacity .7s ease,transform .7s ease;
 }
+.scroll-reveal.show{opacity:1;transform:translateY(0)}
 
-.account-button-image.show {
-    opacity: 1;
-
-    transform: translateY(0);
-
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
+/* ==================================================
+   인트로 — 기존 그대로 유지
+================================================== */
+.intro{
+    position:fixed;inset:0;width:100%;height:100vh;z-index:99999;
+    background:#fdfaf5;display:flex;justify-content:center;align-items:flex-start;
+    overflow:hidden;cursor:pointer;opacity:1;visibility:visible;
+    transition:opacity .8s ease,visibility .8s ease;
 }
-
-        .account-info {
-            grid-area: 1 / 1;
-
-            display: none;
-
-            position: relative;
-
-            width: 100%;
-            height: auto;
-
-            margin: 0;
-            padding: 0;
-
-            align-self: start;
-            justify-self: start;
-
-            z-index: 20;
-        }
-
-        .account-info img {
-            display: block;
-
-            width: 100%;
-            height: auto;
-
-            margin: 0;
-            padding: 0;
-        }
-
-        .account-box.open .account-info {
-            display: block;
-        }
-
-        .account-box.open .account-button {
-            z-index: 0;
-        }
-
-        .account-close-button {
-            position: absolute;
-
-            top: 0;
-            left: 50%;
-
-            transform:
-                translateX(-50%);
-
-            width: 456px;
-            max-width: 100%;
-
-            height: 55px;
-
-            margin: 0;
-            padding: 0;
-
-            border: none;
-
-            background: transparent;
-
-            cursor: pointer;
-
-            z-index: 30;
-        }
-
-        .account-copy-button {
-            position: absolute;
-
-            width: 15px;
-            height: 17px;
-
-            margin: 0;
-            padding: 0;
-
-            border: none;
-
-            background: transparent;
-
-            cursor: pointer;
-
-            z-index: 40;
-        }
-
-        .groom-copy-1,
-        .bride-copy-1 {
-            left:
-                calc(477 / 600 * 100%);
-
-            top:
-                calc(93 / 246 * 100%);
-        }
-
-        .groom-copy-2,
-        .bride-copy-2 {
-            left:
-                calc(477 / 600 * 100%);
-
-            top:
-                calc(191 / 246 * 100%);
-        }
-
-
-        /* ==================================================
-           계좌 복사 팝업
-        ================================================== */
-
-        .copy-popup {
-            position: fixed;
-            inset: 0;
-
-            display: none;
-
-            align-items: center;
-            justify-content: center;
-
-            width: 100%;
-            height: 100%;
-
-            background: transparent;
-
-            z-index: 99999;
-        }
-
-        .copy-popup.show {
-            display: flex;
-        }
-
-        .copy-popup-content {
-            position: relative;
-
-            width: 100%;
-            max-width: 600px;
-
-            margin: 0;
-            padding: 0;
-        }
-
-        .copy-popup-image {
-            display: block;
-
-            width: 100%;
-            height: auto;
-
-            margin: 0;
-            padding: 0;
-        }
-
-        .copy-confirm-button {
-            position: absolute;
-
-            left:
-                calc(254 / 600 * 100%);
-
-            top:
-                calc(647 / 1304 * 100%);
-
-            width:
-                calc(92 / 600 * 100%);
-
-            height:
-                calc(28.01 / 1304 * 100%);
-
-            margin: 0;
-            padding: 0;
-
-            border: none;
-
-            background: transparent;
-
-            cursor: pointer;
-
-            z-index: 10;
-        }
-
-
-        /* ==================================================
-           연락하기
-        ================================================== */
-
-        .contact-title-image {
-            display: block;
-
-            width: 100%;
-            height: auto;
-
-            margin: 0;
-            padding: 0;
-        }
-
-        .contact-button-wrap {
-            position: relative;
-
-            width: 100%;
-
-            margin: 0;
-            padding: 0;
-        }
-
-        .contact-button-image {
-            display: block;
-
-            width: 100%;
-            height: auto;
-
-            margin: 0;
-            padding: 0;
-        }
-
-        .contact-open-button {
-            position: absolute;
-
-            left:
-                calc(181 / 600 * 100%);
-
-            top:
-                calc(0.38 / 71 * 100%);
-
-            width:
-                calc(238 / 600 * 100%);
-
-            height:
-                calc(71.02 / 71 * 100%);
-
-            margin: 0;
-            padding: 0;
-
-            border: none;
-
-            background: transparent;
-
-            cursor: pointer;
-
-            z-index: 10;
-        }
-
-
-        /* ==================================================
-           연락하기 팝업
-        ================================================== */
-
-        .contact-popup {
-            position: fixed;
-            inset: 0;
-
-            display: none;
-
-            align-items: center;
-            justify-content: center;
-
-            width: 100%;
-            height: 100%;
-
-            background-image:
-                url("images/main/paper-texture.jpg");
-
-            background-repeat: repeat;
-
-            background-position:
-                center top;
-
-            background-size:
-                600px auto;
-
-            z-index: 99998;
-        }
-
-        .contact-popup.show {
-            display: flex;
-        }
-
-        .contact-popup,
-        .contact-popup button,
-        .contact-popup a,
-        .contact-popup span,
-        .contact-popup h2,
-        .contact-popup h3 {
-            font-family:
-                Arial,
-                "Malgun Gothic",
-                "맑은 고딕",
-                sans-serif;
-        }
-
-        .contact-popup-content {
-            position: relative;
-
-            width:
-                calc(100% - 40px);
-
-            max-width: 600px;
-
-            max-height: 90vh;
-
-            background-color:
-                transparent;
-
-            overflow-y: auto;
-            overflow-x: hidden;
-
-            box-sizing: border-box;
-
-            transform:
-                translateY(-220px);
-        }
-
-        .contact-popup-header {
-            position: relative;
-
-            width: 100%;
-            height: 58px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-        }
-
-        .contact-popup-header-title {
-            margin: 0;
-
-            font-size: 17px;
-            font-weight: 500;
-
-            letter-spacing: -1px;
-        }
-
-        .contact-popup-close {
-            position: absolute;
-
-            top: 0;
-            right: 0;
-
-            width: 58px;
-            height: 58px;
-
-            margin: 0;
-            padding: 0;
-
-            border: none;
-
-            background: transparent;
-
-            font-size: 20px;
-            font-weight: 100;
-
-            cursor: pointer;
-
-            z-index: 20;
-        }
-
-        .contact-group {
-            width: 100%;
-
-            padding: 0 24px;
-
-            box-sizing: border-box;
-        }
-
-        .contact-group-title {
-            margin: 0;
-
-            padding:
-                22px 0 12px;
-
-            font-size: 15px;
-            font-weight: 550;
-
-            letter-spacing: -0.3px;
-        }
-
-        .contact-group-line {
-            width: 100%;
-            height: 1px;
-
-            background: #e5e5e5;
-
-            margin: 0;
-            padding: 0;
-        }
-
-        .contact-person {
-            display: flex;
-
-            align-items: center;
-            justify-content: space-between;
-
-            width: 100%;
-            min-height: 62px;
-        }
-
-        .contact-group:first-of-type {
-            padding-bottom: 35px;
-        }
-
-        .contact-person-name {
-            font-size: 14px;
-
-            color: #333;
-
-            letter-spacing: -0.3px;
-        }
-
-        .contact-actions {
-            display: flex;
-
-            align-items: center;
-
-            gap: 5px;
-        }
-
-        .contact-action-button {
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            width: 43px;
-            height: 35px;
-
-            margin: 0;
-            padding: 0;
-
-            border: none;
-
-            background: transparent;
-
-            text-decoration: none;
-
-            cursor: pointer;
-        }
-
-        .contact-action-button img {
-            display: block;
-
-            width: 43px;
-            height: 35px;
-
-            object-fit: contain;
-        }
+.intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+.intro-inner{position:relative;width:min(600px,100vw);height:100%;overflow:hidden}
+.intro-01,.intro-layer{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}
+.intro-01{opacity:1}
+.intro-layer{opacity:0;transform:translateY(35px);transition:opacity .9s ease,transform .9s ease}
+.intro-layer.show{opacity:1;transform:translateY(0)}
+.intro-02{transition-delay:.15s}.intro-03{transition-delay:.35s}.intro-04{transition-delay:.55s}.intro-05{transition-delay:.75s}
+
+/* ==================================================
+   메인 — 이미지 삭제 후 큰 타이포그래피
+================================================== */
+.hero-section{padding:96px 24px 86px;text-align:center;background:var(--paper)}
+.hero-kicker{font-family:Arial,sans-serif;font-size:12px;letter-spacing:4px;color:#777;margin-bottom:22px}
+.hero-names{margin:0;color:#4e4e4e;font-size:clamp(38px,12vw,70px);font-weight:400;line-height:1.08;letter-spacing:7px}
+.hero-names span{display:block}
+.hero-amp{font-family:Georgia,serif;font-size:24px;line-height:1;margin:14px 0;color:var(--green);letter-spacing:0}
+.hero-date{margin-top:30px;font-family:Arial,sans-serif;font-size:14px;letter-spacing:3px;color:#777}
+.hero-place{margin-top:10px;font-size:15px;color:#777}
+.hero-line{width:1px;height:62px;background:#cfc9bd;margin:34px auto 0}
+
+/* ==================================================
+   초대 문구
+================================================== */
+.invite-section{padding:20px 24px 90px;text-align:center}
+.section-kicker{font-family:Arial,sans-serif;font-size:12px;letter-spacing:4px;color:#777;margin-bottom:15px}
+.section-title{margin:0;font-size:28px;font-weight:400;color:#4f4f4f;line-height:1.4}
+.invite-copy{margin:28px 0 0;font-size:16px;line-height:2.15;color:#666;word-break:keep-all}
+.invite-names{margin-top:30px;font-size:16px;color:#4e4e4e}
+.invite-names strong{font-weight:400;color:#333}
+
+/* ==================================================
+   달력
+================================================== */
+.calendar-section{padding:30px 24px 95px;text-align:center}
+.calendar-card{width:min(100%,520px);margin:0 auto;padding:34px 18px 30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.calendar-date{font-family:Arial,sans-serif;font-size:30px;letter-spacing:3px;color:#555}
+.calendar-time{margin-top:8px;font-size:16px;color:#666}
+.calendar-grid{margin-top:30px;display:grid;grid-template-columns:repeat(7,1fr);gap:17px 4px;font-family:Arial,sans-serif;font-size:15px}
+.calendar-week{font-size:13px;color:#555}
+.calendar-week:first-child,.calendar-day.sunday{color:#c86b67}
+.calendar-day{height:32px;display:flex;align-items:center;justify-content:center;color:#333}
+.calendar-day.empty{visibility:hidden}
+.calendar-day.wedding span{width:39px;height:39px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--green);color:white}
+.calendar-note{margin:27px 0 0;font-size:14px;line-height:1.9;color:#777}
+
+/* ==================================================
+   D-Day
+================================================== */
+.countdown{margin:42px auto 0;display:flex;justify-content:center;align-items:flex-end;gap:0}
+.countdown-item{width:62px;text-align:center}
+.countdown-title{font-family:Arial,sans-serif;font-size:10px;letter-spacing:2px;margin-bottom:9px;color:#888}
+.countdown-number{font-family:Arial,sans-serif;font-size:23px;color:#555;line-height:1}
+.countdown-colon{font-family:Arial,sans-serif;font-size:16px;margin:0 7px 2px;color:#aaa}
+.wedding-dday{margin-top:18px;font-size:14px;line-height:1.8;color:#777}
+.wedding-dday #dday{font-weight:bold;color:var(--green)}
+
+/* ==================================================
+   middle — 기존 이미지 유지
+================================================== */
+.middle-scroll{position:relative}
+.middle-section{position:relative;width:100%;line-height:0}
+.middle-layer{display:block;width:100%;height:auto;opacity:0;transform:translateY(30px)}
+.middle-layer:first-child{position:relative}
+.middle-layer:not(:first-child){position:absolute;left:0;top:0}
+
+/* ==================================================
+   갤러리 제목 + 가로 스와이프
+================================================== */
+.gallery-section{padding:80px 0 105px;overflow:hidden}
+.gallery-heading{text-align:center;padding:0 24px 32px}
+.gallery-subtitle{font-size:14px;color:#888;line-height:1.8}
+.gallery-slider{position:relative;width:100%;overflow:hidden;touch-action:pan-y}
+.gallery-track{display:flex;align-items:center;gap:12px;will-change:transform;transition:transform .38s cubic-bezier(.22,.61,.36,1)}
+.gallery-slide{flex:0 0 78vw;max-width:470px;aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:#eee;box-shadow:0 8px 24px rgba(0,0,0,.08);user-select:none}
+.gallery-slide img{width:100%;height:100%;display:block;object-fit:cover;pointer-events:none}
+.gallery-counter{text-align:center;margin-top:22px;font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;color:#888}
+.gallery-hint{text-align:center;margin-top:10px;font-size:12px;color:#aaa}
+.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:38px;height:38px;border:1px solid rgba(255,255,255,.8);border-radius:50%;background:rgba(0,0,0,.18);color:#fff;font-size:20px;line-height:1}
+.gallery-arrow.prev{left:14px}.gallery-arrow.next{right:14px}
+
+/* 갤러리 전체화면 팝업 */
+.gallery-modal{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.88);align-items:center;justify-content:center;padding:24px}
+.gallery-modal.active{display:flex}
+.gallery-modal-image{max-width:92vw;max-height:82vh;width:auto;height:auto;object-fit:contain;border-radius:12px}
+.gallery-close{position:absolute;top:15px;right:18px;color:#fff;font-size:34px;line-height:1;z-index:10002}
+.gallery-prev,.gallery-next{position:absolute;top:50%;transform:translateY(-50%);border:0;background:none;color:#fff;font-size:30px;z-index:10002;padding:15px}
+.gallery-prev{left:3px}.gallery-next{right:3px}
+
+/* ==================================================
+   오시는 길 — 이미지 삭제 후 코드
+================================================== */
+.location-section{padding:90px 20px 100px;background:#fdfbf7;text-align:center}
+.location-heading{margin-bottom:36px}
+.location-address{margin:0;font-size:24px;line-height:1.5;color:#444}
+.location-address-small{margin:10px 0 0;font-size:15px;line-height:1.8;color:#777;word-break:keep-all}
+.location-tel{margin:7px 0 0;font-family:Arial,sans-serif;font-size:14px;letter-spacing:1px;color:#555}
+.map-wrap{width:min(100%,600px);margin:35px auto 22px;overflow:hidden;border-radius:18px;background:#eee}
+#daumRoughmapContainer1788964418676{width:100%!important;max-width:600px!important;margin:0 auto!important;padding:0!important;height:300px!important;overflow:hidden!important}
+#daumRoughmapContainer1788964418676 .wrap_map,#daumRoughmapContainer1788964418676 .map{width:100%!important;height:300px!important}
+#daumRoughmapContainer1788964418676 .roughmap_maker_label,#daumRoughmapContainer1788964418676 .wrap_cont,#daumRoughmapContainer1788964418676 .map_info{display:none!important}
+.location-links{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:min(100%,600px);margin:0 auto}
+.location-link{display:flex;align-items:center;justify-content:center;min-height:52px;border:1px solid #d7d1c7;border-radius:12px;background:#fff;color:#555;text-decoration:none;font-size:13px}
+.location-link.primary{grid-column:1/-1;background:#5e654d;border-color:#5e654d;color:#fff}
+.transport-accordion{width:min(100%,600px);margin:38px auto 0;text-align:left}
+.transport-box{margin-bottom:9px;border-radius:14px;overflow:hidden;background:#fff;border:1px solid #e2ddd4}
+.transport-button{width:100%;min-height:58px;border:0;background:#eee9df;padding:0 20px;display:flex;align-items:center;justify-content:space-between;color:#444;font-size:17px;text-align:left}
+.transport-button::after{content:"⌄";font-family:Arial,sans-serif;font-size:22px;transition:transform .25s}
+.transport-box.open .transport-button::after{transform:rotate(180deg)}
+.transport-info{display:none;padding:23px 20px 25px;background:#fff;font-size:14px;line-height:2;color:#666;word-break:keep-all}
+.transport-box.open .transport-info{display:block}
+.transport-info strong{font-weight:400;color:#444;font-size:15px}
+
+/* 약도 팝업 */
+.location-map-modal{display:none;position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,.85);align-items:center;justify-content:center;padding:20px}
+.location-map-modal.active{display:flex}
+.location-map-modal-image{display:block;max-width:100%;max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:10px}
+.location-map-close{position:absolute;top:15px;right:18px;color:#fff;font-size:34px;line-height:1;z-index:10002}
+
+/* ==================================================
+   middle2 — 기존 이미지 유지
+================================================== */
+.middle2-scroll{position:relative}
+.middle2-section{position:relative;width:100%;line-height:0}
+.middle2-layer{display:block;width:100%;height:auto}
+.middle2-background{position:relative;opacity:1;z-index:1}
+.middle2-layer:not(.middle2-background){position:absolute;left:0;top:0;opacity:0;z-index:2}
+
+/* ==================================================
+   방명록 — 이미지 삭제 후 코드
+================================================== */
+.guestbook-section{padding:90px 20px 105px;background:var(--paper);text-align:center}
+.guestbook-header{margin-bottom:32px}
+.guestbook-description{margin:20px 0 0;font-size:14px;line-height:1.9;color:#888}
+.guestbook-list-screen,.guestbook-written-screen{width:min(100%,600px);margin:0 auto}
+.guestbook-empty{padding:38px 20px;border:1px solid #ded8ce;border-radius:18px;background:#fffdf9;color:#888;font-size:14px;line-height:1.8}
+.guestbook-write-button,.guestbook-write-again-button{border:1px solid #777;border-radius:12px;background:#fffdf9;color:#555;min-width:150px;height:48px;padding:0 25px;font-size:14px}
+.guestbook-write-button{margin-top:24px}
+.guestbook-entry-list{width:100%;margin:0 auto;text-align:left}
+.guestbook-entry{width:100%;background:#fff;border:1px solid #e4dfd7;border-radius:16px;padding:22px 20px;margin:0 0 14px;box-shadow:0 3px 12px rgba(0,0,0,.04)}
+.guestbook-entry-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}
+.guestbook-entry-name{font-size:16px;color:#333;font-weight:600}
+.guestbook-entry-right{display:flex;align-items:center;gap:9px}
+.guestbook-entry-date{font-size:12px;color:#aaa}
+.guestbook-delete-button{border:0;background:none;padding:0;font-size:20px;line-height:1;color:#aaa}
+.guestbook-entry-content{font-size:15px;line-height:1.8;color:#555;white-space:pre-wrap;word-break:break-word}
+.guestbook-write-again-button{margin-top:8px}
+
+/* 방명록 팝업 */
+.guestbook-form-screen{position:fixed;inset:0;display:none;width:100%;height:100%;background:var(--paper);padding:30px 20px 0;overflow-y:auto;z-index:99998}
+.guestbook-form-screen.show{display:block}
+.guestbook-form-inner{width:min(100%,600px);min-height:100%;margin:0 auto;padding:0 0 50px}
+.guestbook-form-header{position:relative;width:100%;height:58px;display:flex;align-items:center;justify-content:center}
+.guestbook-form-title{font-family:Arial,"Malgun Gothic",sans-serif;font-size:17px;font-weight:500;color:#222}
+.guestbook-form-close{position:absolute;top:0;right:0;width:58px;height:58px;border:0;background:none;font-family:Arial,sans-serif;font-size:20px;color:#222}
+.guestbook-form-body{padding:26px 4px 0}
+.guestbook-form-item{margin-bottom:28px}
+.guestbook-form-item label{display:block;font-family:Arial,"Malgun Gothic",sans-serif;font-size:15px;margin-bottom:15px;color:#222}
+.guestbook-form-item label span{color:#d95b50;margin-right:4px}
+.guestbook-form-item input,.guestbook-form-item textarea{width:100%;border:0;border-bottom:1px solid #d8d4cc;background:transparent;border-radius:0;padding:8px 0 14px;font-family:Arial,"Apple SD Gothic Neo",sans-serif;font-size:16px;line-height:1.6;color:#222;outline:none}
+.guestbook-form-item textarea{height:115px;resize:none}
+.guestbook-submit-button{display:block;width:100%;height:50px;margin:10px 0 0;border:1px solid #777;border-radius:12px;background:#fffdf9;color:#555;font-size:14px}
+
+/* ==================================================
+   계좌번호 — 이미지 삭제 후 코드
+================================================== */
+.account-section{padding:90px 20px 100px;background:#fdfbf7;text-align:center}
+.account-description{margin:20px auto 35px;max-width:520px;font-size:14px;line-height:2;color:#888;word-break:keep-all}
+.account-accordion{width:min(100%,600px);margin:0 auto;text-align:left}
+.account-box{margin-bottom:10px;border:1px solid #ddd7cd;border-radius:14px;overflow:hidden;background:#fff}
+.account-button{width:100%;min-height:62px;border:0;background:#eee9df;display:flex;align-items:center;justify-content:space-between;padding:0 20px;color:#444;font-size:17px}
+.account-button::after{content:"⌄";font-family:Arial,sans-serif;font-size:22px;transition:transform .25s}
+.account-box.open .account-button::after{transform:rotate(180deg)}
+.account-info{display:none;padding:0 20px 22px;background:#fff}
+.account-box.open .account-info{display:block}
+.account-person{padding:22px 0 18px;border-bottom:1px solid #eee8df}
+.account-person:last-child{border-bottom:0}
+.account-bank{font-size:14px;color:#777}
+.account-number{margin-top:6px;font-family:Arial,sans-serif;font-size:17px;letter-spacing:.5px;color:#333}
+.account-copy-button{margin-top:10px;border:1px solid #d7d1c8;border-radius:9px;background:#fff;padding:8px 12px;color:#666;font-size:12px}
+
+/* 계좌 복사 팝업 */
+.copy-popup{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:25px;background:rgba(0,0,0,.25);z-index:99999}
+.copy-popup.show{display:flex}
+.copy-popup-content{width:min(88vw,360px);background:#fffdf9;border-radius:18px;padding:30px 22px;text-align:center;box-shadow:0 12px 35px rgba(0,0,0,.15)}
+.copy-popup-message{font-size:15px;line-height:1.8;color:#555}
+.copy-confirm-button{margin-top:20px;width:100%;height:46px;border:1px solid #777;border-radius:10px;background:#fff;color:#555;font-size:14px}
+
+/* ==================================================
+   연락하기 — 이미지 삭제 후 코드
+================================================== */
+.contact-section{padding:90px 20px 100px;text-align:center;background:var(--paper)}
+.contact-description{margin:20px auto 30px;max-width:500px;font-size:14px;line-height:2;color:#888;word-break:keep-all}
+.contact-open-button{width:min(100%,360px);height:54px;border:1px solid #777;border-radius:12px;background:#fffdf9;color:#555;font-size:15px}
+.contact-popup{position:fixed;inset:0;display:none;align-items:center;justify-content:center;width:100%;height:100%;padding:20px;background:rgba(0,0,0,.35);z-index:99998}
+.contact-popup.show{display:flex}
+.contact-popup-content{width:min(100%,520px);max-height:84vh;overflow-y:auto;background:var(--paper);border-radius:20px;padding:12px 0 20px;box-shadow:0 15px 40px rgba(0,0,0,.18)}
+.contact-popup-header{position:relative;height:58px;display:flex;align-items:center;justify-content:center}
+.contact-popup-header-title{margin:0;font-size:18px;font-weight:400;color:#333}
+.contact-popup-close{position:absolute;top:0;right:0;width:58px;height:58px;border:0;background:none;font-family:Arial,sans-serif;font-size:22px;color:#333}
+.contact-group{padding:0 24px 24px}
+.contact-group-title{margin:18px 0 10px;font-size:15px;font-weight:500;color:#444}
+.contact-group-line{height:1px;background:#ded8cf}
+.contact-person{display:flex;align-items:center;justify-content:space-between;min-height:62px;border-bottom:1px solid #e8e2da}
+.contact-person-name{font-size:14px;color:#444}
+.contact-actions{display:flex;gap:7px}
+.contact-action-button{display:flex;align-items:center;justify-content:center;width:58px;height:36px;border:1px solid #d6d0c7;border-radius:9px;background:#fff;color:#555;text-decoration:none;font-size:12px}
 
 /* ==================================================
    마지막 이미지
 ================================================== */
+.end-section{width:100%;margin:0;padding:0;line-height:0}
+.end-image{display:block;width:100%;height:auto;margin:0}
 
-.end-section {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    line-height: 0;
-}
-
-.end-image {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-}
 /* ==================================================
-   공유하기
+   공유하기 — 코드 버튼
 ================================================== */
+.share-section{padding:48px 20px 110px;text-align:center;background:var(--paper)}
+.share-title{font-size:18px;font-weight:400;color:#555;margin:0 0 18px}
+.share-main-button{min-width:180px;height:52px;border:1px solid #777;border-radius:12px;background:#fffdf9;color:#555;font-size:14px}
+.share-menu{display:none;width:min(100%,500px);margin:18px auto 0;grid-template-columns:repeat(2,1fr);gap:9px}
+.share-menu.open{display:grid}
+.share-menu-button{height:50px;border:1px solid #ddd7ce;border-radius:10px;background:#fff;color:#555;font-size:13px}
 
-.share-section {
-    width: 100%;
-    padding: 0px 0 120px;
-    text-align: center;
+@media (min-width:601px){
+    body{background:#eeeae2}
+    .intro,.intro-inner{max-width:600px}
+    .hero-section,.invite-section,.calendar-section,.gallery-section,.location-section,.guestbook-section,.account-section,.contact-section,.share-section{max-width:600px;margin-left:auto;margin-right:auto}
+    .gallery-slide{flex-basis:470px}
 }
-
-.share-button {
-    display: block;
-    width: 12.093%;
-    aspect-ratio: 104 / 141;
-    padding: 0;
-    margin: 0 auto;
-    border: 0;
-    background: none;
-    cursor: pointer;
-}
-
-.share-button img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-}
-
-/* 공유 메뉴 */
-
-.share-menu {
-    display: none;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.share-menu.open {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.share-menu-button {
-    display: block;
-    width: calc(25% - 10px);
-    max-width: 140px;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    background: none;
-    cursor: pointer;
-}
-
-.share-menu-button img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-    </style>
+</style>
 </head>
-
-
 <body>
 
+<!-- ==================================================
+     인트로 — 기존 그대로
+================================================== -->
+<div class="intro" id="intro">
+    <div class="intro-inner">
+        <img src="images/intro/intro-01.jpg" class="intro-01" alt="">
+        <img src="images/intro/intro-02.png" class="intro-layer intro-02" alt="">
+        <img src="images/intro/intro-03.png" class="intro-layer intro-03" alt="">
+        <img src="images/intro/intro-04.png" class="intro-layer intro-04" alt="">
+        <img src="images/intro/intro-05.png" class="intro-layer intro-05" alt="">
+    </div>
+</div>
 
-    <!-- ==================================================
-         인트로
-    ================================================== -->
+<!-- ==================================================
+     메인
+================================================== -->
+<section class="hero-section scroll-reveal">
+    <div class="hero-kicker">WEDDING INVITATION</div>
+    <h1 class="hero-names"><span>경진</span><div class="hero-amp">&amp;</div><span>홍연</span></h1>
+    <div class="hero-date">2026. 11. 21 SAT 12:40</div>
+    <div class="hero-place">분당앤스퀘어 4층 아모르홀</div>
+    <div class="hero-line"></div>
+</section>
 
-    <div
-        class="intro"
-        id="intro"
-    >
+<!-- ==================================================
+     초대 문구
+================================================== -->
+<section class="invite-section scroll-reveal">
+    <div class="section-kicker">INVITATION</div>
+    <h2 class="section-title">소중한 분들을 초대합니다.</h2>
+    <p class="invite-copy">
+        서로의 가장 좋은 친구가 되어<br>
+        함께 웃고 함께 걸어가려 합니다.<br><br>
+        저희 두 사람이 사랑으로 맺어지는 날,<br>
+        귀한 걸음으로 함께해 주시면<br>
+        더없이 기쁘고 감사하겠습니다.
+    </p>
+    <div class="invite-names"><strong>경진</strong> · <strong>홍연</strong></div>
+</section>
 
-        <div class="intro-inner">
-
-            <img
-                src="images/intro/intro-01.jpg"
-                class="intro-01"
-                alt=""
-            >
-
-            <img
-                src="images/intro/intro-02.png"
-                class="intro-layer intro-02"
-                alt=""
-            >
-
-            <img
-                src="images/intro/intro-03.png"
-                class="intro-layer intro-03"
-                alt=""
-            >
-
-            <img
-                src="images/intro/intro-04.png"
-                class="intro-layer intro-04"
-                alt=""
-            >
-
-            <img
-                src="images/intro/intro-05.png"
-                class="intro-layer intro-05"
-                alt=""
-            >
-
-        </div>
-
+<!-- ==================================================
+     달력 + D-Day
+================================================== -->
+<section class="calendar-section scroll-reveal">
+    <div class="section-kicker">WEDDING DAY</div>
+    <div class="calendar-card">
+        <div class="calendar-date">2026. 11. 21</div>
+        <div class="calendar-time">토요일 낮 12시 40분</div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+        <p class="calendar-note">2026년 11월 21일, 저희의 결혼식에 초대합니다.</p>
     </div>
 
-
-    <!-- ==================================================
-         인트로 종료 후 고정 오버레이
-    ================================================== -->
-
-    <img
-        src="images/main/envelope.png"
-        class="envelope-overlay"
-        id="envelope-overlay"
-        alt=""
-    >
-
-
-    <!-- ==================================================
-         메인
-    ================================================== -->
-
-    <section class="main-section">
-
-        <img
-            src="images/main/main.png"
-            class="main-image"
-            alt=""
-        >
-
-    </section>
-
-
-    <!-- ==================================================
-         초대장
-    ================================================== -->
-
-    <section class="invite-section">
-
-        <img
-            src="images/envelope/invite.png"
-            class="invite-image scroll-reveal"
-            alt=""
-        >
-
-    </section>
-
-
-    <!-- ==================================================
-         달력 + D-Day
-    ================================================== -->
-
-    <section class="calendar-section">
-
-        <img
-            src="images/calendar/calendar.png"
-            class="calendar-image scroll-reveal"
-            alt=""
-        >
-
-        <div class="countdown scroll-reveal">
-
-            <div class="countdown-item">
-
-                <div class="countdown-title">
-                    DAYS
-                </div>
-
-                <div class="countdown-number">
-                    <span id="days">00</span>
-                </div>
-
-            </div>
-
-
-            <div class="countdown-colon">
-                :
-            </div>
-
-
-            <div class="countdown-item">
-
-                <div class="countdown-title">
-                    HOUR
-                </div>
-
-                <div class="countdown-number">
-                    <span id="hours">00</span>
-                </div>
-
-            </div>
-
-
-            <div class="countdown-colon">
-                :
-            </div>
-
-
-            <div class="countdown-item">
-
-                <div class="countdown-title">
-                    MIN
-                </div>
-
-                <div class="countdown-number">
-                    <span id="minutes">00</span>
-                </div>
-
-            </div>
-
-
-            <div class="countdown-colon">
-                :
-            </div>
-
-
-            <div class="countdown-item">
-
-                <div class="countdown-title">
-                    SEC
-                </div>
-
-                <div class="countdown-number">
-                    <span id="seconds">00</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="wedding-dday scroll-reveal">
-
-            경진, 홍연의 결혼식이
-
-            <span id="dday">00</span>
-
-            일 남았습니다.
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         middle
-    ================================================== -->
-
-    <section class="middle-scroll">
-
-        <div class="middle-section">
-
-            <img
-                src="images/middle/middle-01.png"
-                class="middle-layer"
-                alt=""
-            >
-
-            <img
-                src="images/middle/middle-02.png"
-                class="middle-layer"
-                alt=""
-            >
-
-            <img
-                src="images/middle/middle-03.png"
-                class="middle-layer"
-                alt=""
-            >
-
-            <img
-                src="images/middle/middle-04.png"
-                class="middle-layer"
-                alt=""
-            >
-
-            <img
-                src="images/middle/middle-05.png"
-                class="middle-layer"
-                alt=""
-            >
-
-            <img
-                src="images/middle/middle-06.png"
-                class="middle-layer"
-                alt=""
-            >
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         갤러리
-    ================================================== -->
-
-    <section class="gallery-section">
-
-        <img
-            src="images/gallery/gallery.png"
-            class="gallery-image scroll-reveal"
-            alt=""
-        >
-
-        <div class="gallery-grid">
-
-            <img src="images/gallery/01.jpg" class="gallery-item" alt="">
-            <img src="images/gallery/02.jpg" class="gallery-item" alt="">
-            <img src="images/gallery/03.jpg" class="gallery-item" alt="">
-            <img src="images/gallery/04.jpg" class="gallery-item" alt="">
-            <img src="images/gallery/05.jpg" class="gallery-item" alt="">
-            <img src="images/gallery/06.jpg" class="gallery-item" alt="">
-            <img src="images/gallery/07.jpg" class="gallery-item" alt="">
-            <img src="images/gallery/08.jpg" class="gallery-item" alt="">
-            <img src="images/gallery/09.jpg" class="gallery-item" alt="">
-
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         갤러리 팝업
-    ================================================== -->
-
-    <div
-        class="gallery-modal"
-        id="galleryModal"
-    >
-
-        <div
-            class="gallery-close"
-            id="galleryClose"
-        >
-            ×
-        </div>
-
-        <button
-            class="gallery-prev"
-            id="galleryPrev"
-        >
-            〈
-        </button>
-
-        <img
-            class="gallery-modal-image"
-            id="galleryModalImage"
-            src=""
-            alt=""
-        >
-
-        <button
-            class="gallery-next"
-            id="galleryNext"
-        >
-            〉
-        </button>
-
+    <div class="countdown">
+        <div class="countdown-item"><div class="countdown-title">DAYS</div><div class="countdown-number" id="days">00</div></div>
+        <div class="countdown-colon">:</div>
+        <div class="countdown-item"><div class="countdown-title">HOUR</div><div class="countdown-number" id="hours">00</div></div>
+        <div class="countdown-colon">:</div>
+        <div class="countdown-item"><div class="countdown-title">MIN</div><div class="countdown-number" id="minutes">00</div></div>
+        <div class="countdown-colon">:</div>
+        <div class="countdown-item"><div class="countdown-title">SEC</div><div class="countdown-number" id="seconds">00</div></div>
+    </div>
+    <div class="wedding-dday">경진, 홍연의 결혼식이 <span id="dday">00</span>일 남았습니다.</div>
+</section>
+
+<!-- ==================================================
+     middle — 기존 이미지 유지
+================================================== -->
+<section class="middle-scroll">
+    <div class="middle-section">
+        <img src="images/middle/middle-01.png" class="middle-layer" alt="">
+        <img src="images/middle/middle-02.png" class="middle-layer" alt="">
+        <img src="images/middle/middle-03.png" class="middle-layer" alt="">
+        <img src="images/middle/middle-04.png" class="middle-layer" alt="">
+        <img src="images/middle/middle-05.png" class="middle-layer" alt="">
+        <img src="images/middle/middle-06.png" class="middle-layer" alt="">
+    </div>
+</section>
+
+<!-- ==================================================
+     갤러리
+================================================== -->
+<section class="gallery-section scroll-reveal">
+    <div class="gallery-heading">
+        <div class="section-kicker">GALLERY</div>
+        <h2 class="section-title">웨딩 갤러리</h2>
+        <p class="gallery-subtitle">사진을 좌우로 스와이프해 주세요.</p>
     </div>
 
+    <div class="gallery-slider" id="gallerySlider">
+        <button type="button" class="gallery-arrow prev" id="galleryPrev" aria-label="이전 사진">‹</button>
+        <div class="gallery-track" id="galleryTrack"></div>
+        <button type="button" class="gallery-arrow next" id="galleryNext" aria-label="다음 사진">›</button>
+    </div>
+    <div class="gallery-counter" id="galleryCounter">01 / 09</div>
+    <div class="gallery-hint">09번 사진에서 왼쪽으로 넘기면 01번 사진으로 이어집니다.</div>
+</section>
 
-    <!-- ==================================================
-         오시는길
-    ================================================== -->
+<!-- 갤러리 팝업 -->
+<div class="gallery-modal" id="galleryModal">
+    <div class="gallery-close" id="galleryClose">×</div>
+    <button class="gallery-prev" id="galleryModalPrev" type="button">〈</button>
+    <img class="gallery-modal-image" id="galleryModalImage" src="" alt="">
+    <button class="gallery-next" id="galleryModalNext" type="button">〉</button>
+</div>
 
-    <section class="location-section">
+<!-- ==================================================
+     오시는 길
+================================================== -->
+<section class="location-section scroll-reveal">
+    <div class="location-heading">
+        <div class="section-kicker">LOCATION</div>
+        <h2 class="section-title">오시는 길</h2>
+    </div>
+    <h3 class="location-address">분당앤스퀘어 4층 아모르홀</h3>
+    <p class="location-address-small">경기 성남시 분당구 탄천상로 151번길 20</p>
+    <p class="location-tel">Tel. 031-728-5300</p>
 
-        <img
-            src="images/location/location.png"
-            class="location-image scroll-reveal"
-            alt=""
-        >
+    <div class="map-wrap">
+        <div id="daumRoughmapContainer1788964418676" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+    </div>
 
+    <div class="location-links">
+        <button type="button" class="location-link primary" id="locationMapButton">약도 크게 보기</button>
+        <a href="https://map.naver.com/p/entry/place/11872992" class="location-link" target="_blank" rel="noopener">네이버지도</a>
+        <a href="https://tmap.life/674d14ec" class="location-link" target="_blank" rel="noopener">티맵</a>
+        <a href="https://map.kakao.com/?itemId=936406406" class="location-link" target="_blank" rel="noopener">카카오맵</a>
+    </div>
 
-        <div
-            id="daumRoughmapContainer1788964418676"
-            class="root_daum_roughmap root_daum_roughmap_landing"
-        ></div>
-
-
-        <script
-            charset="UTF-8"
-            class="daum_roughmap_loader_script"
-            src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"
-        ></script>
-
-        <script charset="UTF-8">
-
-            new daum.roughmap.Lander({
-
-                "timestamp": "1788964418676",
-                "key": "ufndrmcnn33",
-                "mapWidth": "600",
-                "mapHeight": "300"
-
-            }).render();
-
-        </script>
-
-
-        <!-- 지도 버튼 -->
-
-        <div class="location-button-wrap">
-
-            <img
-                src="images/location/location-button.png"
-                class="location-button-image scroll-reveal"
-                alt=""
-            >
-
-            <a
-                href="#"
-                class="location-button-area location-map-button"
-                id="locationMapButton"
-                aria-label="약도 이미지 보기"
-            ></a>
-
-            <a
-                href="https://map.naver.com/p/entry/place/11872992"
-                class="location-button-area location-naver-button"
-                target="_blank"
-                rel="noopener"
-                aria-label="네이버지도"
-            ></a>
-
-            <a
-                href="https://tmap.life/674d14ec"
-                class="location-button-area location-tmap-button"
-                target="_blank"
-                rel="noopener"
-                aria-label="티맵"
-            ></a>
-
-            <a
-                href="https://map.kakao.com/?itemId=936406406"
-                class="location-button-area location-kakao-button"
-                target="_blank"
-                rel="noopener"
-                aria-label="카카오내비"
-            ></a>
-
+    <div class="transport-accordion">
+        <div class="transport-box">
+            <button type="button" class="transport-button">지하철 이용 시</button>
+            <div class="transport-info">
+                <strong>수인분당선 오리역 하차</strong><br>
+                ① 오리역 6번 출구로 나오세요.<br>
+                ② 6번 출구 에스컬레이터를 이용하세요.<br>
+                ③ 출구에서 약 50m 직진하면 분당앤스퀘어가 있습니다.<br>
+                ④ 건물 4층으로 이동하시면 아모르홀입니다.<br><br>
+                <strong>분당앤스퀘어 아모르홀</strong><br>
+                수인분당선 오리역 6번 출구 도보 약 1분
+            </div>
         </div>
+        <div class="transport-box">
+            <button type="button" class="transport-button">버스 이용 시</button>
+            <div class="transport-info">
+                <strong>오리역 하차 → 도보 200m</strong><br><br>
+                [오리역 방면] 300, 310, 395, 520<br><br>
+                [구미동차고지 방면] 351<br><br>
+                [서울 방면 → 오리역] M4102<br><br>
+                [죽전·단국대 방면 → 오리역] 9000-1, 9000-1A<br><br>
+                [기타 오리역 경유] 101, 102, 116, 116-1, 116-3, 1241, 1303, 3500, 370, 390,<br>
+                5500-1, 60, 700-2, 7007-1, 720-2, 8100, 8101, 8106, 8109, 820, 9414
+            </div>
+        </div>
+        <div class="transport-box">
+            <button type="button" class="transport-button">자차 이용 시</button>
+            <div class="transport-info">
+                <strong>분당앤스퀘어</strong><br>
+                경기도 성남시 분당구 탄천상로 151번길 20<br><br>
+                주차장 진입<br>
+                분당앤스퀘어 건물 뒤편 → 홈플러스·CGV·애플플라자 주차장 입구 이용<br><br>
+                주차 위치<br>
+                지하 3층 또는 지하 4층<br>
+                → 77번 기둥에서 우회전<br>
+                → 주차 후 웨딩홀 전용 엘리베이터 7·8호기 이용<br><br>
+                ※ 하객 전용 주차장은 지하 3~4층이며 약 1,500대 주차가 가능합니다.
+            </div>
+        </div>
+    </div>
+</section>
 
+<script charset="UTF-8" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+<script charset="UTF-8">
+new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWidth":"600","mapHeight":"300"}).render();
+</script>
 
-        <!-- 교통 이용 안내 -->
+<!-- 약도 팝업 -->
+<div class="location-map-modal" id="locationMapModal">
+    <div class="location-map-close" id="locationMapClose">×</div>
+    <img src="images/location/map.jpg" class="location-map-modal-image" alt="분당앤스퀘어 약도">
+</div>
 
-        <div class="transport-accordion">
+<!-- ==================================================
+     middle2 — 기존 이미지 유지
+================================================== -->
+<section class="middle2-scroll">
+    <div class="middle2-section">
+        <img src="images/middle2/middle2-01.png" class="middle2-layer middle2-background" alt="">
+        <img src="images/middle2/middle2-05.png" class="middle2-layer" alt="">
+        <img src="images/middle2/middle2-02.png" class="middle2-layer" alt="">
+        <img src="images/middle2/middle2-03.png" class="middle2-layer" alt="">
+        <img src="images/middle2/middle2-04.png" class="middle2-layer" alt="">
+    </div>
+</section>
 
-            <div class="transport-box">
+<!-- ==================================================
+     방명록
+================================================== -->
+<section class="guestbook-section scroll-reveal">
+    <div class="guestbook-header">
+        <div class="section-kicker">GUESTBOOK</div>
+        <h2 class="section-title">축하의 마음을 남겨주세요.</h2>
+        <p class="guestbook-description">두 사람에게 따뜻한 축하의 한마디를 남겨주시면 소중히 간직하겠습니다.</p>
+    </div>
 
-                <button
-                    type="button"
-                    class="transport-button"
-                >
-                    <img
-                        src="images/location/subway-button.png"
-                        class="scroll-reveal"
-                        alt="지하철 이용 시"
-                    >
-                </button>
+    <div class="guestbook-list-screen" id="guestbook-list-screen">
+        <div class="guestbook-empty" id="guestbook-empty">아직 남겨진 방명록이 없습니다.<br>첫 번째 축하 메시지를 남겨주세요.</div>
+        <button type="button" class="guestbook-write-button">방명록 작성하기</button>
+    </div>
 
-                <div class="transport-info">
+    <div class="guestbook-written-screen" id="guestbook-written-screen" style="display:none">
+        <div class="guestbook-entry-list" id="guestbook-entry-list"></div>
+        <button type="button" class="guestbook-write-again-button">방명록 작성하기</button>
+    </div>
+</section>
 
-                    <img
-                        src="images/location/subway-info.png"
-                        alt="지하철 이용 안내"
-                    >
+<!-- 방명록 작성 팝업 -->
+<div class="guestbook-form-screen" id="guestbook-form-screen">
+    <div class="guestbook-form-inner">
+        <div class="guestbook-form-header">
+            <div class="guestbook-form-title">방명록 작성하기</div>
+            <button type="button" class="guestbook-form-close" id="guestbook-form-close">×</button>
+        </div>
+        <div class="guestbook-form-body">
+            <div class="guestbook-form-item"><label><span>*</span> 이름</label><input type="text" id="guestbook-name" placeholder="이름을 입력해 주세요."></div>
+            <div class="guestbook-form-item"><label><span>*</span> 내용</label><textarea id="guestbook-content" placeholder="내용을 작성해 주세요. (최대 500자)" maxlength="500"></textarea></div>
+            <div class="guestbook-form-item"><label><span>*</span> 비밀번호</label><input type="password" id="guestbook-password" placeholder="비밀번호를 입력해 주세요."></div>
+            <button type="button" class="guestbook-submit-button" id="guestbook-submit-button">작성완료</button>
+        </div>
+    </div>
+</div>
 
+<!-- ==================================================
+     계좌번호
+================================================== -->
+<section class="account-section scroll-reveal">
+    <div class="section-kicker">ACCOUNT</div>
+    <h2 class="section-title">마음 전하실 곳</h2>
+    <p class="account-description">참석이 어려우신 분들을 위해 계좌번호를 안내해 드립니다.<br>너그러운 마음으로 양해 부탁드립니다.</p>
+
+    <div class="account-accordion">
+        <div class="account-box">
+            <button type="button" class="account-button">신랑측</button>
+            <div class="account-info">
+                <div class="account-person">
+                    <div class="account-bank">신한은행 · 신랑</div>
+                    <div class="account-number">110-508-795337</div>
+                    <button type="button" class="account-copy-button" data-account="110508795337">계좌번호 복사</button>
                 </div>
-
-            </div>
-
-
-            <div class="transport-box">
-
-                <button
-                    type="button"
-                    class="transport-button"
-                >
-                    <img
-                        src="images/location/bus-button.png"
-                        class="scroll-reveal"
-                        alt="버스 이용 시"
-                    >
-                </button>
-
-                <div class="transport-info">
-
-                    <img
-                        src="images/location/bus-info.png"
-                        alt="버스 이용 안내"
-                    >
-
+                <div class="account-person">
+                    <div class="account-bank">우리은행</div>
+                    <div class="account-number">1002-033-848184</div>
+                    <button type="button" class="account-copy-button" data-account="1002033848184">계좌번호 복사</button>
                 </div>
-
             </div>
-
-
-            <div class="transport-box">
-
-                <button
-                    type="button"
-                    class="transport-button"
-                >
-                    <img
-                        src="images/location/car-button.png"
-                        class="scroll-reveal"
-                        alt="자차 이용 시"
-                    >
-
-                </button>
-
-                <div class="transport-info">
-
-                    <img
-                        src="images/location/car-info.png"
-                        alt="자차 이용 안내"
-                    >
-
+        </div>
+        <div class="account-box">
+            <button type="button" class="account-button">신부측</button>
+            <div class="account-info">
+                <div class="account-person">
+                    <div class="account-bank">NH농협은행 · 신부</div>
+                    <div class="account-number">302-0757-9934-11</div>
+                    <button type="button" class="account-copy-button" data-account="3020757993411">계좌번호 복사</button>
                 </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         middle2
-    ================================================== -->
-
-    <section class="middle2-scroll">
-
-        <div class="middle2-section">
-
-            <img
-                src="images/middle2/middle2-01.png"
-                class="middle2-layer middle2-background"
-                alt=""
-            >
-
-            <img
-                src="images/middle2/middle2-05.png"
-                class="middle2-layer"
-                alt=""
-            >
-
-            <img
-                src="images/middle2/middle2-02.png"
-                class="middle2-layer"
-                alt=""
-            >
-
-            <img
-                src="images/middle2/middle2-03.png"
-                class="middle2-layer"
-                alt=""
-            >
-
-            <img
-                src="images/middle2/middle2-04.png"
-                class="middle2-layer"
-                alt=""
-            >
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         방명록
-    ================================================== -->
-
-    <section class="guestbook-section">
-
-
-        <!-- 작성된 글이 없을 때 -->
-
-        <div
-            class="guestbook-list-screen"
-            id="guestbook-list-screen"
-        >
-
-            <img
-                src="images/gestbook/gestbook-01.png"
-                class="guestbook-01 scroll-reveal"
-                alt=""
-            >
-
-            <img
-                src="images/gestbook/gestbook-02.png"
-                class="guestbook-02 scroll-reveal"
-                alt=""
-            >
-
-            <button
-                type="button"
-                class="guestbook-write-button"
-                aria-label="방명록 작성하기"
-            ></button>
-
-        </div>
-
-
-        <!-- 작성된 글이 있을 때 -->
-
-        <div
-            class="guestbook-written-screen"
-            id="guestbook-written-screen"
-        >
-
-            <div class="guestbook-03-wrap">
-
-                <img
-                    src="images/gestbook/gestbook-03.png"
-                    class="guestbook-03 scroll-reveal"
-                    alt=""
-                >
-
-            </div>
-
-
-            <div
-                class="guestbook-entry-list"
-                id="guestbook-entry-list"
-            ></div>
-
-
-            <div class="guestbook-04-wrap">
-
-                <img
-                    src="images/gestbook/gestbook-04.png"
-                    class="guestbook-04 scroll-reveal"
-                    alt=""
-                >
-
-                <button
-                    type="button"
-                    class="guestbook-write-again-button"
-                    aria-label="방명록 작성하기"
-                ></button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 방명록 작성 팝업 -->
-
-        <div
-            class="guestbook-form-screen"
-            id="guestbook-form-screen"
-        >
-
-            <div class="guestbook-form-inner">
-
-                <div class="guestbook-form-header">
-
-                    <div class="guestbook-form-title">
-                        방명록 작성하기
-                    </div>
-
-                    <button
-                        type="button"
-                        class="guestbook-form-close"
-                        id="guestbook-form-close"
-                        aria-label="닫기"
-                    >
-                        ×
-                    </button>
-
+                <div class="account-person">
+                    <div class="account-bank">신한은행</div>
+                    <div class="account-number">110-400-976752</div>
+                    <button type="button" class="account-copy-button" data-account="110400976752">계좌번호 복사</button>
                 </div>
-
-
-                <div class="guestbook-form-body">
-
-                    <div class="guestbook-form-item">
-
-                        <label>
-                            <span>*</span> 이름
-                        </label>
-
-                        <input
-                            type="text"
-                            id="guestbook-name"
-                            placeholder="이름을 입력해 주세요."
-                        >
-
-                    </div>
-
-
-                    <div class="guestbook-form-item">
-
-                        <label>
-                            <span>*</span> 내용
-                        </label>
-
-                        <textarea
-                            id="guestbook-content"
-                            placeholder="내용을 작성해 주세요. (최대 500자)"
-                            maxlength="500"
-                        ></textarea>
-
-                    </div>
-
-
-                    <div class="guestbook-form-item">
-
-                        <label>
-                            <span>*</span> 비밀번호
-                        </label>
-
-                        <input
-                            type="password"
-                            id="guestbook-password"
-                            placeholder="비밀번호를 입력해 주세요."
-                        >
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="guestbook-submit-button"
-                        id="guestbook-submit-button"
-                    >
-                        작성완료
-                    </button>
-
-                </div>
-
             </div>
-
         </div>
+    </div>
+</section>
 
-    </section>
+<!-- 계좌 복사 팝업 -->
+<div class="copy-popup" id="copy-popup">
+    <div class="copy-popup-content">
+        <div class="copy-popup-message">계좌번호가 복사되었습니다.</div>
+        <button type="button" class="copy-confirm-button" id="copy-confirm-button">확인</button>
+    </div>
+</div>
 
+<!-- ==================================================
+     연락하기
+================================================== -->
+<section class="contact-section scroll-reveal">
+    <div class="section-kicker">CONTACT</div>
+    <h2 class="section-title">연락하기</h2>
+    <p class="contact-description">궁금하신 점이 있으시거나 축하의 마음을 전하고 싶으신 분은 편하게 연락 주세요.</p>
+    <button type="button" class="contact-open-button" id="contact-open-button">신랑·신부에게 연락하기</button>
+</section>
 
-    <!-- ==================================================
-         계좌번호
-    ================================================== -->
-
-    <section class="account-section">
-
-        <img
-            src="images/account/account.png"
-            class="account-background scroll-reveal"
-            alt=""
-        >
-
-
-        <div class="account-accordion">
-
-
-            <!-- 신랑측 -->
-
-            <div class="account-box">
-
-                <button
-                    type="button"
-                    class="account-button"
-                    aria-label="신랑측 계좌번호 보기"
-                >
-                    <img
-                        src="images/account/groom-button.png"
-                        class="account-button-image"
-                        alt="신랑측 계좌번호"
-                    >
-                </button>
-
-
-                <div class="account-info">
-
-                    <img
-                        src="images/account/groom-info.png"
-                        alt="신랑측 계좌번호"
-                    >
-
-
-                    <button
-                        type="button"
-                        class="account-copy-button groom-copy-1"
-                        data-account="110508795337"
-                        aria-label="신한은행 계좌번호 복사"
-                    ></button>
-
-
-                    <button
-                        type="button"
-                        class="account-copy-button groom-copy-2"
-                        data-account="1002033848184"
-                        aria-label="우리은행 계좌번호 복사"
-                    ></button>
-
-
-                    <button
-                        type="button"
-                        class="account-close-button"
-                        aria-label="신랑측 계좌번호 닫기"
-                    ></button>
-
-                </div>
-
-            </div>
-
-
-            <!-- 신부측 -->
-
-            <div class="account-box">
-
-                <button
-                    type="button"
-                    class="account-button"
-                    aria-label="신부측 계좌번호 보기"
-                >
-                    <img
-                        src="images/account/bride-button.png"
-                        class="account-button-image"
-                        alt="신부측 계좌번호"
-                    >
-                </button>
-
-
-                <div class="account-info">
-
-                    <img
-                        src="images/account/bride-info.png"
-                        alt="신부측 계좌번호"
-                    >
-
-
-                    <button
-                        type="button"
-                        class="account-copy-button bride-copy-1"
-                        data-account="3020757993411"
-                        aria-label="NH농협 계좌번호 복사"
-                    ></button>
-
-
-                    <button
-                        type="button"
-                        class="account-copy-button bride-copy-2"
-                        data-account="110400976752"
-                        aria-label="신한은행 계좌번호 복사"
-                    ></button>
-
-
-                    <button
-                        type="button"
-                        class="account-close-button"
-                        aria-label="신부측 계좌번호 닫기"
-                    ></button>
-
-                </div>
-
-            </div>
-
+<!-- 연락하기 팝업 -->
+<div class="contact-popup" id="contact-popup">
+    <div class="contact-popup-content">
+        <div class="contact-popup-header">
+            <h2 class="contact-popup-header-title">연락하기</h2>
+            <button type="button" class="contact-popup-close" id="contact-popup-close">×</button>
         </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         연락하기
-    ================================================== -->
-
-    <section class="contact-section">
-
-        <img
-            src="images/contact/contact-01.png"
-            class="contact-title-image scroll-reveal"
-            alt="연락하기"
-        >
-
-
-        <div class="contact-button-wrap">
-
-            <img
-                src="images/contact/contact-02.png"
-                class="contact-button-image scroll-reveal"
-                alt="연락하기"
-            >
-
-
-            <button
-                type="button"
-                class="contact-open-button"
-                id="contact-open-button"
-                aria-label="연락하기"
-            ></button>
-
+        <div class="contact-group">
+            <h3 class="contact-group-title">신랑측</h3>
+            <div class="contact-group-line"></div>
+            <div class="contact-person"><span class="contact-person-name">신랑</span><div class="contact-actions"><a href="tel:전화번호" class="contact-action-button">전화</a><a href="sms:전화번호" class="contact-action-button">문자</a></div></div>
+            <div class="contact-person"><span class="contact-person-name">아버지</span><div class="contact-actions"><a href="tel:전화번호" class="contact-action-button">전화</a><a href="sms:전화번호" class="contact-action-button">문자</a></div></div>
         </div>
-
-    </section>
+        <div class="contact-group">
+            <h3 class="contact-group-title">신부측</h3>
+            <div class="contact-group-line"></div>
+            <div class="contact-person"><span class="contact-person-name">신부</span><div class="contact-actions"><a href="tel:전화번호" class="contact-action-button">전화</a><a href="sms:전화번호" class="contact-action-button">문자</a></div></div>
+            <div class="contact-person"><span class="contact-person-name">어머니</span><div class="contact-actions"><a href="tel:전화번호" class="contact-action-button">전화</a><a href="sms:전화번호" class="contact-action-button">문자</a></div></div>
+        </div>
+    </div>
+</div>
 
 <!-- ==================================================
      마지막 이미지
 ================================================== -->
-<section class="end-section">
-    <img src="images/end/end.png" alt="마지막 이미지" class="end-image">
-</section>
+<section class="end-section"><img src="images/end/end.png" alt="마지막 이미지" class="end-image"></section>
 
 <!-- ==================================================
      공유하기
 ================================================== -->
 <section class="share-section">
-
-    <button type="button" class="share-button" id="shareButton">
-        <img src="images/share/share-button.png" alt="공유하기">
-    </button>
-
+    <h2 class="share-title">소중한 마음을 전해주세요.</h2>
+    <button type="button" class="share-main-button" id="shareButton">공유하기</button>
     <div class="share-menu" id="shareMenu">
-
-        <button type="button" class="share-menu-button" id="shareCopyButton">
-            <img src="images/share/share-copy.png" alt="링크 복사">
-        </button>
-
-        <button type="button" class="share-menu-button" id="shareKakaoButton">
-            <img src="images/share/share-kakao.png" alt="카카오톡 공유">
-        </button>
-
-        <button type="button" class="share-menu-button" id="shareMoreButton">
-            <img src="images/share/share-more.png" alt="더보기">
-        </button>
-
-        <button type="button" class="share-menu-button" id="shareSmsButton">
-            <img src="images/share/share-sms.png" alt="문자 보내기">
-        </button>
-
+        <button type="button" class="share-menu-button" id="shareCopyButton">링크 복사</button>
+        <button type="button" class="share-menu-button" id="shareKakaoButton">카카오톡 공유</button>
+        <button type="button" class="share-menu-button" id="shareMoreButton">더보기</button>
+        <button type="button" class="share-menu-button" id="shareSmsButton">문자 보내기</button>
     </div>
-
 </section>
-    <!-- ==================================================
-         계좌 복사 완료 팝업
-    ================================================== -->
 
-    <div
-        class="copy-popup"
-        id="copy-popup"
-    >
+<script>
+/* ==================================================
+   인트로 — 기존 동작 유지
+================================================== */
+const intro=document.getElementById("intro");
+const introLayers=document.querySelectorAll(".intro-layer");
+window.addEventListener("load",()=>{
+    introLayers.forEach((layer,index)=>setTimeout(()=>layer.classList.add("show"),300+(index*350)));
+});
+intro.addEventListener("click",()=>{
+    window.scrollTo(0,0);
+    intro.classList.add("hide");
+    document.body.style.overflow="";
+});
+
+/* ==================================================
+   스크롤 등장 / 사라짐
+================================================== */
+const scrollRevealObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>entry.isIntersecting?entry.target.classList.add("show"):entry.target.classList.remove("show"));
+},{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+document.querySelectorAll(".scroll-reveal").forEach(el=>scrollRevealObserver.observe(el));
+
+/* ==================================================
+   D-Day
+================================================== */
+const weddingDate=new Date("2026-11-21T12:40:00+09:00");
+function updateCountdown(){
+    const difference=weddingDate-new Date();
+    if(difference<=0){
+        ["days","hours","minutes","seconds"].forEach(id=>document.getElementById(id).textContent="00");
+        document.getElementById("dday").textContent="0";return;
+    }
+    const totalSeconds=Math.floor(difference/1000);
+    const days=Math.floor(totalSeconds/86400);
+    const hours=Math.floor((totalSeconds%86400)/3600);
+    const minutes=Math.floor((totalSeconds%3600)/60);
+    const seconds=totalSeconds%60;
+    document.getElementById("days").textContent=String(days).padStart(2,"0");
+    document.getElementById("hours").textContent=String(hours).padStart(2,"0");
+    document.getElementById("minutes").textContent=String(minutes).padStart(2,"0");
+    document.getElementById("seconds").textContent=String(seconds).padStart(2,"0");
+    document.getElementById("dday").textContent=days;
+}
+updateCountdown();setInterval(updateCountdown,1000);
+
+/* ==================================================
+   코드 달력
+================================================== */
+const calendarGrid=document.getElementById("calendarGrid");
+const weekNames=["일","월","화","수","목","금","토"];
+weekNames.forEach(day=>{const el=document.createElement("div");el.className="calendar-week";el.textContent=day;calendarGrid.appendChild(el)});
+const year=2026,month=10,weddingDay=21;
+const firstDay=new Date(year,month,1).getDay();
+const lastDate=new Date(year,month+1,0).getDate();
+for(let i=0;i<firstDay;i++){const el=document.createElement("div");el.className="calendar-day empty";el.textContent="0";calendarGrid.appendChild(el)}
+for(let day=1;day<=lastDate;day++){
+    const el=document.createElement("div");el.className="calendar-day";
+    if((firstDay+day-1)%7===0)el.classList.add("sunday");
+    const span=document.createElement("span");span.textContent=day;el.appendChild(span);
+    if(day===weddingDay)el.classList.add("wedding");
+    calendarGrid.appendChild(el);
+}
+
+/* ==================================================
+   middle 순차 등장
+================================================== */
+const middleSection=document.querySelector(".middle-section");
+const middleLayers=document.querySelectorAll(".middle-layer");
+function updateMiddleReveal(){
+    if(!middleSection)return;
+    const rect=middleSection.getBoundingClientRect(),wh=window.innerHeight;
+    const start=wh,end=-middleSection.offsetHeight*.6;
+    let progress=(start-rect.top)/(start-end);progress=Math.max(0,Math.min(1,progress));
+    const stageProgress=progress*middleLayers.length;
+    middleLayers.forEach((layer,index)=>{
+        let p=Math.max(0,Math.min(1,stageProgress-index));
+        const eased=p*p*(3-2*p);
+        layer.style.opacity=eased;
+        layer.style.transform=`translateY(${30-(30*eased)}px)`;
+    });
+}
+window.addEventListener("scroll",updateMiddleReveal,{passive:true});window.addEventListener("resize",updateMiddleReveal);updateMiddleReveal();
+
+/* ==================================================
+   갤러리 스와이프 — 양방향 무한 루프
+================================================== */
+const galleryFiles=["01.jpg","02.jpg","03.jpg","04.jpg","05.jpg","06.jpg","07.jpg","08.jpg","09.jpg"];
+const galleryTrack=document.getElementById("galleryTrack");
+const gallerySlider=document.getElementById("gallerySlider");
+const galleryCounter=document.getElementById("galleryCounter");
+let galleryIndex=1;
+let galleryAnimating=false;
+const makeSlide=(file,index)=>{
+    const slide=document.createElement("div");slide.className="gallery-slide";
+    const img=document.createElement("img");img.src=`images/gallery/${file}`;img.alt=`웨딩 사진 ${index+1}`;slide.appendChild(img);
+    slide.dataset.index=index;
+    slide.addEventListener("click",()=>openGalleryModal(index));
+    return slide;
+};
+/* 마지막 복제 → 01~09 → 첫 번째 복제 */
+galleryTrack.appendChild(makeSlide(galleryFiles[8],8));
+galleryFiles.forEach((file,index)=>galleryTrack.appendChild(makeSlide(file,index)));
+galleryTrack.appendChild(makeSlide(galleryFiles[0],0));
+function getSlideStep(){
+    const slide=galleryTrack.querySelector(".gallery-slide");
+    if(!slide)return 0;
+    const gap=parseFloat(getComputedStyle(galleryTrack).gap)||0;
+    return slide.getBoundingClientRect().width+gap;
+}
+function getTrackOffset(){
+    const step=getSlideStep();
+    const slideWidth=galleryTrack.querySelector(".gallery-slide").getBoundingClientRect().width;
+    const viewport=gallerySlider.clientWidth;
+    return ((viewport-slideWidth)/2)-(galleryIndex*step);
+}
+function updateGallery(animate=true){
+    galleryTrack.style.transition=animate?"transform .38s cubic-bezier(.22,.61,.36,1)":"none";
+    galleryTrack.style.transform=`translateX(${getTrackOffset()}px)`;
+    const real=((galleryIndex-1+galleryFiles.length)%galleryFiles.length);
+    galleryCounter.textContent=`${String(real+1).padStart(2,"0")} / ${String(galleryFiles.length).padStart(2,"0")}`;
+}
+function goGallery(direction){
+    if(galleryAnimating)return;
+    galleryAnimating=true;galleryIndex+=direction;updateGallery(true);
+}
+galleryTrack.addEventListener("transitionend",()=>{
+    if(galleryIndex===0){galleryIndex=galleryFiles.length;updateGallery(false)}
+    if(galleryIndex===galleryFiles.length+1){galleryIndex=1;updateGallery(false)}
+    galleryAnimating=false;
+});
+document.getElementById("galleryPrev").addEventListener("click",()=>goGallery(-1));
+document.getElementById("galleryNext").addEventListener("click",()=>goGallery(1));
+let touchStartX=0,touchStartY=0;
+gallerySlider.addEventListener("touchstart",e=>{touchStartX=e.changedTouches[0].clientX;touchStartY=e.changedTouches[0].clientY},{passive:true});
+gallerySlider.addEventListener("touchend",e=>{
+    const dx=e.changedTouches[0].clientX-touchStartX,dy=e.changedTouches[0].clientY-touchStartY;
+    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){goGallery(dx<0?1:-1)}
+},{passive:true});
+window.addEventListener("resize",()=>updateGallery(false));
+requestAnimationFrame(()=>updateGallery(false));
+
+/* 갤러리 팝업 */
+const galleryModal=document.getElementById("galleryModal");
+const galleryModalImage=document.getElementById("galleryModalImage");
+let modalIndex=0;
+function openGalleryModal(index){modalIndex=index;galleryModalImage.src=`images/gallery/${galleryFiles[modalIndex]}`;galleryModal.classList.add("active");document.body.style.overflow="hidden"}
+function closeGalleryModal(){galleryModal.classList.remove("active");document.body.style.overflow=""}
+function moveModal(direction){modalIndex=(modalIndex+direction+galleryFiles.length)%galleryFiles.length;galleryModalImage.src=`images/gallery/${galleryFiles[modalIndex]}`}
+document.getElementById("galleryClose").addEventListener("click",closeGalleryModal);
+document.getElementById("galleryModalPrev").addEventListener("click",()=>moveModal(-1));
+document.getElementById("galleryModalNext").addEventListener("click",()=>moveModal(1));
+galleryModal.addEventListener("click",e=>{if(e.target===galleryModal)closeGalleryModal()});
+
+/* ==================================================
+   교통 아코디언
+================================================== */
+document.querySelectorAll(".transport-button").forEach(button=>button.addEventListener("click",()=>{
+    const box=button.parentElement;
+    document.querySelectorAll(".transport-box.open").forEach(other=>{if(other!==box)other.classList.remove("open")});
+    box.classList.toggle("open");
+}));
+
+/* ==================================================
+   약도 팝업
+================================================== */
+const locationMapModal=document.getElementById("locationMapModal");
+document.getElementById("locationMapButton").addEventListener("click",()=>{locationMapModal.classList.add("active");document.body.style.overflow="hidden"});
+document.getElementById("locationMapClose").addEventListener("click",()=>{locationMapModal.classList.remove("active");document.body.style.overflow=""});
+locationMapModal.addEventListener("click",e=>{if(e.target===locationMapModal){locationMapModal.classList.remove("active");document.body.style.overflow=""}});
+
+/* ==================================================
+   middle2 순차 등장
+================================================== */
+const middle2Section=document.querySelector(".middle2-section");
+const middle2Layers=document.querySelectorAll(".middle2-layer:not(.middle2-background)");
+function updateMiddle2Reveal(){
+    if(!middle2Section)return;
+    const rect=middle2Section.getBoundingClientRect(),wh=window.innerHeight;
+    let progress=(wh-rect.top)/(wh+middle2Section.offsetHeight*.4);progress=Math.max(0,Math.min(1,progress));
+    const stage=progress*(middle2Layers.length+1);
+    middle2Layers.forEach((layer,index)=>{
+        let p=Math.max(0,Math.min(1,stage-index-1));
+        const eased=p*p*(3-2*p);layer.style.opacity=eased;
+    });
+}
+window.addEventListener("scroll",updateMiddle2Reveal,{passive:true});window.addEventListener("resize",updateMiddle2Reveal);updateMiddle2Reveal();
+
+/* ==================================================
+   방명록
+================================================== */
+const guestbookListScreen=document.getElementById("guestbook-list-screen");
+const guestbookWrittenScreen=document.getElementById("guestbook-written-screen");
+const guestbookFormScreen=document.getElementById("guestbook-form-screen");
+const guestbookFormClose=document.getElementById("guestbook-form-close");
+const guestbookEntryList=document.getElementById("guestbook-entry-list");
+const guestbookEmpty=document.getElementById("guestbook-empty");
+const guestbookName=document.getElementById("guestbook-name");
+const guestbookContent=document.getElementById("guestbook-content");
+const guestbookPassword=document.getElementById("guestbook-password");
+function getGuestbookEntries(){try{return JSON.parse(localStorage.getItem("weddingGuestbook")||"[]")}catch(e){return[]}}
+function openGuestbookForm(){guestbookFormScreen.classList.add("show");document.body.style.overflow="hidden"}
+function closeGuestbookForm(){guestbookFormScreen.classList.remove("show");document.body.style.overflow=""}
+function renderGuestbook(){
+    const entries=getGuestbookEntries();
+    if(entries.length===0){guestbookListScreen.style.display="block";guestbookWrittenScreen.style.display="none";return}
+    guestbookListScreen.style.display="none";guestbookWrittenScreen.style.display="block";guestbookEntryList.innerHTML="";
+    entries.forEach((entry,index)=>{
+        const card=document.createElement("div");card.className="guestbook-entry";
+        const header=document.createElement("div");header.className="guestbook-entry-header";
+        const name=document.createElement("div");name.className="guestbook-entry-name";name.textContent=entry.name;
+        const right=document.createElement("div");right.className="guestbook-entry-right";
+        const date=document.createElement("div");date.className="guestbook-entry-date";date.textContent=entry.date;
+        const del=document.createElement("button");del.type="button";del.className="guestbook-delete-button";del.dataset.index=index;del.textContent="×";
+        right.append(date,del);header.append(name,right);
+        const content=document.createElement("div");content.className="guestbook-entry-content";content.textContent=entry.content;
+        card.append(header,content);guestbookEntryList.appendChild(card);
+    });
+}
+document.querySelector(".guestbook-write-button").addEventListener("click",openGuestbookForm);
+document.querySelector(".guestbook-write-again-button").addEventListener("click",openGuestbookForm);
+guestbookFormClose.addEventListener("click",closeGuestbookForm);
+guestbookFormScreen.addEventListener("click",e=>{if(e.target===guestbookFormScreen)closeGuestbookForm()});
+document.getElementById("guestbook-submit-button").addEventListener("click",()=>{
+    const name=guestbookName.value.trim(),content=guestbookContent.value.trim(),password=guestbookPassword.value.trim();
+    if(!name){alert("이름을 입력해 주세요.");guestbookName.focus();return}
+    if(!content){alert("내용을 작성해 주세요.");guestbookContent.focus();return}
+    if(!password){alert("비밀번호를 입력해 주세요.");guestbookPassword.focus();return}
+    const entries=getGuestbookEntries();const now=new Date();
+    entries.push({name,content,password,date:`${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,"0")}.${String(now.getDate()).padStart(2,"0")}`});
+    localStorage.setItem("weddingGuestbook",JSON.stringify(entries));
+    guestbookName.value="";guestbookContent.value="";guestbookPassword.value="";closeGuestbookForm();renderGuestbook();
+});
+guestbookEntryList.addEventListener("click",e=>{
+    const del=e.target.closest(".guestbook-delete-button");if(!del)return;
+    const entries=getGuestbookEntries(),index=Number(del.dataset.index),entry=entries[index];if(!entry)return;
+    const password=prompt("방명록 작성 시 입력한 비밀번호를 입력해주세요.");if(password===null)return;
+    if(password!==entry.password){alert("비밀번호가 일치하지 않습니다.");return}
+    entries.splice(index,1);localStorage.setItem("weddingGuestbook",JSON.stringify(entries));renderGuestbook();
+});
+renderGuestbook();
+
+/* ==================================================
+   계좌 아코디언 / 복사
+================================================== */
+document.querySelectorAll(".account-button").forEach(button=>button.addEventListener("click",()=>{
+    const box=button.parentElement;
+    document.querySelectorAll(".account-box.open").forEach(other=>{if(other!==box)other.classList.remove("open")});
+    box.classList.toggle("open");
+}));
+const copyPopup=document.getElementById("copy-popup");
+let selectedAccountNumber="";
+document.querySelectorAll(".account-copy-button").forEach(button=>button.addEventListener("click",async e=>{
+    e.stopPropagation();selectedAccountNumber=button.dataset.account;
+    try{await navigator.clipboard.writeText(selectedAccountNumber)}catch(error){const textarea=document.createElement("textarea");textarea.value=selectedAccountNumber;textarea.style.position="fixed";textarea.style.left="-9999px";document.body.appendChild(textarea);textarea.select();document.execCommand("copy");document.body.removeChild(textarea)}
+    copyPopup.classList.add("show");
+}));
+document.getElementById("copy-confirm-button").addEventListener("click",()=>{copyPopup.classList.remove("show");selectedAccountNumber=""});
+copyPopup.addEventListener("click",e=>{if(e.target===copyPopup){copyPopup.classList.remove("show");selectedAccountNumber=""}});
+
+/* ==================================================
+   연락하기 팝업
+================================================== */
+const contactPopup=document.getElementById("contact-popup");
+document.getElementById("contact-open-button").addEventListener("click",()=>{contactPopup.classList.add("show");document.body.style.overflow="hidden"});
+document.getElementById("contact-popup-close").addEventListener("click",()=>{contactPopup.classList.remove("show");document.body.style.overflow=""});
+contactPopup.addEventListener("click",e=>{if(e.target===contactPopup){contactPopup.classList.remove("show");document.body.style.overflow=""}});
 
-        <div class="copy-popup-content">
-
-            <img
-                src="images/account/copy.png"
-                class="copy-popup-image"
-                alt="계좌번호가 복사되었습니다."
-            >
-
-            <button
-                type="button"
-                class="copy-confirm-button"
-                id="copy-confirm-button"
-                aria-label="확인"
-            ></button>
-
-        </div>
-
-    </div>
-
-
-    <!-- ==================================================
-         약도 팝업
-    ================================================== -->
-
-    <div
-        class="location-map-modal"
-        id="locationMapModal"
-    >
-
-        <div
-            class="location-map-close"
-            id="locationMapClose"
-        >
-            ×
-        </div>
-
-        <img
-            src="images/location/map.jpg"
-            class="location-map-modal-image"
-            alt="분당앤스퀘어 약도"
-        >
-
-    </div>
-
-
-    <!-- ==================================================
-         연락하기 팝업
-    ================================================== -->
-
-    <div
-        class="contact-popup"
-        id="contact-popup"
-    >
-
-        <div class="contact-popup-content">
-
-            <div class="contact-popup-header">
-
-                <h2 class="contact-popup-header-title">
-                    연락하기
-                </h2>
-
-                <button
-                    type="button"
-                    class="contact-popup-close"
-                    id="contact-popup-close"
-                    aria-label="닫기"
-                >
-                    ×
-                </button>
-
-            </div>
-
-
-            <!-- 신랑측 -->
-
-            <div class="contact-group">
-
-                <h3 class="contact-group-title">
-                    신랑측
-                </h3>
-
-                <div class="contact-group-line"></div>
-
-
-                <div class="contact-person">
-
-                    <span class="contact-person-name">
-                        신랑
-                    </span>
-
-                    <div class="contact-actions">
-
-                        <a
-                            href="tel:전화번호"
-                            class="contact-action-button"
-                            aria-label="신랑에게 전화하기"
-                        >
-                            <img
-                                src="images/contact/phone.png"
-                                alt="전화"
-                            >
-                        </a>
-
-                        <a
-                            href="sms:전화번호"
-                            class="contact-action-button"
-                            aria-label="신랑에게 문자하기"
-                        >
-                            <img
-                                src="images/contact/message.png"
-                                alt="문자"
-                            >
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <div class="contact-person">
-
-                    <span class="contact-person-name">
-                        아버지
-                    </span>
-
-                    <div class="contact-actions">
-
-                        <a
-                            href="tel:전화번호"
-                            class="contact-action-button"
-                            aria-label="아버지에게 전화하기"
-                        >
-                            <img
-                                src="images/contact/phone.png"
-                                alt="전화"
-                            >
-                        </a>
-
-                        <a
-                            href="sms:전화번호"
-                            class="contact-action-button"
-                            aria-label="아버지에게 문자하기"
-                        >
-                            <img
-                                src="images/contact/message.png"
-                                alt="문자"
-                            >
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- 신부측 -->
-
-            <div class="contact-group">
-
-                <h3 class="contact-group-title">
-                    신부측
-                </h3>
-
-                <div class="contact-group-line"></div>
-
-
-                <div class="contact-person">
-
-                    <span class="contact-person-name">
-                        신부
-                    </span>
-
-                    <div class="contact-actions">
-
-                        <a
-                            href="tel:전화번호"
-                            class="contact-action-button"
-                            aria-label="신부에게 전화하기"
-                        >
-                            <img
-                                src="images/contact/phone.png"
-                                alt="전화"
-                            >
-                        </a>
-
-                        <a
-                            href="sms:전화번호"
-                            class="contact-action-button"
-                            aria-label="신부에게 문자하기"
-                        >
-                            <img
-                                src="images/contact/message.png"
-                                alt="문자"
-                            >
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <div class="contact-person">
-
-                    <span class="contact-person-name">
-                        어머니
-                    </span>
-
-                    <div class="contact-actions">
-
-                        <a
-                            href="tel:전화번호"
-                            class="contact-action-button"
-                            aria-label="어머니에게 전화하기"
-                        >
-                            <img
-                                src="images/contact/phone.png"
-                                alt="전화"
-                            >
-                        </a>
-
-                        <a
-                            href="sms:전화번호"
-                            class="contact-action-button"
-                            aria-label="어머니에게 문자하기"
-                        >
-                            <img
-                                src="images/contact/message.png"
-                                alt="문자"
-                            >
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- ==================================================
-         JavaScript
-    ================================================== -->
-
-    <script>
-
-
-        /* ==================================================
-           인트로
-        ================================================== */
-
-        const intro =
-            document.getElementById("intro");
-
-        const envelopeOverlay =
-            document.getElementById("envelope-overlay");
-
-        const introLayers =
-            document.querySelectorAll(".intro-layer");
-
-
-        window.addEventListener(
-            "load",
-            () => {
-
-                introLayers.forEach(
-                    (layer, index) => {
-
-                        setTimeout(
-                            () => {
-
-                                layer.classList.add("show");
-
-                            },
-                            300 + (index * 350)
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-
-        intro.addEventListener(
-            "click",
-            () => {
-
-                window.scrollTo(0, 0);
-
-                intro.classList.add("hide");
-
-                envelopeOverlay.classList.add("show");
-
-                document.body.style.overflow = "";
-
-            }
-        );
-
-
-        /* =====================================
-           스크롤 등장 / 사라짐 애니메이션
-        ===================================== */
-
-        const scrollRevealElements =
-            document.querySelectorAll(".scroll-reveal");
-
-
-        /*
-         * 지도 버튼 이미지와
-         * 지하철 / 버스 / 자차 버튼 이미지는
-         * 이미지 자체를 Observer에 넣지 않는다.
-         *
-         * 이미지가 아니라
-         * 실제 버튼 영역을 감지해서
-         * 이미지에 show를 붙인다.
-         */
-
-        const buttonRevealImages =
-            document.querySelectorAll(
-                ".location-button-image, .transport-button img"
-            );
-
-
-const normalScrollRevealElements =
-    Array.from(
-        scrollRevealElements
-    ).filter(
-        (element) => {
-
-            return !element.matches(
-                ".location-button-image"
-            );
-
-        }
-    );
-
-
-        /* 일반 이미지 */
-
-        const scrollRevealObserver =
-            new IntersectionObserver(
-                (entries) => {
-
-                    entries.forEach(
-                        (entry) => {
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                entry.target.classList.add(
-                                    "show"
-                                );
-
-                            } else {
-
-                                entry.target.classList.remove(
-                                    "show"
-                                );
-
-                            }
-
-                        }
-                    );
-
-                },
-                {
-                    threshold: 0.15,
-
-                    rootMargin:
-                        "0px 0px -50px 0px"
-                }
-            );
-
-
-        normalScrollRevealElements.forEach(
-            (element) => {
-
-                scrollRevealObserver.observe(
-                    element
-                );
-
-            }
-        );
-
-
-        /* =====================================
-           지도 / 교통 버튼 전용 Observer
-        ===================================== */
-
-        const buttonRevealObserver =
-            new IntersectionObserver(
-                (entries) => {
-
-                    entries.forEach(
-                        (entry) => {
-
-                            const image =
-                                entry.target.querySelector(
-                                    ".scroll-reveal"
-                                );
-
-
-                            if (!image) {
-                                return;
-                            }
-
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                image.classList.add(
-                                    "show"
-                                );
-
-                            } else {
-
-                                image.classList.remove(
-                                    "show"
-                                );
-
-                            }
-
-                        }
-                    );
-
-                },
-                {
-                    threshold: 0.05,
-
-                    rootMargin:
-                        "0px 0px -30px 0px"
-                }
-            );
-
-
-        /* =====================================
-           지도 버튼 이미지
-        ===================================== */
-
-        const locationButtonWrap =
-            document.querySelector(
-                ".location-button-wrap"
-            );
-
-
-        if (
-            locationButtonWrap
-        ) {
-
-            buttonRevealObserver.observe(
-                locationButtonWrap
-            );
-
-        }
-
-
-
-
-        /* ==================================================
-           D-Day
-        ================================================== */
-
-        const weddingDate =
-            new Date(
-                "2026-11-21T12:40:00+09:00"
-            );
-
-
-        function updateCountdown() {
-
-            const now =
-                new Date();
-
-            const difference =
-                weddingDate - now;
-
-
-            if (
-                difference <= 0
-            ) {
-
-                document.getElementById(
-                    "days"
-                ).textContent = "00";
-
-                document.getElementById(
-                    "hours"
-                ).textContent = "00";
-
-                document.getElementById(
-                    "minutes"
-                ).textContent = "00";
-
-                document.getElementById(
-                    "seconds"
-                ).textContent = "00";
-
-                document.getElementById(
-                    "dday"
-                ).textContent = "0";
-
-                return;
-            }
-
-
-            const totalSeconds =
-                Math.floor(
-                    difference / 1000
-                );
-
-
-            const days =
-                Math.floor(
-                    totalSeconds / 86400
-                );
-
-
-            const hours =
-                Math.floor(
-                    (totalSeconds % 86400) /
-                    3600
-                );
-
-
-            const minutes =
-                Math.floor(
-                    (totalSeconds % 3600) /
-                    60
-                );
-
-
-            const seconds =
-                totalSeconds % 60;
-
-
-            document.getElementById(
-                "days"
-            ).textContent =
-                String(days).padStart(
-                    2,
-                    "0"
-                );
-
-
-            document.getElementById(
-                "hours"
-            ).textContent =
-                String(hours).padStart(
-                    2,
-                    "0"
-                );
-
-
-            document.getElementById(
-                "minutes"
-            ).textContent =
-                String(minutes).padStart(
-                    2,
-                    "0"
-                );
-
-
-            document.getElementById(
-                "seconds"
-            ).textContent =
-                String(seconds).padStart(
-                    2,
-                    "0"
-                );
-
-
-            document.getElementById(
-                "dday"
-            ).textContent =
-                days;
-
-        }
-
-
-        updateCountdown();
-
-
-        setInterval(
-            updateCountdown,
-            1000
-        );
-
-
-        /* ==================================================
-           middle 순차 등장
-        ================================================== */
-
-        const middleSection =
-            document.querySelector(
-                ".middle-section"
-            );
-
-        const middleLayers =
-            document.querySelectorAll(
-                ".middle-layer"
-            );
-
-
-        function updateMiddleReveal() {
-
-            const rect =
-                middleSection.getBoundingClientRect();
-
-            const windowHeight =
-                window.innerHeight;
-
-
-            const start =
-                windowHeight;
-
-
-            const end =
-                -middleSection.offsetHeight * 0.6;
-
-
-            let progress =
-                (start - rect.top) /
-                (start - end);
-
-
-            progress =
-                Math.max(
-                    0,
-                    Math.min(
-                        1,
-                        progress
-                    )
-                );
-
-
-            const total =
-                middleLayers.length;
-
-
-            const stageProgress =
-                progress * total;
-
-
-            middleLayers.forEach(
-                (layer, index) => {
-
-                    let localProgress =
-                        stageProgress - index;
-
-
-                    localProgress =
-                        Math.max(
-                            0,
-                            Math.min(
-                                1,
-                                localProgress
-                            )
-                        );
-
-
-                    const eased =
-                        localProgress *
-                        localProgress *
-                        (3 - 2 * localProgress);
-
-
-                    layer.style.opacity =
-                        eased;
-
-
-                    layer.style.transform =
-                        `translateY(${30 - (30 * eased)}px)`;
-
-                }
-            );
-
-        }
-
-
-        window.addEventListener(
-            "scroll",
-            updateMiddleReveal
-        );
-
-        window.addEventListener(
-            "resize",
-            updateMiddleReveal
-        );
-
-
-        updateMiddleReveal();
-
-
-        /* ==================================================
-           갤러리
-        ================================================== */
-
-        const galleryImages =
-            document.querySelectorAll(
-                ".gallery-item"
-            );
-
-        const galleryModal =
-            document.getElementById(
-                "galleryModal"
-            );
-
-        const galleryModalImage =
-            document.getElementById(
-                "galleryModalImage"
-            );
-
-        const galleryClose =
-            document.getElementById(
-                "galleryClose"
-            );
-
-        const galleryPrev =
-            document.getElementById(
-                "galleryPrev"
-            );
-
-        const galleryNext =
-            document.getElementById(
-                "galleryNext"
-            );
-
-
-        let galleryIndex = 0;
-
-
-        galleryImages.forEach(
-            (image, index) => {
-
-                image.addEventListener(
-                    "click",
-                    () => {
-
-                        galleryIndex =
-                            index;
-
-                        galleryModalImage.src =
-                            galleryImages[
-                                galleryIndex
-                            ].src;
-
-                        galleryModal.classList.add(
-                            "active"
-                        );
-
-                        document.body.style.overflow =
-                            "hidden";
-
-                    }
-                );
-
-            }
-        );
-
-
-        galleryClose.addEventListener(
-            "click",
-            () => {
-
-                galleryModal.classList.remove(
-                    "active"
-                );
-
-                document.body.style.overflow =
-                    "";
-
-            }
-        );
-
-
-        galleryPrev.addEventListener(
-            "click",
-            () => {
-
-                galleryIndex--;
-
-
-                if (
-                    galleryIndex < 0
-                ) {
-
-                    galleryIndex =
-                        galleryImages.length - 1;
-
-                }
-
-
-                galleryModalImage.src =
-                    galleryImages[
-                        galleryIndex
-                    ].src;
-
-            }
-        );
-
-
-        galleryNext.addEventListener(
-            "click",
-            () => {
-
-                galleryIndex++;
-
-
-                if (
-                    galleryIndex >=
-                    galleryImages.length
-                ) {
-
-                    galleryIndex = 0;
-
-                }
-
-
-                galleryModalImage.src =
-                    galleryImages[
-                        galleryIndex
-                    ].src;
-
-            }
-        );
-
-
-        galleryModal.addEventListener(
-            "click",
-            (event) => {
-
-                if (
-                    event.target ===
-                    galleryModal
-                ) {
-
-                    galleryModal.classList.remove(
-                        "active"
-                    );
-
-                    document.body.style.overflow =
-                        "";
-
-                }
-
-            }
-        );
-
-
-        /* ==================================================
-           약도 팝업
-        ================================================== */
-
-        const locationMapButton =
-            document.getElementById(
-                "locationMapButton"
-            );
-
-        const locationMapModal =
-            document.getElementById(
-                "locationMapModal"
-            );
-
-        const locationMapClose =
-            document.getElementById(
-                "locationMapClose"
-            );
-
-
-        locationMapButton.addEventListener(
-            "click",
-            (event) => {
-
-                event.preventDefault();
-
-                locationMapModal.classList.add(
-                    "active"
-                );
-
-                document.body.style.overflow =
-                    "hidden";
-
-            }
-        );
-
-
-        locationMapClose.addEventListener(
-            "click",
-            () => {
-
-                locationMapModal.classList.remove(
-                    "active"
-                );
-
-                document.body.style.overflow =
-                    "";
-
-            }
-        );
-
-
-        locationMapModal.addEventListener(
-            "click",
-            (event) => {
-
-                if (
-                    event.target ===
-                    locationMapModal
-                ) {
-
-                    locationMapModal.classList.remove(
-                        "active"
-                    );
-
-                    document.body.style.overflow =
-                        "";
-
-                }
-
-            }
-        );
-
-
-        /* ==================================================
-           교통 이용 안내
-        ================================================== */
-
-        const transportBoxes =
-            document.querySelectorAll(
-                ".transport-box"
-            );
-
-
-        transportBoxes.forEach(
-            (box) => {
-
-                const button =
-                    box.querySelector(
-                        ".transport-button"
-                    );
-
-                const info =
-                    box.querySelector(
-                        ".transport-info"
-                    );
-
-
-                button.addEventListener(
-                    "click",
-                    () => {
-
-                        const isOpen =
-                            box.classList.contains(
-                                "open"
-                            );
-
-
-                        transportBoxes.forEach(
-                            (otherBox) => {
-
-                                otherBox.classList.remove(
-                                    "open"
-                                );
-
-                            }
-                        );
-
-
-                        if (
-                            !isOpen
-                        ) {
-
-                            box.classList.add(
-                                "open"
-                            );
-
-                        }
-
-                    }
-                );
-
-
-                info.addEventListener(
-                    "click",
-                    () => {
-
-                        box.classList.remove(
-                            "open"
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-
-        /* ==================================================
-           middle2 순차 등장
-        ================================================== */
-
-        const middle2Section =
-            document.querySelector(
-                ".middle2-section"
-            );
-
-        const middle2Layers =
-            document.querySelectorAll(
-                ".middle2-layer:not(.middle2-background)"
-            );
-
-
-        function updateMiddle2Reveal() {
-
-            const rect =
-                middle2Section.getBoundingClientRect();
-
-            const windowHeight =
-                window.innerHeight;
-
-
-            const start =
-                windowHeight * 0.65;
-
-
-            const end =
-                -middle2Section.offsetHeight * 0.3;
-
-
-            let progress =
-                (start - rect.top) /
-                (start - end);
-
-
-            progress =
-                Math.max(
-                    0,
-                    Math.min(
-                        1,
-                        progress
-                    )
-                );
-
-
-            const total =
-                middle2Layers.length;
-
-
-            const stageProgress =
-                progress * total;
-
-
-            middle2Layers.forEach(
-                (layer, index) => {
-
-                    let localProgress =
-                        stageProgress - index;
-
-
-                    localProgress =
-                        Math.max(
-                            0,
-                            Math.min(
-                                1,
-                                localProgress
-                            )
-                        );
-
-
-                    const eased =
-                        localProgress *
-                        localProgress *
-                        (3 - 2 * localProgress);
-
-
-                    layer.style.opacity =
-                        eased;
-
-                }
-            );
-
-        }
-
-
-        window.addEventListener(
-            "scroll",
-            updateMiddle2Reveal
-        );
-
-        window.addEventListener(
-            "resize",
-            updateMiddle2Reveal
-        );
-
-
-        updateMiddle2Reveal();
-
-
-        /* ==================================================
-           방명록
-        ================================================== */
-
-        const guestbookListScreen =
-            document.getElementById(
-                "guestbook-list-screen"
-            );
-
-        const guestbookWrittenScreen =
-            document.getElementById(
-                "guestbook-written-screen"
-            );
-
-        const guestbookFormScreen =
-            document.getElementById(
-                "guestbook-form-screen"
-            );
-
-        const guestbookFormClose =
-            document.getElementById(
-                "guestbook-form-close"
-            );
-
-        const guestbookWriteButton =
-            document.querySelector(
-                ".guestbook-write-button"
-            );
-
-        const guestbookWriteAgainButton =
-            document.querySelector(
-                ".guestbook-write-again-button"
-            );
-
-        const guestbookSubmitButton =
-            document.getElementById(
-                "guestbook-submit-button"
-            );
-
-        const guestbookName =
-            document.getElementById(
-                "guestbook-name"
-            );
-
-        const guestbookContent =
-            document.getElementById(
-                "guestbook-content"
-            );
-
-        const guestbookPassword =
-            document.getElementById(
-                "guestbook-password"
-            );
-
-        const guestbookEntryList =
-            document.getElementById(
-                "guestbook-entry-list"
-            );
-
-
-        function getGuestbookEntries() {
-
-            try {
-
-                return JSON.parse(
-                    localStorage.getItem(
-                        "weddingGuestbook"
-                    ) || "[]"
-                );
-
-            } catch (error) {
-
-                return [];
-
-            }
-
-        }
-
-
-        function openGuestbookForm() {
-
-            guestbookFormScreen.classList.add(
-                "show"
-            );
-
-            document.body.style.overflow =
-                "hidden";
-
-        }
-
-
-        function closeGuestbookForm() {
-
-            guestbookFormScreen.classList.remove(
-                "show"
-            );
-
-            document.body.style.overflow =
-                "";
-
-        }
-
-
-        function updateGuestbookScreen() {
-
-            const entries =
-                getGuestbookEntries();
-
-
-            if (
-                entries.length > 0
-            ) {
-
-                guestbookListScreen.style.display =
-                    "none";
-
-                guestbookWrittenScreen.style.display =
-                    "block";
-
-                renderGuestbookEntries();
-
-            } else {
-
-                guestbookListScreen.style.display =
-                    "block";
-
-                guestbookWrittenScreen.style.display =
-                    "none";
-
-                guestbookEntryList.innerHTML =
-                    "";
-
-            }
-
-        }
-
-
-        function renderGuestbookEntries() {
-
-            const entries =
-                getGuestbookEntries();
-
-
-            guestbookEntryList.innerHTML =
-                "";
-
-
-            if (
-                entries.length === 0
-            ) {
-
-                updateGuestbookScreen();
-
-                return;
-
-            }
-
-
-            entries.forEach(
-                (entry, index) => {
-
-                    const entryElement =
-                        document.createElement(
-                            "div"
-                        );
-
-                    entryElement.className =
-                        "guestbook-entry";
-
-
-                    const header =
-                        document.createElement(
-                            "div"
-                        );
-
-                    header.className =
-                        "guestbook-entry-header";
-
-
-                    const name =
-                        document.createElement(
-                            "div"
-                        );
-
-                    name.className =
-                        "guestbook-entry-name";
-
-                    name.textContent =
-                        entry.name;
-
-
-                    const right =
-                        document.createElement(
-                            "div"
-                        );
-
-                    right.className =
-                        "guestbook-entry-right";
-
-
-                    const date =
-                        document.createElement(
-                            "div"
-                        );
-
-                    date.className =
-                        "guestbook-entry-date";
-
-                    date.textContent =
-                        entry.date;
-
-
-                    const deleteButton =
-                        document.createElement(
-                            "button"
-                        );
-
-                    deleteButton.type =
-                        "button";
-
-                    deleteButton.className =
-                        "guestbook-delete-button";
-
-                    deleteButton.dataset.index =
-                        index;
-
-                    deleteButton.textContent =
-                        "×";
-
-
-                    right.appendChild(
-                        date
-                    );
-
-                    right.appendChild(
-                        deleteButton
-                    );
-
-
-                    header.appendChild(
-                        name
-                    );
-
-                    header.appendChild(
-                        right
-                    );
-
-
-                    const content =
-                        document.createElement(
-                            "div"
-                        );
-
-                    content.className =
-                        "guestbook-entry-content";
-
-                    content.textContent =
-                        entry.content;
-
-
-                    entryElement.appendChild(
-                        header
-                    );
-
-                    entryElement.appendChild(
-                        content
-                    );
-
-
-                    guestbookEntryList.appendChild(
-                        entryElement
-                    );
-
-                }
-            );
-
-        }
-
-
-        guestbookWriteButton.addEventListener(
-            "click",
-            openGuestbookForm
-        );
-
-
-        guestbookWriteAgainButton.addEventListener(
-            "click",
-            openGuestbookForm
-        );
-
-
-        guestbookFormClose.addEventListener(
-            "click",
-            closeGuestbookForm
-        );
-
-
-        guestbookFormScreen.addEventListener(
-            "click",
-            (event) => {
-
-                if (
-                    event.target ===
-                    guestbookFormScreen
-                ) {
-
-                    closeGuestbookForm();
-
-                }
-
-            }
-        );
-
-
-        guestbookSubmitButton.addEventListener(
-            "click",
-            () => {
-
-                const name =
-                    guestbookName.value.trim();
-
-                const content =
-                    guestbookContent.value.trim();
-
-                const password =
-                    guestbookPassword.value.trim();
-
-
-                if (!name) {
-
-                    alert(
-                        "이름을 입력해 주세요."
-                    );
-
-                    guestbookName.focus();
-
-                    return;
-
-                }
-
-
-                if (!content) {
-
-                    alert(
-                        "내용을 작성해 주세요."
-                    );
-
-                    guestbookContent.focus();
-
-                    return;
-
-                }
-
-
-                if (!password) {
-
-                    alert(
-                        "비밀번호를 입력해 주세요."
-                    );
-
-                    guestbookPassword.focus();
-
-                    return;
-
-                }
-
-
-                const entries =
-                    getGuestbookEntries();
-
-
-                const today =
-                    new Date();
-
-
-                const date =
-                    today.getFullYear() +
-                    "." +
-                    String(
-                        today.getMonth() + 1
-                    ).padStart(2, "0") +
-                    "." +
-                    String(
-                        today.getDate()
-                    ).padStart(2, "0");
-
-
-                entries.push({
-
-                    name:
-                        name,
-
-                    content:
-                        content,
-
-                    password:
-                        password,
-
-                    date:
-                        date
-
-                });
-
-
-                localStorage.setItem(
-                    "weddingGuestbook",
-                    JSON.stringify(entries)
-                );
-
-
-                guestbookName.value =
-                    "";
-
-                guestbookContent.value =
-                    "";
-
-                guestbookPassword.value =
-                    "";
-
-
-                closeGuestbookForm();
-
-                updateGuestbookScreen();
-
-            }
-        );
-
-
-        guestbookEntryList.addEventListener(
-            "click",
-            (event) => {
-
-                const deleteButton =
-                    event.target.closest(
-                        ".guestbook-delete-button"
-                    );
-
-
-                if (!deleteButton) {
-                    return;
-                }
-
-
-                const index =
-                    Number(
-                        deleteButton.dataset.index
-                    );
-
-
-                const entries =
-                    getGuestbookEntries();
-
-
-                const entry =
-                    entries[index];
-
-
-                if (!entry) {
-                    return;
-                }
-
-
-                const password =
-                    prompt(
-                        "방명록 작성 시 입력한 비밀번호를 입력해주세요."
-                    );
-
-
-                if (
-                    password === null
-                ) {
-                    return;
-                }
-
-
-                if (
-                    password !==
-                    entry.password
-                ) {
-
-                    alert(
-                        "비밀번호가 일치하지 않습니다."
-                    );
-
-                    return;
-
-                }
-
-
-                entries.splice(
-                    index,
-                    1
-                );
-
-
-                localStorage.setItem(
-                    "weddingGuestbook",
-                    JSON.stringify(entries)
-                );
-
-
-                updateGuestbookScreen();
-
-            }
-        );
-
-
-        updateGuestbookScreen();
-
-
-        /* ==================================================
-           계좌번호 아코디언
-        ================================================== */
-
-        const accountBoxes =
-            document.querySelectorAll(
-                ".account-box"
-            );
-
-
-        accountBoxes.forEach(
-            (box) => {
-
-                const button =
-                    box.querySelector(
-                        ".account-button"
-                    );
-
-                const closeButton =
-                    box.querySelector(
-                        ".account-close-button"
-                    );
-
-
-                button.addEventListener(
-                    "click",
-                    () => {
-
-                        box.classList.add(
-                            "open"
-                        );
-
-                    }
-                );
-
-
-                closeButton.addEventListener(
-                    "click",
-                    (event) => {
-
-                        event.stopPropagation();
-
-                        box.classList.remove(
-                            "open"
-                        );
-
-
-                        const accountInfoImage =
-                            box.querySelector(
-                                ".account-info img"
-                            );
-
-
-                        if (
-                            accountInfoImage
-                        ) {
-
-                            accountInfoImage.classList.remove(
-                                "show"
-                            );
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-
-        /* ==================================================
-           계좌번호 복사
-        ================================================== */
-
-        const accountCopyButtons =
-            document.querySelectorAll(
-                ".account-copy-button"
-            );
-
-        const copyPopup =
-            document.getElementById(
-                "copy-popup"
-            );
-
-        const copyConfirmButton =
-            document.getElementById(
-                "copy-confirm-button"
-            );
-
-
-        let selectedAccountNumber =
-            "";
-
-
-        accountCopyButtons.forEach(
-            (button) => {
-
-                button.addEventListener(
-                    "click",
-                    (event) => {
-
-                        event.stopPropagation();
-
-                        selectedAccountNumber =
-                            button.dataset.account;
-
-                        copyPopup.classList.add(
-                            "show"
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-
-        copyConfirmButton.addEventListener(
-            "click",
-            async () => {
-
-                if (
-                    !selectedAccountNumber
-                ) {
-                    return;
-                }
-
-
-                try {
-
-                    await navigator.clipboard.writeText(
-                        selectedAccountNumber
-                    );
-
-                } catch (error) {
-
-                    const textarea =
-                        document.createElement(
-                            "textarea"
-                        );
-
-
-                    textarea.value =
-                        selectedAccountNumber;
-
-                    textarea.style.position =
-                        "fixed";
-
-                    textarea.style.left =
-                        "-9999px";
-
-
-                    document.body.appendChild(
-                        textarea
-                    );
-
-
-                    textarea.select();
-
-
-                    document.execCommand(
-                        "copy"
-                    );
-
-
-                    document.body.removeChild(
-                        textarea
-                    );
-
-                }
-
-
-                selectedAccountNumber =
-                    "";
-
-                copyPopup.classList.remove(
-                    "show"
-                );
-
-            }
-        );
-
-
-        copyPopup.addEventListener(
-            "click",
-            (event) => {
-
-                if (
-                    event.target ===
-                    copyPopup
-                ) {
-
-                    copyPopup.classList.remove(
-                        "show"
-                    );
-
-                    selectedAccountNumber =
-                        "";
-
-                }
-
-            }
-        );
-        /* =====================================
-           계좌번호 신랑 / 신부 버튼 전용 Observer
-        ===================================== */
-
-        const accountButtonRevealObserver =
-            new IntersectionObserver(
-                (entries) => {
-
-                    entries.forEach(
-                        (entry) => {
-
-                            const image =
-                                entry.target.querySelector(
-                                    ".account-button-image"
-                                );
-
-                            if (!image) {
-                                return;
-                            }
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                image.classList.add(
-                                    "show"
-                                );
-
-                            } else {
-
-                                image.classList.remove(
-                                    "show"
-                                );
-
-                            }
-
-                        }
-                    );
-
-                },
-                {
-                    threshold: 0.05,
-
-                    rootMargin:
-                        "0px 0px -30px 0px"
-                }
-            );
-
-
-        document
-            .querySelectorAll(".account-button")
-            .forEach(
-                (button) => {
-
-                    accountButtonRevealObserver.observe(
-                        button
-                    );
-
-                }
-            );
-
-        /* ==================================================
-           연락하기 팝업
-        ================================================== */
-
-        const contactOpenButton =
-            document.getElementById(
-                "contact-open-button"
-            );
-
-        const contactPopup =
-            document.getElementById(
-                "contact-popup"
-            );
-
-        const contactPopupClose =
-            document.getElementById(
-                "contact-popup-close"
-            );
-
-
-        contactOpenButton.addEventListener(
-            "click",
-            () => {
-
-                contactPopup.classList.add(
-                    "show"
-                );
-
-                document.body.style.overflow =
-                    "hidden";
-
-            }
-        );
-
-
-        contactPopupClose.addEventListener(
-            "click",
-            () => {
-
-                contactPopup.classList.remove(
-                    "show"
-                );
-
-                document.body.style.overflow =
-                    "";
-
-            }
-        );
-
-
-        contactPopup.addEventListener(
-            "click",
-            (event) => {
-
-                if (
-                    event.target ===
-                    contactPopup
-                ) {
-
-                    contactPopup.classList.remove(
-                        "show"
-                    );
-
-                    document.body.style.overflow =
-                        "";
-
-                }
-
-            }
-        );
 /* ==================================================
    공유하기
 ================================================== */
-
-const shareButton = document.getElementById("shareButton");
-const shareMenu = document.getElementById("shareMenu");
-const shareCopyButton = document.getElementById("shareCopyButton");
-const shareKakaoButton = document.getElementById("shareKakaoButton");
-const shareMoreButton = document.getElementById("shareMoreButton");
-const shareSmsButton = document.getElementById("shareSmsButton");
-
-
-/* -------------------------------------
-   공유 메뉴 열기 / 닫기
-------------------------------------- */
-
-shareButton.addEventListener("click", () => {
-    shareMenu.classList.toggle("open");
+const shareButton=document.getElementById("shareButton"),shareMenu=document.getElementById("shareMenu");
+shareButton.addEventListener("click",()=>shareMenu.classList.toggle("open"));
+document.getElementById("shareCopyButton").addEventListener("click",async()=>{
+    const currentUrl=window.location.href;
+    try{await navigator.clipboard.writeText(currentUrl)}catch(error){const ta=document.createElement("textarea");ta.value=currentUrl;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta)}
+    alert("청첩장 링크가 복사되었습니다.");
 });
-
-
-/* -------------------------------------
-   링크 복사
-------------------------------------- */
-
-shareCopyButton.addEventListener("click", async () => {
-
-    const currentUrl = window.location.href;
-
-    try {
-
-        await navigator.clipboard.writeText(currentUrl);
-
-        alert("청첩장 링크가 복사되었습니다.");
-
-    } catch (error) {
-
-        const textArea = document.createElement("textarea");
-
-        textArea.value = currentUrl;
-        document.body.appendChild(textArea);
-
-        textArea.select();
-        document.execCommand("copy");
-
-        document.body.removeChild(textArea);
-
-        alert("청첩장 링크가 복사되었습니다.");
-    }
-
+document.getElementById("shareKakaoButton").addEventListener("click",()=>{
+    Kakao.Share.sendDefault({objectType:"feed",content:{title:"우리의 결혼식",description:"저희 결혼식에 초대합니다.",imageUrl:window.location.origin+"/images/intro/intro-01.jpg",link:{mobileWebUrl:window.location.href,webUrl:window.location.href}},buttons:[{title:"청첩장 보러가기",link:{mobileWebUrl:window.location.href,webUrl:window.location.href}}]});
 });
-
-
-/* -------------------------------------
-   카카오톡 공유
-------------------------------------- */
-
-shareKakaoButton.addEventListener("click", () => {
-    Kakao.Share.sendDefault({
-        objectType: "feed",
-        content: {
-            title: "우리의 결혼식",
-            description: "저희 결혼식에 초대합니다.",
-            imageUrl: window.location.origin + "/images/main/main.png",
-            link: {
-                mobileWebUrl: window.location.href,
-                webUrl: window.location.href
-            }
-        },
-        buttons: [
-            {
-                title: "청첩장 보러가기",
-                link: {
-                    mobileWebUrl: window.location.href,
-                    webUrl: window.location.href
-                }
-            }
-        ]
-    });
+document.getElementById("shareMoreButton").addEventListener("click",async()=>{
+    const currentUrl=window.location.href;
+    if(navigator.share){try{await navigator.share({title:"우리의 결혼식",text:"저희 결혼식에 초대합니다.",url:currentUrl})}catch(error){console.log("공유가 취소되었습니다.")}}
+    else alert("이 기기에서는 기본 공유 기능을 사용할 수 없습니다.");
 });
-
-
-/* -------------------------------------
-   더보기
-------------------------------------- */
-
-shareMoreButton.addEventListener("click", async () => {
-
-    const currentUrl = window.location.href;
-
-    if (navigator.share) {
-
-        try {
-
-            await navigator.share({
-                title: "우리의 결혼식",
-                text: "저희 결혼식에 초대합니다.",
-                url: currentUrl
-            });
-
-        } catch (error) {
-
-            console.log("공유가 취소되었습니다.");
-
-        }
-
-    } else {
-
-        alert("이 기기에서는 기본 공유 기능을 사용할 수 없습니다.");
-
-    }
-
-});
-
-
-/* -------------------------------------
-   문자 보내기
-------------------------------------- */
-
-shareSmsButton.addEventListener("click", () => {
-
-    const currentUrl = window.location.href;
-
-    const message =
-        "저희 결혼식에 초대합니다.%0A%0A" +
-        currentUrl;
-
-    window.location.href = "sms:?body=" + message;
-
-});
-    </script>
-
+document.getElementById("shareSmsButton").addEventListener("click",()=>{window.location.href="sms:?body="+encodeURIComponent("저희 결혼식에 초대합니다.\n\n"+window.location.href)});
+</script>
 </body>
 </html>
