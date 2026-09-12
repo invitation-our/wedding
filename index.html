@@ -12,42 +12,51 @@ Kakao.init("3fc477a2de7052bb8c3cbafdd8e1f779");
 
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
 
+
 <style>
-/* ==================================================
-   전체
-================================================== */
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-    background:#f8f5ef;
-    font-family:"Gowun Batang",serif;
+    background:#f4f0e7;
     color:#555;
+    font-family:"Gowun Batang",serif;
     overflow-x:hidden;
 }
-button,input,textarea{font:inherit}
-button,a{ -webkit-tap-highlight-color:transparent }
+button,input,textarea,a{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
 button{cursor:pointer}
-
 :root{
-    --paper:#f8f5ef;
-    --paper-dark:#eee9df;
-    --text:#555;
-    --green:#72853d;
-    --line:#ddd7cc;
-    --white:#fffdf9;
+    --paper:#f4f0e7;
+    --paper-light:#faf8f3;
+    --text:#565247;
+    --green:#68734d;
+    --line:#d8d1c4;
+    --shadow:0 3px 12px rgba(70,60,45,.08);
 }
+section{background:var(--paper)}
+button,input,textarea,a,
+.hero-kicker,.hero-date,.hero-place,
+.section-kicker,.section-title,
+.calendar-date,.calendar-time,.calendar-grid,
+.countdown-title,.countdown-number,.gallery-counter,
+.location-tel,.location-address,.location-address-small,
+.guestbook-description,.account-description,.contact-description{font-family:"Gowun Batang",serif}
 
 .section-inner{width:min(92vw,600px);margin:0 auto}
+
+/* ==================================================
+   스크롤 등장 / 퇴장
+================================================== */
 .scroll-reveal{
     opacity:0;
-    transform:translateY(35px);
-    transition:opacity .7s ease,transform .7s ease;
+    transform:translateY(34px);
+    transition:opacity .62s ease,transform .62s ease;
 }
 .scroll-reveal.show{opacity:1;transform:translateY(0)}
 
 /* ==================================================
-   인트로 — 기존 그대로 유지
+   인트로 — 기존 그대로
 ================================================== */
 .intro{
     position:fixed;inset:0;width:100%;height:100vh;z-index:99999;
@@ -57,234 +66,1077 @@ button{cursor:pointer}
 }
 .intro.hide{opacity:0;visibility:hidden;pointer-events:none}
 .intro-inner{position:relative;width:min(600px,100vw);height:100%;overflow:hidden}
-.intro-01,.intro-layer{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}
+.intro-01,.intro-layer{
+    position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover
+}
 .intro-01{opacity:1}
-.intro-layer{opacity:0;transform:translateY(35px);transition:opacity .9s ease,transform .9s ease}
+.intro-layer{
+    opacity:0;transform:translateY(28px);
+    transition:opacity .9s ease,transform .9s ease
+}
 .intro-layer.show{opacity:1;transform:translateY(0)}
-.intro-02{transition-delay:.15s}.intro-03{transition-delay:.35s}.intro-04{transition-delay:.55s}.intro-05{transition-delay:.75s}
+.intro-02{transition-delay:.15s}
+.intro-03{transition-delay:.35s}
+.intro-04{transition-delay:.55s}
+.intro-05{transition-delay:.75s}
 
 /* ==================================================
-   메인 — 이미지 삭제 후 큰 타이포그래피
+   메인 — 사진 중심 / 인트로와 어울리는 아이보리·올리브 톤
 ================================================== */
-.hero-section{padding:96px 24px 86px;text-align:center;background:var(--paper)}
-.hero-kicker{font-family:Arial,sans-serif;font-size:12px;letter-spacing:4px;color:#777;margin-bottom:22px}
-.hero-names{margin:0;color:#4e4e4e;font-size:clamp(38px,12vw,70px);font-weight:400;line-height:1.08;letter-spacing:7px}
+.hero-section{
+    min-height:auto;
+    padding:72px 20px 86px;
+    text-align:center;
+    overflow:hidden;
+}
+.hero-kicker{
+    margin:0 0 18px;
+    font-size:12px;
+    letter-spacing:3px;
+    color:#7a756a;
+    line-height:1.1;
+}
+.hero-photo-frame{
+    position:relative;
+    width:min(84vw,470px);
+    margin:0 auto;
+    padding:10px;
+    background:#eee9dd;
+    box-shadow:var(--shadow);
+}
+.hero-photo-frame::before{
+    content:"";
+    position:absolute;
+    inset:6px;
+    border:1px solid rgba(104,115,77,.34);
+    pointer-events:none;
+    z-index:2;
+}
+.hero-photo{
+    display:block;
+    width:100%;
+    aspect-ratio:3/4;
+    object-fit:cover;
+}
+.hero-copy{
+    width:min(88vw,500px);
+    margin:30px auto 0;
+    color:var(--text);
+}
+.hero-names{
+    margin:0;
+    font-size:clamp(39px,11vw,65px);
+    font-weight:400;
+    line-height:.82;
+    letter-spacing:2px;
+}
 .hero-names span{display:block}
-.hero-amp{font-family:Georgia,serif;font-size:24px;line-height:1;margin:14px 0;color:var(--green);letter-spacing:0}
-.hero-date{margin-top:30px;font-family:Arial,sans-serif;font-size:14px;letter-spacing:3px;color:#777}
-.hero-place{margin-top:10px;font-size:15px;color:#777}
-.hero-line{width:1px;height:62px;background:#cfc9bd;margin:34px auto 0}
+.hero-amp{
+    margin:9px 0 8px;
+    font-size:21px;
+    line-height:1;
+    color:#7c765f;
+}
+.hero-date{
+    margin-top:25px;
+    font-size:16px;
+    letter-spacing:1px;
+    line-height:1.1;
+}
+.hero-place{
+    margin-top:9px;
+    font-size:13px;
+    color:#777165;
+    line-height:1.3;
+}
 
 /* ==================================================
-   초대 문구
+   공통 타이틀
 ================================================== */
-.invite-section{padding:20px 24px 90px;text-align:center}
-.section-kicker{font-family:Arial,sans-serif;font-size:12px;letter-spacing:4px;color:#777;margin-bottom:15px}
-.section-title{margin:0;font-size:28px;font-weight:400;color:#4f4f4f;line-height:1.4}
-.invite-copy{margin:28px 0 0;font-size:16px;line-height:2.15;color:#666;word-break:keep-all}
-.invite-names{margin-top:30px;font-size:16px;color:#4e4e4e}
+.section-kicker{
+    margin-bottom:11px;
+    font-size:13px;
+    letter-spacing:3px;
+    color:#4f4b42;
+    line-height:1;
+}
+.section-title{
+    margin:0;
+    font-size:26px;
+    font-weight:400;
+    color:#4f4b42;
+    line-height:1.18;
+}
+
+/* ==================================================
+   INVITATION
+================================================== */
+.invite-section{
+    padding:70px 24px 82px;
+    text-align:center;
+}
+.invite-copy{
+    margin:35px 0 0;
+    font-size:17px;
+    line-height:1.9;
+    color:#666157;
+    word-break:keep-all;
+}
+.invite-names{
+    margin-top:35px;
+    font-size:16px;
+    color:#514d44;
+    line-height:1.2;
+}
 .invite-names strong{font-weight:400;color:#333}
 
 /* ==================================================
-   달력
+   CALENDAR
 ================================================== */
-.calendar-section{padding:30px 24px 95px;text-align:center}
-.calendar-card{width:min(100%,520px);margin:0 auto;padding:34px 18px 30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.calendar-date{font-family:Arial,sans-serif;font-size:30px;letter-spacing:3px;color:#555}
-.calendar-time{margin-top:8px;font-size:16px;color:#666}
-.calendar-grid{margin-top:30px;display:grid;grid-template-columns:repeat(7,1fr);gap:17px 4px;font-family:Arial,sans-serif;font-size:15px}
-.calendar-week{font-size:13px;color:#555}
-.calendar-week:first-child,.calendar-day.sunday{color:#c86b67}
-.calendar-day{height:32px;display:flex;align-items:center;justify-content:center;color:#333}
+.calendar-section{
+    padding:68px 24px 84px;
+    text-align:center;
+}
+.calendar-card{
+    width:min(100%,500px);
+    margin:0 auto;
+    padding:18px 8px 16px;
+    position:relative;
+}
+.calendar-line{
+    width:100%;
+    height:1px;
+    background:#d8d1c4;
+    margin-top:18px;
+}
+.calendar-date{
+    font-size:26px;
+    letter-spacing:.5px;
+    color:#575249;
+    line-height:1.15;
+}
+.calendar-time{
+    margin-top:9px;
+    font-size:17px;
+    color:#575249;
+    line-height:1.15;
+    white-space:nowrap;
+}
+.calendar-grid{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:20px 3px;
+    font-size:15px;
+}
+.calendar-week{
+    font-size:15px;
+    color:#777167;
+    line-height:2;
+}
+.calendar-week:first-child,.calendar-day.sunday{color:#b86b62}
+.calendar-day{
+    height:29px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#5b574f;
+}
 .calendar-day.empty{visibility:hidden}
-.calendar-day.wedding span{width:39px;height:39px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--green);color:white}
-.calendar-note{margin:27px 0 0;font-size:14px;line-height:1.9;color:#777}
+.calendar-day.wedding span{
+    width:33px;height:33px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--green);color:#fff;
+}
+.countdown{
+    margin:36px auto 0;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+}
+.countdown-item{width:58px;text-align:center}
+.countdown-title{
+    font-size:15px;
+    letter-spacing:1.5px;
+    margin-bottom:7px;
+    color:#8b867c;
+    line-height:1;
+}
+.countdown-number{
+    font-size:22px;
+    color:#5b574f;
+    line-height:1;
+}
+.countdown-colon{
+    font-family:"Gowun Batang",serif;
+    font-size:17px;
+    margin:0 6px 2px;
+    color:#aaa49a;
+}
+.wedding-dday{
+    margin-top:20px;
+    font-size:17px;
+    line-height:1.5;
+    color:#777167;
+}
+.calendar-card::before{
+    display:none;
+}
 
-/* ==================================================
-   D-Day
-================================================== */
-.countdown{margin:42px auto 0;display:flex;justify-content:center;align-items:flex-end;gap:0}
-.countdown-item{width:62px;text-align:center}
-.countdown-title{font-family:Arial,sans-serif;font-size:10px;letter-spacing:2px;margin-bottom:9px;color:#888}
-.countdown-number{font-family:Arial,sans-serif;font-size:23px;color:#555;line-height:1}
-.countdown-colon{font-family:Arial,sans-serif;font-size:16px;margin:0 7px 2px;color:#aaa}
-.wedding-dday{margin-top:18px;font-size:14px;line-height:1.8;color:#777}
+.calendar-card::after{
+    content:"";
+    display:block;
+    width:100%;
+    height:1px;
+    background:#d8d1c4;
+    margin-top:18px;
+}
+
+.calendar-line{
+    width:100%;
+    height:1px;
+    background:#d8d1c4;
+    margin-top:40px;
+}
 .wedding-dday #dday{font-weight:bold;color:var(--green)}
 
 /* ==================================================
-   middle — 기존 이미지 유지
+   MIDDLE 이미지
 ================================================== */
-.middle-scroll{position:relative}
-.middle-section{position:relative;width:100%;line-height:0}
-.middle-layer{display:block;width:100%;height:auto;opacity:0;transform:translateY(30px)}
+.middle-scroll,.middle2-scroll{position:relative;background:var(--paper)}
+.middle-section,.middle2-section{position:relative;width:100%;line-height:0}
+.middle-layer{
+    display:block;width:100%;height:auto;
+    opacity:0;transform:translateY(28px);
+    transition:opacity .62s ease,transform .62s ease
+}
 .middle-layer:first-child{position:relative}
 .middle-layer:not(:first-child){position:absolute;left:0;top:0}
-
-/* ==================================================
-   갤러리 제목 + 가로 스와이프
-================================================== */
-.gallery-section{padding:80px 0 105px;overflow:hidden}
-.gallery-heading{text-align:center;padding:0 24px 32px}
-.gallery-subtitle{font-size:14px;color:#888;line-height:1.8}
-.gallery-slider{position:relative;width:100%;overflow:hidden;touch-action:pan-y}
-.gallery-track{display:flex;align-items:center;gap:12px;will-change:transform;transition:transform .38s cubic-bezier(.22,.61,.36,1)}
-.gallery-slide{flex:0 0 78vw;max-width:470px;aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:#eee;box-shadow:0 8px 24px rgba(0,0,0,.08);user-select:none}
-.gallery-slide img{width:100%;height:100%;display:block;object-fit:cover;pointer-events:none}
-.gallery-counter{text-align:center;margin-top:22px;font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;color:#888}
-.gallery-hint{text-align:center;margin-top:10px;font-size:12px;color:#aaa}
-.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:38px;height:38px;border:1px solid rgba(255,255,255,.8);border-radius:50%;background:rgba(0,0,0,.18);color:#fff;font-size:20px;line-height:1}
-.gallery-arrow.prev{left:14px}.gallery-arrow.next{right:14px}
-
-/* 갤러리 전체화면 팝업 */
-.gallery-modal{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.88);align-items:center;justify-content:center;padding:24px}
-.gallery-modal.active{display:flex}
-.gallery-modal-image{max-width:92vw;max-height:82vh;width:auto;height:auto;object-fit:contain;border-radius:12px}
-.gallery-close{position:absolute;top:15px;right:18px;color:#fff;font-size:34px;line-height:1;z-index:10002}
-.gallery-prev,.gallery-next{position:absolute;top:50%;transform:translateY(-50%);border:0;background:none;color:#fff;font-size:30px;z-index:10002;padding:15px}
-.gallery-prev{left:3px}.gallery-next{right:3px}
-
-/* ==================================================
-   오시는 길 — 이미지 삭제 후 코드
-================================================== */
-.location-section{padding:90px 20px 100px;background:#fdfbf7;text-align:center}
-.location-heading{margin-bottom:36px}
-.location-address{margin:0;font-size:24px;line-height:1.5;color:#444}
-.location-address-small{margin:10px 0 0;font-size:15px;line-height:1.8;color:#777;word-break:keep-all}
-.location-tel{margin:7px 0 0;font-family:Arial,sans-serif;font-size:14px;letter-spacing:1px;color:#555}
-.map-wrap{width:min(100%,600px);margin:35px auto 22px;overflow:hidden;border-radius:18px;background:#eee}
-#daumRoughmapContainer1788964418676{width:100%!important;max-width:600px!important;margin:0 auto!important;padding:0!important;height:300px!important;overflow:hidden!important}
-#daumRoughmapContainer1788964418676 .wrap_map,#daumRoughmapContainer1788964418676 .map{width:100%!important;height:300px!important}
-#daumRoughmapContainer1788964418676 .roughmap_maker_label,#daumRoughmapContainer1788964418676 .wrap_cont,#daumRoughmapContainer1788964418676 .map_info{display:none!important}
-.location-links{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:min(100%,600px);margin:0 auto}
-.location-link{display:flex;align-items:center;justify-content:center;min-height:52px;border:1px solid #d7d1c7;border-radius:12px;background:#fff;color:#555;text-decoration:none;font-size:13px}
-.location-link.primary{grid-column:1/-1;background:#5e654d;border-color:#5e654d;color:#fff}
-.transport-accordion{width:min(100%,600px);margin:38px auto 0;text-align:left}
-.transport-box{margin-bottom:9px;border-radius:14px;overflow:hidden;background:#fff;border:1px solid #e2ddd4}
-.transport-button{width:100%;min-height:58px;border:0;background:#eee9df;padding:0 20px;display:flex;align-items:center;justify-content:space-between;color:#444;font-size:17px;text-align:left}
-.transport-button::after{content:"⌄";font-family:Arial,sans-serif;font-size:22px;transition:transform .25s}
-.transport-box.open .transport-button::after{transform:rotate(180deg)}
-.transport-info{display:none;padding:23px 20px 25px;background:#fff;font-size:14px;line-height:2;color:#666;word-break:keep-all}
-.transport-box.open .transport-info{display:block}
-.transport-info strong{font-weight:400;color:#444;font-size:15px}
-
-/* 약도 팝업 */
-.location-map-modal{display:none;position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,.85);align-items:center;justify-content:center;padding:20px}
-.location-map-modal.active{display:flex}
-.location-map-modal-image{display:block;max-width:100%;max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:10px}
-.location-map-close{position:absolute;top:15px;right:18px;color:#fff;font-size:34px;line-height:1;z-index:10002}
-
-/* ==================================================
-   middle2 — 기존 이미지 유지
-================================================== */
-.middle2-scroll{position:relative}
-.middle2-section{position:relative;width:100%;line-height:0}
-.middle2-layer{display:block;width:100%;height:auto}
+.middle2-layer{display:block;width:100%;height:auto;transition:opacity .62s ease,transform .62s ease}
 .middle2-background{position:relative;opacity:1;z-index:1}
 .middle2-layer:not(.middle2-background){position:absolute;left:0;top:0;opacity:0;z-index:2}
 
 /* ==================================================
-   방명록 — 이미지 삭제 후 코드
+   GALLERY
 ================================================== */
-.guestbook-section{padding:90px 20px 105px;background:var(--paper);text-align:center}
-.guestbook-header{margin-bottom:32px}
-.guestbook-description{margin:20px 0 0;font-size:14px;line-height:1.9;color:#888}
-.guestbook-list-screen,.guestbook-written-screen{width:min(100%,600px);margin:0 auto}
-.guestbook-empty{padding:38px 20px;border:1px solid #ded8ce;border-radius:18px;background:#fffdf9;color:#888;font-size:14px;line-height:1.8}
-.guestbook-write-button,.guestbook-write-again-button{border:1px solid #777;border-radius:12px;background:#fffdf9;color:#555;min-width:150px;height:48px;padding:0 25px;font-size:14px}
-.guestbook-write-button{margin-top:24px}
-.guestbook-entry-list{width:100%;margin:0 auto;text-align:left}
-.guestbook-entry{width:100%;background:#fff;border:1px solid #e4dfd7;border-radius:16px;padding:22px 20px;margin:0 0 14px;box-shadow:0 3px 12px rgba(0,0,0,.04)}
-.guestbook-entry-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}
-.guestbook-entry-name{font-size:16px;color:#333;font-weight:600}
-.guestbook-entry-right{display:flex;align-items:center;gap:9px}
-.guestbook-entry-date{font-size:12px;color:#aaa}
-.guestbook-delete-button{border:0;background:none;padding:0;font-size:20px;line-height:1;color:#aaa}
-.guestbook-entry-content{font-size:15px;line-height:1.8;color:#555;white-space:pre-wrap;word-break:break-word}
-.guestbook-write-again-button{margin-top:8px}
+.gallery-section{
+    padding:76px 0 86px;
+    overflow:hidden;
+}
+.gallery-heading{
+    text-align:center;
+    padding:0 24px 28px;
+}
+.gallery-slider{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    touch-action:pan-y;
+    user-select:none;
+    -webkit-user-select:none;
+}
+.gallery-track{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    will-change:transform;
+    transition:transform .32s cubic-bezier(.22,.61,.36,1);
+}
+.gallery-slide{
+    flex:0 0 72vw;
+    max-width:410px;
+    aspect-ratio:4/5;
+    overflow:hidden;
+    border-radius:14px;
+    background:#e9e4d9;
+    box-shadow:var(--shadow);
+    user-select:none;
+    -webkit-user-select:none;
+    cursor:pointer;
+    transition:transform .25s ease,opacity .25s ease,filter .25s ease;
+}
+.gallery-slide img{
+    width:100%;height:100%;display:block;
+    object-fit:cover;
+    pointer-events:none;
+}
+.gallery-counter{
+    text-align:center;
+    margin-top:19px;
+    font-size:13px;
+    letter-spacing:2px;
+    color:#8a8479;
+    line-height:1;
+}
+.gallery-arrow,
+.gallery-arrow:hover,
+.gallery-arrow:focus{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:4;
+    border:0;
+    outline:0;
+    background:transparent;
+    color:#fff;
+    font-family:"Gowun Batang",serif;
+    font-size:28px;
+    font-weight:400;
+    line-height:1;
+    padding:8px 4px;
+    text-shadow:0 2px 6px rgba(0,0,0,.28);
+}
 
-/* 방명록 팝업 */
-.guestbook-form-screen{position:fixed;inset:0;display:none;width:100%;height:100%;background:var(--paper);padding:30px 20px 0;overflow-y:auto;z-index:99998}
+.gallery-arrow.prev{
+    left:7px;
+}
+
+.gallery-arrow.next{
+    right:7px;
+}
+
+/* 갤러리 전체화면 */
+.gallery-modal{
+    display:none;
+    position:fixed;inset:0;z-index:10000;
+    background:rgba(0,0,0,.68);
+    align-items:center;justify-content:center;
+    padding:0;
+}
+.gallery-modal.active{display:flex}
+.gallery-modal-image{
+    display:block;
+    width:100vw;height:100vh;
+    max-width:none;max-height:none;
+    object-fit:contain;
+    border-radius:0;
+}
+.gallery-close{
+    position:absolute;
+    top:16px;
+    right:18px;
+    width:auto;
+    height:auto;
+    padding:0;
+    margin:0;
+    border:0;
+    outline:0;
+    background:transparent;
+    appearance:none;
+    -webkit-appearance:none;
+    color:#fff;
+    font-family:Arial,sans-serif;
+    font-size:28px;
+    font-weight:300;
+    line-height:1;
+    z-index:10002;
+    box-shadow:none;
+    text-shadow:0 1px 4px rgba(0,0,0,.35);
+}
+.gallery-prev,.gallery-next{
+    position:absolute;top:50%;
+    transform:translateY(-50%);
+    border:0;background:none;color:#fff;
+    font-family:"Gowun Batang",serif;
+    font-size:48px;font-weight:400;
+    line-height:1;z-index:10002;
+    padding:15px 8px;
+    text-shadow:0 2px 8px rgba(0,0,0,.35);
+}
+.gallery-prev{left:2px}.gallery-next{right:2px}
+
+/* ==================================================
+   LOCATION
+================================================== */
+.location-section{
+    padding:76px 20px 86px;
+    text-align:center;
+}
+.location-heading{margin-bottom:28px}
+.location-address{
+    margin:0;
+    font-size:16px;
+    line-height:1.25;
+    color:#514d45;
+    font-weight:400;
+}
+.location-address-small{
+    margin:7px 0 0;
+    font-size:18px;
+    line-height:1.35;
+    color:#68635a;
+    word-break:keep-all;
+}
+.location-tel{
+    margin:11px 0 0;
+    font-size:13px;
+    letter-spacing:.7px;
+    color:#706b61;
+    line-height:1;
+}
+.map-wrap{
+    width:calc(100% + 40px);
+    margin:28px -20px 0;
+    overflow:hidden;
+    background:#eee;
+}
+#daumRoughmapContainer1788964418676{
+    width:100%!important;
+    max-width:600px!important;
+    margin:0 auto!important;
+    padding:0!important;
+    height:260px!important;
+    overflow:hidden!important;
+}
+#daumRoughmapContainer1788964418676 .wrap_map,
+#daumRoughmapContainer1788964418676 .map{
+    width:100%!important;height:260px!important
+}
+#daumRoughmapContainer1788964418676 .roughmap_maker_label,
+#daumRoughmapContainer1788964418676 .wrap_cont,
+#daumRoughmapContainer1788964418676 .map_info{
+    display:none!important
+}
+.navigation-copy{
+    text-align:left;
+    margin:28px 0 13px;
+}
+.navigation-copy h3{
+    margin:0;
+    font-size:21px;
+    font-weight:400;
+    color:#514d45;
+    line-height:1.1;
+}
+.navigation-copy p{
+    margin:7px 0 0;
+    font-size:14px;
+    color:#777168;
+    line-height:1.35;
+}
+.location-map-button-wrap{
+    width:min(100%,600px);
+    margin:22px auto 0;
+}
+.location-links{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    width:min(100%,600px);
+    margin:0 auto;
+}
+.location-link{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:38px;
+    border:0;
+    border-radius:9px;
+    background:#fff;
+    color:#575249;
+    text-decoration:none;
+    font-size:16px;
+    line-height:1;
+    box-shadow:var(--shadow);
+}
+.location-map-button{
+    width:100%;
+    min-height:46px;
+    border:0;
+    border-radius:9px;
+    background:#fff;
+    color:var(--green);
+    font-size:18px;
+    box-shadow:var(--shadow);
+}
+.transport-accordion{
+    width:min(100%,600px);
+    margin:30px auto 0;
+    text-align:left;
+}
+.transport-box{
+    margin-bottom:7px;
+    background:#fff;
+    border-radius:9px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+/* 아코디언이 펼쳐졌을 때 버튼 아래쪽 모서리 제거 */
+.transport-box.open .transport-button{
+    border-radius:9px 9px 0 0;
+}
+.transport-button{
+    position:relative;
+    width:100%;
+    min-height:42px;
+    border:0;
+    border-radius:9px;
+    background:#f3eee6;
+    padding:0 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:#575249;
+    font-size:17px;
+    text-align:left;
+    line-height:1.2;
+}
+.transport-box.open .transport-button{
+    border-radius:9px 9px 0 0;
+}
+.transport-button::after{
+    content:"﹀";
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(calc(-50% + 5px));
+    font-family:"Gowun Batang",serif;
+    font-size:20px;
+    font-weight:300;
+    line-height:1;
+    color:#777167;
+}
+
+.transport-box.open .transport-button::after{
+    content:"︿";
+    transform:translateY(calc(-50% - 5px));
+}
+.transport-info{
+    display:none;
+    padding:17px 18px 19px;
+    background:#fff;
+    border-radius:0 0 9px 9px;
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    font-size:13px;
+    line-height:1.75;
+    color:#666157;
+    word-break:keep-all;
+}
+
+.transport-box.open .transport-info{
+    display:block;
+}
+.transport-box.open .transport-info{display:block}
+.transport-info strong{
+    font-weight:500;
+    color:#4f4b43;
+    font-size:14px;
+}
+
+/* 약도 팝업 */
+.location-map-modal{
+    display:none;position:fixed;inset:0;z-index:10001;
+    background:#000;align-items:center;justify-content:center;
+    padding:0;
+}
+.location-map-modal.active{display:flex}
+.location-map-modal-image{
+    display:block;
+    width:100vw;height:100vh;
+    max-width:none;max-height:none;
+    object-fit:contain;
+    border-radius:0;
+}
+.location-map-close{
+    position:absolute;top:14px;right:16px;
+    color:#fff;font-family:Arial,sans-serif;
+    font-size:34px;line-height:1;z-index:10002
+}
+
+/* ==================================================
+   GUESTBOOK
+================================================== */
+.guestbook-section{
+    padding:76px 20px 88px;
+    text-align:center;
+}
+.guestbook-header{margin-bottom:29px}
+.guestbook-description{
+    margin:30px 0 0;
+    font-size:18px;
+    line-height:1.45;
+    color:#555047;
+}
+.guestbook-list-screen,.guestbook-written-screen{
+    width:min(100%,600px);margin:0 auto;
+}
+.guestbook-write-button,.guestbook-write-again-button{
+    border:0;
+    border-radius:8px;
+    background:#fff;
+    color:#575249;
+    box-shadow:var(--shadow);
+    line-height:1;
+}
+.guestbook-write-button{
+    width:170px;height:48px;
+    padding:0 22px;
+    margin-top:0;
+    font-size:14px;
+}
+.guestbook-written-screen{
+    width:min(100%,600px);
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+.guestbook-entry-list{
+    width:100%;margin:0 auto;text-align:left;
+}
+.guestbook-entry{
+    width:100%;
+    background:#fff;
+    border:0;
+    border-radius:8px;
+    padding:20px 18px;
+    margin:0 0 10px;
+    box-shadow:var(--shadow);
+}
+.guestbook-entry-header{
+    display:flex;justify-content:space-between;align-items:center;
+    gap:12px;margin-bottom:13px
+}
+.guestbook-entry-name{font-size:15px;color:#333;font-weight:400}
+.guestbook-entry-right{display:flex;align-items:center;gap:8px}
+.guestbook-entry-date{font-size:11px;color:#aaa}
+.guestbook-delete-button{
+    border:0;background:none;padding:0;
+    font-family:Arial,sans-serif;
+    font-size:19px;line-height:1;color:#aaa
+}
+.guestbook-entry-content{
+    font-size:14px;line-height:1.7;color:#555;
+    white-space:pre-wrap;word-break:break-word
+}
+.guestbook-write-again-button{
+    display:block;
+    align-self:flex-end;
+    margin-top:3px;
+    margin-left:auto;
+    width:88px;
+    height:38px;
+    padding:0 10px;
+    font-family:"Gowun Batang",serif;
+    font-size:14px;
+}
+
+/* 방명록 전체화면 */
+.guestbook-form-screen{
+    position:fixed;inset:0;
+    display:none;width:100%;height:100%;
+    background:var(--paper);
+    padding:24px 20px 0;
+    overflow-y:auto;
+    z-index:99998;
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+}
 .guestbook-form-screen.show{display:block}
-.guestbook-form-inner{width:min(100%,600px);min-height:100%;margin:0 auto;padding:0 0 50px}
-.guestbook-form-header{position:relative;width:100%;height:58px;display:flex;align-items:center;justify-content:center}
-.guestbook-form-title{font-family:Arial,"Malgun Gothic",sans-serif;font-size:17px;font-weight:500;color:#222}
-.guestbook-form-close{position:absolute;top:0;right:0;width:58px;height:58px;border:0;background:none;font-family:Arial,sans-serif;font-size:20px;color:#222}
-.guestbook-form-body{padding:26px 4px 0}
-.guestbook-form-item{margin-bottom:28px}
-.guestbook-form-item label{display:block;font-family:Arial,"Malgun Gothic",sans-serif;font-size:15px;margin-bottom:15px;color:#222}
-.guestbook-form-item label span{color:#d95b50;margin-right:4px}
-.guestbook-form-item input,.guestbook-form-item textarea{width:100%;border:0;border-bottom:1px solid #d8d4cc;background:transparent;border-radius:0;padding:8px 0 14px;font-family:Arial,"Apple SD Gothic Neo",sans-serif;font-size:16px;line-height:1.6;color:#222;outline:none}
-.guestbook-form-item textarea{height:115px;resize:none}
-.guestbook-submit-button{display:block;width:100%;height:50px;margin:10px 0 0;border:1px solid #777;border-radius:12px;background:#fffdf9;color:#555;font-size:14px}
+.guestbook-form-inner{
+    width:min(100%,600px);min-height:100%;
+    margin:0 auto;padding:0 0 50px
+}
+.guestbook-form-header{
+    position:relative;width:100%;height:56px;
+    display:flex;align-items:center;justify-content:center
+}
+.guestbook-form-title{
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    font-size:18px;
+    font-weight:400;
+    color:#333;
+}
+.guestbook-form-close{
+    position:absolute;top:0;right:0;
+    width:50px;height:50px;border:0;background:none;
+    font-family:Arial,sans-serif;font-size:22px;color:#222
+}
+.guestbook-form-body{padding:24px 3px 0}
+.guestbook-form-item{margin-bottom:25px}
+.guestbook-form-item label{
+    display:block;
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    font-size:14px;
+    margin-bottom:11px;
+    color:#333;
+}
+
+.guestbook-form-item label span{color:#c95e53;margin-right:4px}
+.guestbook-form-item input,
+.guestbook-form-item textarea{
+    width:100%;border:0;border-bottom:1px solid #d3cdc2;
+    background:transparent;border-radius:0;
+    padding:8px 0 12px;
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    font-size:15px;line-height:1.5;color:#222;outline:none
+}
+.guestbook-form-item textarea{height:110px;resize:none}
+.guestbook-submit-button{
+    display:block;
+    width:88px;
+    height:38px;
+    margin:8px 0 0 auto;
+    padding:0 10px;
+    border:0;
+    border-radius:8px;
+    background:#fff;
+    color:#555;
+    box-shadow:var(--shadow);
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    font-size:14px;
+    line-height:1;
+}
 
 /* ==================================================
-   계좌번호 — 이미지 삭제 후 코드
+   ACCOUNT
 ================================================== */
-.account-section{padding:90px 20px 100px;background:#fdfbf7;text-align:center}
-.account-description{margin:20px auto 35px;max-width:520px;font-size:14px;line-height:2;color:#888;word-break:keep-all}
-.account-accordion{width:min(100%,600px);margin:0 auto;text-align:left}
-.account-box{margin-bottom:10px;border:1px solid #ddd7cd;border-radius:14px;overflow:hidden;background:#fff}
-.account-button{width:100%;min-height:62px;border:0;background:#eee9df;display:flex;align-items:center;justify-content:space-between;padding:0 20px;color:#444;font-size:17px}
-.account-button::after{content:"⌄";font-family:Arial,sans-serif;font-size:22px;transition:transform .25s}
-.account-box.open .account-button::after{transform:rotate(180deg)}
-.account-info{display:none;padding:0 20px 22px;background:#fff}
+.account-section{
+    padding:76px 20px 88px;
+    text-align:center;
+}
+.account-description{
+    margin:25px auto 31px;
+    max-width:520px;
+    font-size:18px;
+    line-height:1.72;
+    color:#68635a;
+    word-break:keep-all;
+}
+.account-accordion{
+    width:min(100%,600px);margin:0 auto;text-align:left;
+}
+.account-box{
+    margin-bottom:8px;
+    overflow:hidden;
+    background:#fff;
+    border-radius:9px;
+    box-shadow:var(--shadow);
+}
+.account-button{
+    position:relative;
+    width:100%;
+    min-height:42px;
+    border:0;
+    border-radius:9px;
+    background:#f3eee6;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 20px;
+    color:#4f4b43;
+    font-size:17px;
+    line-height:1;
+}
+.account-box.open .account-button{
+    border-radius:9px 9px 0 0;
+}
+.account-button::after{
+    content:"﹀";
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(calc(-50% + 5px));
+    font-family:"Gowun Batang",serif;
+    font-size:20px;
+    font-weight:300;
+    line-height:1;
+    color:#777167;
+}
+
+.account-box.open .account-button::after{
+    content:"︿";
+    transform:translateY(calc(-50% - 5px));
+}
+.account-info{
+    display:none;
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    padding:0 18px 12px;
+    background:#fff;
+    border-radius:0 0 9px 9px;
+}
 .account-box.open .account-info{display:block}
-.account-person{padding:22px 0 18px;border-bottom:1px solid #eee8df}
+.account-person{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:18px 0;
+    border-bottom:1px solid #eee9df;
+}
 .account-person:last-child{border-bottom:0}
-.account-bank{font-size:14px;color:#777}
-.account-number{margin-top:6px;font-family:Arial,sans-serif;font-size:17px;letter-spacing:.5px;color:#333}
-.account-copy-button{margin-top:10px;border:1px solid #d7d1c8;border-radius:9px;background:#fff;padding:8px 12px;color:#666;font-size:12px}
-
-/* 계좌 복사 팝업 */
-.copy-popup{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:25px;background:rgba(0,0,0,.25);z-index:99999}
+.account-person-copy{min-width:0}
+.account-bank-title{
+    font-size:15px;color:#444;
+    line-height:1.2;margin-bottom:7px
+}
+.account-bank-title span{margin-left:5px}
+.account-bank{
+    font-size:13px;color:#777;
+    line-height:1.2
+}
+.account-number{
+    margin-top:5px;
+    font-size:15px;letter-spacing:.3px;color:#333
+}
+.account-copy-button{
+    flex:0 0 38px;
+    width:38px;height:38px;
+    margin:0;
+    border:0;
+    border-radius:0;
+    background:transparent;
+    padding:6px;
+    display:flex;align-items:center;justify-content:center;
+}
+.account-copy-button img{
+    width:100%;height:100%;object-fit:contain
+}
+.copy-popup{
+    position:fixed;inset:0;
+    display:none;align-items:center;justify-content:center;
+    padding:25px;background:rgba(0,0,0,.25);z-index:99999
+}
 .copy-popup.show{display:flex}
-.copy-popup-content{width:min(88vw,360px);background:#fffdf9;border-radius:18px;padding:30px 22px;text-align:center;box-shadow:0 12px 35px rgba(0,0,0,.15)}
-.copy-popup-message{font-size:15px;line-height:1.8;color:#555}
-.copy-confirm-button{margin-top:20px;width:100%;height:46px;border:1px solid #777;border-radius:10px;background:#fff;color:#555;font-size:14px}
+.copy-popup-content{
+    width:min(82vw,330px);
+    background:#fffdf9;
+    border-radius:12px;
+    padding:25px 20px;
+    text-align:center;
+    box-shadow:0 12px 35px rgba(0,0,0,.15)
+}
+.copy-popup-message{font-size:14px;line-height:1.6;color:#555}
+.copy-confirm-button{
+    margin-top:13px;
+    width:68px;height:32px;
+    border:0;border-radius:6px;
+    background:#fff;color:#555;
+    font-size:13px;
+    box-shadow:var(--shadow)
+}
 
 /* ==================================================
-   연락하기 — 이미지 삭제 후 코드
+   CONTACT
 ================================================== */
-.contact-section{padding:90px 20px 100px;text-align:center;background:var(--paper)}
-.contact-description{margin:20px auto 30px;max-width:500px;font-size:14px;line-height:2;color:#888;word-break:keep-all}
-.contact-open-button{width:min(100%,360px);height:54px;border:1px solid #777;border-radius:12px;background:#fffdf9;color:#555;font-size:15px}
-.contact-popup{position:fixed;inset:0;display:none;align-items:center;justify-content:center;width:100%;height:100%;padding:20px;background:rgba(0,0,0,.35);z-index:99998}
+.contact-section{
+    padding:76px 20px 88px;
+    text-align:center;
+}
+.contact-description{
+    margin:23px auto 27px;
+    max-width:500px;
+    font-size:18px;
+    line-height:1.42;
+    color:#68635a;
+    word-break:keep-all;
+}
+.contact-open-button{
+    width:150px;height:45px;
+    border:0;border-radius:8px;
+    background:#fff;color:#575249;
+    font-size:17px;
+    box-shadow:var(--shadow);
+}
+.contact-popup{
+    position:fixed;inset:0;
+    display:none;align-items:stretch;justify-content:center;
+    width:100%;height:100%;
+    padding:0;background:var(--paper);z-index:99998;
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+}
 .contact-popup.show{display:flex}
-.contact-popup-content{width:min(100%,520px);max-height:84vh;overflow-y:auto;background:var(--paper);border-radius:20px;padding:12px 0 20px;box-shadow:0 15px 40px rgba(0,0,0,.18)}
-.contact-popup-header{position:relative;height:58px;display:flex;align-items:center;justify-content:center}
-.contact-popup-header-title{margin:0;font-size:18px;font-weight:400;color:#333}
-.contact-popup-close{position:absolute;top:0;right:0;width:58px;height:58px;border:0;background:none;font-family:Arial,sans-serif;font-size:22px;color:#333}
-.contact-group{padding:0 24px 24px}
-.contact-group-title{margin:18px 0 10px;font-size:15px;font-weight:500;color:#444}
-.contact-group-line{height:1px;background:#ded8cf}
-.contact-person{display:flex;align-items:center;justify-content:space-between;min-height:62px;border-bottom:1px solid #e8e2da}
-.contact-person-name{font-size:14px;color:#444}
-.contact-actions{display:flex;gap:7px}
-.contact-action-button{display:flex;align-items:center;justify-content:center;width:58px;height:36px;border:1px solid #d6d0c7;border-radius:9px;background:#fff;color:#555;text-decoration:none;font-size:12px}
+.contact-popup-content{
+    width:min(100%,600px);height:100%;
+    max-height:none;overflow-y:auto;
+    background:var(--paper);
+    border-radius:0;padding:12px 0 25px;
+    box-shadow:none;
+}
+.contact-popup-header{
+    position:relative;height:58px;
+    display:flex;align-items:center;justify-content:center
+}
+.contact-popup-header-title{
+    margin:0;font-size:18px;font-weight:400;color:#333
+}
+.contact-popup-close{
+    position:absolute;top:0;right:0;
+    width:52px;height:52px;border:0;background:none;
+    font-family:Arial,sans-serif;font-size:22px;color:#333
+}
+.contact-group{padding:0 24px 22px}
+.contact-group-title{
+    margin:18px 0 9px;
+    font-size:16px;font-weight:400;color:#444
+}
+.contact-group-line{height:1px;background:#d9d3c8}
+.contact-person{
+    display:flex;align-items:center;justify-content:space-between;
+    min-height:62px;border-bottom:1px solid #e7e1d7
+}
+.contact-person-name{
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+    font-size:15px;
+    color:#444;
+}
 
+.contact-relation{
+    font-size:12px;
+    font-weight:600;
+    color:#777167;
+}
+
+.contact-name{
+    font-size:15px;
+    font-weight:400;
+    color:#444;
+}
+.contact-actions{display:flex;gap:7px}
+.contact-action-button{
+    display:flex;align-items:center;justify-content:center;
+    width:58px;height:46px;
+    border:0;border-radius:8px;
+    background:transparent;color:#555;
+    text-decoration:none;
+    box-shadow:none;
+    padding:0;
+}
+.contact-action-button img{
+    width:100%;height:100%;object-fit:contain;
+}
+.contact-relation{
+    font-size:12px;
+    font-weight:600;
+    color:#777167;
+    margin-right:4px;
+}
 /* ==================================================
    마지막 이미지
 ================================================== */
-.end-section{width:100%;margin:0;padding:0;line-height:0}
+.end-section{
+    width:100%;margin:0;padding:0;
+    line-height:0;background:var(--paper);
+}
 .end-image{display:block;width:100%;height:auto;margin:0}
 
 /* ==================================================
-   공유하기 — 코드 버튼
+   공유하기
 ================================================== */
-.share-section{padding:48px 20px 110px;text-align:center;background:var(--paper)}
-.share-title{font-size:18px;font-weight:400;color:#555;margin:0 0 18px}
-.share-main-button{min-width:180px;height:52px;border:1px solid #777;border-radius:12px;background:#fffdf9;color:#555;font-size:14px}
-.share-menu{display:none;width:min(100%,500px);margin:18px auto 0;grid-template-columns:repeat(2,1fr);gap:9px}
-.share-menu.open{display:grid}
-.share-menu-button{height:50px;border:1px solid #ddd7ce;border-radius:10px;background:#fff;color:#555;font-size:13px}
+.share-section{
+    position:relative;
+    padding:42px 20px 90px;
+    text-align:center;
+}
+.share-button{
+    display:block;
+    width:76px;height:76px;
+    padding:0;margin:0 auto;
+    border:0;background:none;cursor:pointer;
+}
+.share-button img{width:100%;height:100%;object-fit:contain}
+.share-menu{
+    display:none;
+    position:fixed;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    width:min(100%,600px);
+    background:#fff;
+    border-radius:14px 14px 0 0;
+    padding:0 0 calc(18px + env(safe-area-inset-bottom));
+    z-index:99997;
+    box-shadow:0 -4px 18px rgba(0,0,0,.12);
+    overflow:hidden;
+}
+
+.share-menu.open{
+    display:block;
+}
+
+.share-menu-header{
+    position:relative;
+    height:62px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.share-menu-header h3{
+    margin:0;
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    font-size:16px;
+    font-weight:500;
+    color:#333;
+}
+
+.share-menu-close{
+    position:absolute;
+    top:0;
+    right:16px;
+    width:52px;
+    height:52px;
+    padding:0;
+    border:0;
+    outline:0;
+    background:transparent;
+    appearance:none;
+    -webkit-appearance:none;
+    font-family:Arial,sans-serif;
+    font-size:24px;
+    font-weight:300;
+    line-height:1;
+    color:#222;
+    box-shadow:none;
+}
+
+.share-menu-line{
+    width:100%;
+    height:1px;
+    background:#eee;
+}
+
+.share-menu-buttons{
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    gap:4px;
+    padding:18px 18px 0;
+}
+
+.share-menu-button{
+    flex:1 1 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:auto;
+    height:78px;
+    padding:0;
+    border:0;
+    background:transparent;
+    cursor:pointer;
+    box-shadow:none;
+}
+
+.share-menu-button img{
+    display:block;
+    width:68px;
+    height:68px;
+    object-fit:contain;
+}
 
 @media (min-width:601px){
-    body{background:#eeeae2}
+    body{background:var(--paper)}
     .intro,.intro-inner{max-width:600px}
-    .hero-section,.invite-section,.calendar-section,.gallery-section,.location-section,.guestbook-section,.account-section,.contact-section,.share-section{max-width:600px;margin-left:auto;margin-right:auto}
-    .gallery-slide{flex-basis:470px}
+    .hero-section,.invite-section,.calendar-section,.gallery-section,.location-section,
+    .guestbook-section,.account-section,.contact-section,.share-section{
+        max-width:600px;margin-left:auto;margin-right:auto
+    }
+    .gallery-slide{flex-basis:430px}
 }
 </style>
+
 </head>
 <body>
 
@@ -306,10 +1158,18 @@ button{cursor:pointer}
 ================================================== -->
 <section class="hero-section scroll-reveal">
     <div class="hero-kicker">WEDDING INVITATION</div>
-    <h1 class="hero-names"><span>경진</span><div class="hero-amp">&amp;</div><span>홍연</span></h1>
-    <div class="hero-date">2026. 11. 21 SAT 12:40</div>
-    <div class="hero-place">분당앤스퀘어 4층 아모르홀</div>
-    <div class="hero-line"></div>
+    <div class="hero-photo-frame">
+        <img class="hero-photo" src="images/gallery/01.jpg" alt="경진과 홍연의 웨딩 사진">
+    </div>
+    <div class="hero-copy">
+        <h1 class="hero-names">
+            <span>경진</span>
+            <div class="hero-amp">&amp;</div>
+            <span>홍연</span>
+        </h1>
+        <div class="hero-date">2026. 11. 21 SAT 12:40</div>
+        <div class="hero-place">분당앤스퀘어 4층 아모르홀</div>
+    </div>
 </section>
 
 <!-- ==================================================
@@ -319,37 +1179,58 @@ button{cursor:pointer}
     <div class="section-kicker">INVITATION</div>
     <h2 class="section-title">소중한 분들을 초대합니다.</h2>
     <p class="invite-copy">
-        서로의 가장 좋은 친구가 되어<br>
-        함께 웃고 함께 걸어가려 합니다.<br><br>
-        저희 두 사람이 사랑으로 맺어지는 날,<br>
-        귀한 걸음으로 함께해 주시면<br>
-        더없이 기쁘고 감사하겠습니다.
+        살다 보면 많은 사람을 만나지만<br>
+        마음이 편안해지고, 함께 있는 시간이<br>
+        자연스러운 사람을 만나는 일은<br>
+        참 소중한 것 같습니다.<br><br>
+        저희는 그런 서로를 만나<br>
+        앞으로의 날들을 함께 살아가기로 했습니다.<br><br>
+        저희가 함께하는 첫걸음에<br>
+        소중한 분들을 모시고 인사를 드리고자 합니다.<br><br>
+        바쁘시더라도 함께해 주신다면<br>
+        오래도록 감사한 마음으로 간직하겠습니다.
     </p>
-    <div class="invite-names"><strong>경진</strong> · <strong>홍연</strong></div>
+    <div class="invite-names"><strong>민경진</strong> ♥ <strong>엄홍연</strong></div>
 </section>
 
 <!-- ==================================================
      달력 + D-Day
 ================================================== -->
 <section class="calendar-section scroll-reveal">
-    <div class="section-kicker">WEDDING DAY</div>
-    <div class="calendar-card">
-        <div class="calendar-date">2026. 11. 21</div>
-        <div class="calendar-time">토요일 낮 12시 40분</div>
-        <div class="calendar-grid" id="calendarGrid"></div>
-        <p class="calendar-note">2026년 11월 21일, 저희의 결혼식에 초대합니다.</p>
-    </div>
+<div class="calendar-card">
+    <div class="calendar-date">2026.11.21</div>
+    <div class="calendar-time">토요일 낮 12시 40분</div>
+
+    <div class="calendar-line"></div>
+
+    <div class="calendar-grid" id="calendarGrid"></div>
+</div>
 
     <div class="countdown">
-        <div class="countdown-item"><div class="countdown-title">DAYS</div><div class="countdown-number" id="days">00</div></div>
+        <div class="countdown-item">
+            <div class="countdown-title">DAYS</div>
+            <div class="countdown-number"><span id="days">00</span></div>
+        </div>
         <div class="countdown-colon">:</div>
-        <div class="countdown-item"><div class="countdown-title">HOUR</div><div class="countdown-number" id="hours">00</div></div>
+        <div class="countdown-item">
+            <div class="countdown-title">HOUR</div>
+            <div class="countdown-number"><span id="hours">00</span></div>
+        </div>
         <div class="countdown-colon">:</div>
-        <div class="countdown-item"><div class="countdown-title">MIN</div><div class="countdown-number" id="minutes">00</div></div>
+        <div class="countdown-item">
+            <div class="countdown-title">MIN</div>
+            <div class="countdown-number"><span id="minutes">00</span></div>
+        </div>
         <div class="countdown-colon">:</div>
-        <div class="countdown-item"><div class="countdown-title">SEC</div><div class="countdown-number" id="seconds">00</div></div>
+        <div class="countdown-item">
+            <div class="countdown-title">SEC</div>
+            <div class="countdown-number"><span id="seconds">00</span></div>
+        </div>
     </div>
-    <div class="wedding-dday">경진, 홍연의 결혼식이 <span id="dday">00</span>일 남았습니다.</div>
+
+    <div class="wedding-dday">
+        경진, 홍연의 결혼식이 <span id="dday">00</span>일 남았습니다.
+    </div>
 </section>
 
 <!-- ==================================================
@@ -373,24 +1254,22 @@ button{cursor:pointer}
     <div class="gallery-heading">
         <div class="section-kicker">GALLERY</div>
         <h2 class="section-title">웨딩 갤러리</h2>
-        <p class="gallery-subtitle">사진을 좌우로 스와이프해 주세요.</p>
     </div>
 
     <div class="gallery-slider" id="gallerySlider">
-        <button type="button" class="gallery-arrow prev" id="galleryPrev" aria-label="이전 사진">‹</button>
+        <button type="button" class="gallery-arrow prev" id="galleryPrev" aria-label="이전 사진">〈</button>
         <div class="gallery-track" id="galleryTrack"></div>
-        <button type="button" class="gallery-arrow next" id="galleryNext" aria-label="다음 사진">›</button>
+        <button type="button" class="gallery-arrow next" id="galleryNext" aria-label="다음 사진">〉</button>
     </div>
     <div class="gallery-counter" id="galleryCounter">01 / 09</div>
-    <div class="gallery-hint">09번 사진에서 왼쪽으로 넘기면 01번 사진으로 이어집니다.</div>
 </section>
 
 <!-- 갤러리 팝업 -->
 <div class="gallery-modal" id="galleryModal">
-    <div class="gallery-close" id="galleryClose">×</div>
-    <button class="gallery-prev" id="galleryModalPrev" type="button">〈</button>
+    <button type="button" class="gallery-close" id="galleryClose" aria-label="닫기">×</button>
+    <button type="button" class="gallery-prev" id="galleryModalPrev" aria-label="이전 사진">〈</button>
     <img class="gallery-modal-image" id="galleryModalImage" src="" alt="">
-    <button class="gallery-next" id="galleryModalNext" type="button">〉</button>
+    <button type="button" class="gallery-next" id="galleryModalNext" aria-label="다음 사진">〉</button>
 </div>
 
 <!-- ==================================================
@@ -401,16 +1280,25 @@ button{cursor:pointer}
         <div class="section-kicker">LOCATION</div>
         <h2 class="section-title">오시는 길</h2>
     </div>
+
     <h3 class="location-address">분당앤스퀘어 4층 아모르홀</h3>
     <p class="location-address-small">경기 성남시 분당구 탄천상로 151번길 20</p>
-    <p class="location-tel">Tel. 031-728-5300</p>
+    <p class="location-tel">tel. 031-728-5300</p>
 
     <div class="map-wrap">
         <div id="daumRoughmapContainer1788964418676" class="root_daum_roughmap root_daum_roughmap_landing"></div>
     </div>
 
+    <div class="location-map-button-wrap">
+        <button type="button" class="location-map-button" id="locationMapButton">약도 이미지 보기</button>
+    </div>
+
+    <div class="navigation-copy">
+        <h3>내비게이션</h3>
+        <p>원하시는 앱을 선택하시면 길안내가 시작됩니다.</p>
+    </div>
+
     <div class="location-links">
-        <button type="button" class="location-link primary" id="locationMapButton">약도 크게 보기</button>
         <a href="https://map.naver.com/p/entry/place/11872992" class="location-link" target="_blank" rel="noopener">네이버지도</a>
         <a href="https://tmap.life/674d14ec" class="location-link" target="_blank" rel="noopener">티맵</a>
         <a href="https://map.kakao.com/?itemId=936406406" class="location-link" target="_blank" rel="noopener">카카오맵</a>
@@ -429,6 +1317,7 @@ button{cursor:pointer}
                 수인분당선 오리역 6번 출구 도보 약 1분
             </div>
         </div>
+
         <div class="transport-box">
             <button type="button" class="transport-button">버스 이용 시</button>
             <div class="transport-info">
@@ -441,6 +1330,7 @@ button{cursor:pointer}
                 5500-1, 60, 700-2, 7007-1, 720-2, 8100, 8101, 8106, 8109, 820, 9414
             </div>
         </div>
+
         <div class="transport-box">
             <button type="button" class="transport-button">자차 이용 시</button>
             <div class="transport-info">
@@ -465,7 +1355,7 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
 
 <!-- 약도 팝업 -->
 <div class="location-map-modal" id="locationMapModal">
-    <div class="location-map-close" id="locationMapClose">×</div>
+    <button type="button" class="location-map-close" id="locationMapClose" aria-label="닫기">×</button>
     <img src="images/location/map.jpg" class="location-map-modal-image" alt="분당앤스퀘어 약도">
 </div>
 
@@ -488,18 +1378,17 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
 <section class="guestbook-section scroll-reveal">
     <div class="guestbook-header">
         <div class="section-kicker">GUESTBOOK</div>
-        <h2 class="section-title">축하의 마음을 남겨주세요.</h2>
-        <p class="guestbook-description">두 사람에게 따뜻한 축하의 한마디를 남겨주시면 소중히 간직하겠습니다.</p>
+        <h2 class="section-title">방명록</h2>
+        <p class="guestbook-description">신랑, 신부의<br>결혼을 축하해주세요.</p>
     </div>
 
     <div class="guestbook-list-screen" id="guestbook-list-screen">
-        <div class="guestbook-empty" id="guestbook-empty">아직 남겨진 방명록이 없습니다.<br>첫 번째 축하 메시지를 남겨주세요.</div>
         <button type="button" class="guestbook-write-button">방명록 작성하기</button>
     </div>
 
     <div class="guestbook-written-screen" id="guestbook-written-screen" style="display:none">
         <div class="guestbook-entry-list" id="guestbook-entry-list"></div>
-        <button type="button" class="guestbook-write-again-button">방명록 작성하기</button>
+        <button type="button" class="guestbook-write-again-button">작성하기</button>
     </div>
 </section>
 
@@ -511,9 +1400,18 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
             <button type="button" class="guestbook-form-close" id="guestbook-form-close">×</button>
         </div>
         <div class="guestbook-form-body">
-            <div class="guestbook-form-item"><label><span>*</span> 이름</label><input type="text" id="guestbook-name" placeholder="이름을 입력해 주세요."></div>
-            <div class="guestbook-form-item"><label><span>*</span> 내용</label><textarea id="guestbook-content" placeholder="내용을 작성해 주세요. (최대 500자)" maxlength="500"></textarea></div>
-            <div class="guestbook-form-item"><label><span>*</span> 비밀번호</label><input type="password" id="guestbook-password" placeholder="비밀번호를 입력해 주세요."></div>
+            <div class="guestbook-form-item">
+                <label><span>*</span> 이름</label>
+                <input type="text" id="guestbook-name" placeholder="이름을 입력해 주세요.">
+            </div>
+            <div class="guestbook-form-item">
+                <label><span>*</span> 내용</label>
+                <textarea id="guestbook-content" placeholder="내용을 작성해 주세요. (최대 500자)" maxlength="500"></textarea>
+            </div>
+            <div class="guestbook-form-item">
+                <label><span>*</span> 비밀번호</label>
+                <input type="password" id="guestbook-password" placeholder="비밀번호를 입력해 주세요.">
+            </div>
             <button type="button" class="guestbook-submit-button" id="guestbook-submit-button">작성완료</button>
         </div>
     </div>
@@ -525,36 +1423,59 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
 <section class="account-section scroll-reveal">
     <div class="section-kicker">ACCOUNT</div>
     <h2 class="section-title">마음 전하실 곳</h2>
-    <p class="account-description">참석이 어려우신 분들을 위해 계좌번호를 안내해 드립니다.<br>너그러운 마음으로 양해 부탁드립니다.</p>
+    <p class="account-description">
+        참석이 어려우신 분들을 위해<br>
+        계좌번호를 개재하였습니다.<br>
+        너그러운 마음으로 양해 부탁드립니다.
+    </p>
 
     <div class="account-accordion">
         <div class="account-box">
             <button type="button" class="account-button">신랑측</button>
             <div class="account-info">
                 <div class="account-person">
-                    <div class="account-bank">신한은행 · 신랑</div>
-                    <div class="account-number">110-508-795337</div>
-                    <button type="button" class="account-copy-button" data-account="110508795337">계좌번호 복사</button>
+                    <div class="account-person-copy">
+                        <div class="account-bank-title">신랑 <span>민경진</span></div>
+                        <div class="account-bank">신한은행 · 110-508-795337</div>
+                    </div>
+                    <button type="button" class="account-copy-button" data-account="110508795337" aria-label="계좌번호 복사">
+                        <img src="images/account/account-copy.png" alt="계좌번호 복사">
+                    </button>
                 </div>
+
                 <div class="account-person">
-                    <div class="account-bank">우리은행</div>
-                    <div class="account-number">1002-033-848184</div>
-                    <button type="button" class="account-copy-button" data-account="1002033848184">계좌번호 복사</button>
+                    <div class="account-person-copy">
+                        <div class="account-bank-title">신랑 <span>민도선</span></div>
+                        <div class="account-bank">우리은행 · 1002-033-848184</div>
+                    </div>
+                    <button type="button" class="account-copy-button" data-account="1002033848184" aria-label="계좌번호 복사">
+                        <img src="images/account/account-copy.png" alt="계좌번호 복사">
+                    </button>
                 </div>
             </div>
         </div>
+
         <div class="account-box">
             <button type="button" class="account-button">신부측</button>
             <div class="account-info">
                 <div class="account-person">
-                    <div class="account-bank">NH농협은행 · 신부</div>
-                    <div class="account-number">302-0757-9934-11</div>
-                    <button type="button" class="account-copy-button" data-account="3020757993411">계좌번호 복사</button>
+                    <div class="account-person-copy">
+                        <div class="account-bank-title">신부 <span>YANHONGYAN</span></div>
+                        <div class="account-bank">NH농협은행 · 302-0757-9934-11</div>
+                    </div>
+                    <button type="button" class="account-copy-button" data-account="3020757993411" aria-label="계좌번호 복사">
+                        <img src="images/account/account-copy.png" alt="계좌번호 복사">
+                    </button>
                 </div>
+
                 <div class="account-person">
-                    <div class="account-bank">신한은행</div>
-                    <div class="account-number">110-400-976752</div>
-                    <button type="button" class="account-copy-button" data-account="110400976752">계좌번호 복사</button>
+                    <div class="account-person-copy">
+                        <div class="account-bank-title">신부 <span>ZHENGZHENZI</span></div>
+                        <div class="account-bank">신한은행 · 110-400-976752</div>
+                    </div>
+                    <button type="button" class="account-copy-button" data-account="110400976752" aria-label="계좌번호 복사">
+                        <img src="images/account/account-copy.png" alt="계좌번호 복사">
+                    </button>
                 </div>
             </div>
         </div>
@@ -573,10 +1494,12 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
      연락하기
 ================================================== -->
 <section class="contact-section scroll-reveal">
-    <div class="section-kicker">CONTACT</div>
-    <h2 class="section-title">연락하기</h2>
-    <p class="contact-description">궁금하신 점이 있으시거나 축하의 마음을 전하고 싶으신 분은 편하게 연락 주세요.</p>
-    <button type="button" class="contact-open-button" id="contact-open-button">신랑·신부에게 연락하기</button>
+    <h2 class="section-title">CONTACT</h2>
+    <p class="contact-description">
+        직접 전하고 싶은 마음이 있다면<br>
+        따뜻한 마음을 전해주세요.
+    </p>
+    <button type="button" class="contact-open-button" id="contact-open-button">연락하기</button>
 </section>
 
 <!-- 연락하기 팝업 -->
@@ -586,17 +1509,65 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
             <h2 class="contact-popup-header-title">연락하기</h2>
             <button type="button" class="contact-popup-close" id="contact-popup-close">×</button>
         </div>
+
         <div class="contact-group">
             <h3 class="contact-group-title">신랑측</h3>
             <div class="contact-group-line"></div>
-            <div class="contact-person"><span class="contact-person-name">신랑</span><div class="contact-actions"><a href="tel:전화번호" class="contact-action-button">전화</a><a href="sms:전화번호" class="contact-action-button">문자</a></div></div>
-            <div class="contact-person"><span class="contact-person-name">아버지</span><div class="contact-actions"><a href="tel:전화번호" class="contact-action-button">전화</a><a href="sms:전화번호" class="contact-action-button">문자</a></div></div>
+            <div class="contact-person">
+                <span class="contact-person-name">
+    <span class="contact-relation">신랑</span>
+    <span class="contact-name">민경진</span>
+</span>
+                <div class="contact-actions">
+                    <a href="tel:010-4727-1657" class="contact-action-button"><img src="images/contact/phone.png" alt="전화"></a>
+                    <a href="sms:010-4727-1657" class="contact-action-button"><img src="images/contact/message.png" alt="문자"></a>
+                </div>
+            </div>
+            <div class="contact-person">
+                <span class="contact-person-name">
+    <span class="contact-relation">아버지</span>
+    <span class="contact-name">민도선</span>
+</span>
+                <div class="contact-actions">
+                    <a href="tel:010-3431-7079" class="contact-action-button"><img src="images/contact/phone.png" alt="전화"></a>
+                    <a href="sms:010-3431-7079" class="contact-action-button"><img src="images/contact/message.png" alt="문자"></a>
+                </div>
+            </div>
         </div>
+
         <div class="contact-group">
             <h3 class="contact-group-title">신부측</h3>
             <div class="contact-group-line"></div>
-            <div class="contact-person"><span class="contact-person-name">신부</span><div class="contact-actions"><a href="tel:전화번호" class="contact-action-button">전화</a><a href="sms:전화번호" class="contact-action-button">문자</a></div></div>
-            <div class="contact-person"><span class="contact-person-name">어머니</span><div class="contact-actions"><a href="tel:전화번호" class="contact-action-button">전화</a><a href="sms:전화번호" class="contact-action-button">문자</a></div></div>
+            <div class="contact-person">
+                <span class="contact-person-name">
+    <span class="contact-relation">신부</span>
+    <span class="contact-name">엄홍연</span>
+</span>
+                <div class="contact-actions">
+                    <a href="tel:010-7320-6612" class="contact-action-button"><img src="images/contact/phone.png" alt="전화"></a>
+                    <a href="sms:010-7320-6612" class="contact-action-button"><img src="images/contact/message.png" alt="문자"></a>
+                </div>
+            </div>
+            <div class="contact-person">
+                <span class="contact-person-name">
+    <span class="contact-relation">아버지</span>
+    <span class="contact-name">엄룡범</span>
+</span>
+                <div class="contact-actions">
+                    <a href="tel:010-8520-6612" class="contact-action-button"><img src="images/contact/phone.png" alt="전화"></a>
+                    <a href="sms:010-8520-6612" class="contact-action-button"><img src="images/contact/message.png" alt="문자"></a>
+                </div>
+            </div>
+ <div class="contact-person">
+                <span class="contact-person-name">
+    <span class="contact-relation">어머니</span>
+    <span class="contact-name">정정자</span>
+</span>
+                <div class="contact-actions">
+                    <a href="tel:010-5689-6618" class="contact-action-button"><img src="images/contact/phone.png" alt="전화"></a>
+                    <a href="sms:010-5689-6618" class="contact-action-button"><img src="images/contact/message.png" alt="문자"></a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -604,20 +1575,48 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
 <!-- ==================================================
      마지막 이미지
 ================================================== -->
-<section class="end-section"><img src="images/end/end.png" alt="마지막 이미지" class="end-image"></section>
+<section class="end-section scroll-reveal">
+    <img src="images/end/end.png" alt="마지막 이미지" class="end-image">
+</section>
 
 <!-- ==================================================
      공유하기
 ================================================== -->
-<section class="share-section">
-    <h2 class="share-title">소중한 마음을 전해주세요.</h2>
-    <button type="button" class="share-main-button" id="shareButton">공유하기</button>
+<section class="share-section scroll-reveal">
+    <button type="button" class="share-button" id="shareButton">
+        <img src="images/share/share-button.png" alt="공유하기">
+    </button>
+
     <div class="share-menu" id="shareMenu">
-        <button type="button" class="share-menu-button" id="shareCopyButton">링크 복사</button>
-        <button type="button" class="share-menu-button" id="shareKakaoButton">카카오톡 공유</button>
-        <button type="button" class="share-menu-button" id="shareMoreButton">더보기</button>
-        <button type="button" class="share-menu-button" id="shareSmsButton">문자 보내기</button>
+
+    <div class="share-menu-header">
+        <h3>공유하기</h3>
+        <button type="button" class="share-menu-close" id="shareMenuClose">×</button>
     </div>
+
+    <div class="share-menu-line"></div>
+
+    <div class="share-menu-buttons">
+
+        <button type="button" class="share-menu-button" id="shareKakaoButton">
+            <img src="images/share/share-kakao.png" alt="카카오톡">
+        </button>
+
+        <button type="button" class="share-menu-button" id="shareSmsButton">
+            <img src="images/share/share-sms.png" alt="문자">
+        </button>
+
+        <button type="button" class="share-menu-button" id="shareCopyButton">
+            <img src="images/share/share-copy.png" alt="링크 복사">
+        </button>
+
+        <button type="button" class="share-menu-button" id="shareMoreButton">
+            <img src="images/share/share-more.png" alt="더보기">
+        </button>
+
+    </div>
+
+</div>
 </section>
 
 <script>
@@ -705,74 +1704,451 @@ function updateMiddleReveal(){
 window.addEventListener("scroll",updateMiddleReveal,{passive:true});window.addEventListener("resize",updateMiddleReveal);updateMiddleReveal();
 
 /* ==================================================
-   갤러리 스와이프 — 양방향 무한 루프
+   GALLERY
 ================================================== */
-const galleryFiles=["01.jpg","02.jpg","03.jpg","04.jpg","05.jpg","06.jpg","07.jpg","08.jpg","09.jpg"];
+
+const galleryFiles=[
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg",
+    "06.jpg",
+    "07.jpg",
+    "08.jpg",
+    "09.jpg"
+];
+
 const galleryTrack=document.getElementById("galleryTrack");
 const gallerySlider=document.getElementById("gallerySlider");
 const galleryCounter=document.getElementById("galleryCounter");
+
 let galleryIndex=1;
 let galleryAnimating=false;
-const makeSlide=(file,index)=>{
-    const slide=document.createElement("div");slide.className="gallery-slide";
-    const img=document.createElement("img");img.src=`images/gallery/${file}`;img.alt=`웨딩 사진 ${index+1}`;slide.appendChild(img);
+let galleryDidSwipe=false;
+
+
+/* ==================================================
+   갤러리 사진 만들기
+================================================== */
+function makeSlide(file,index){
+
+    const slide=document.createElement("div");
+    slide.className="gallery-slide";
+
+    const img=document.createElement("img");
+    img.src=`images/gallery/${file}`;
+    img.alt=`웨딩 사진 ${index+1}`;
+
+    slide.appendChild(img);
+
     slide.dataset.index=index;
-    slide.addEventListener("click",()=>openGalleryModal(index));
+
+    slide.addEventListener("click",()=>{
+        if(galleryDidSwipe){
+            galleryDidSwipe=false;
+            return;
+        }
+
+        openGalleryModal(index);
+    });
+
     return slide;
-};
-/* 마지막 복제 → 01~09 → 첫 번째 복제 */
-galleryTrack.appendChild(makeSlide(galleryFiles[8],8));
-galleryFiles.forEach((file,index)=>galleryTrack.appendChild(makeSlide(file,index)));
-galleryTrack.appendChild(makeSlide(galleryFiles[0],0));
+}
+
+
+/* ==================================================
+   앞뒤 복제 사진 + 실제 사진
+================================================== */
+
+/* 마지막 사진 복제 */
+galleryTrack.appendChild(
+    makeSlide(galleryFiles[galleryFiles.length-1],galleryFiles.length-1)
+);
+
+/* 실제 사진 */
+galleryFiles.forEach((file,index)=>{
+    galleryTrack.appendChild(
+        makeSlide(file,index)
+    );
+});
+
+/* 첫 번째 사진 복제 */
+galleryTrack.appendChild(
+    makeSlide(galleryFiles[0],0)
+);
+
+
+/* ==================================================
+   한 장의 이동 거리
+================================================== */
 function getSlideStep(){
+
     const slide=galleryTrack.querySelector(".gallery-slide");
-    if(!slide)return 0;
-    const gap=parseFloat(getComputedStyle(galleryTrack).gap)||0;
-    return slide.getBoundingClientRect().width+gap;
+
+    if(!slide){
+        return 0;
+    }
+
+    const slideWidth=slide.getBoundingClientRect().width;
+
+    const gap=
+        parseFloat(
+            getComputedStyle(galleryTrack).gap
+        ) || 0;
+
+    return slideWidth+gap;
 }
-function getTrackOffset(){
-    const step=getSlideStep();
-    const slideWidth=galleryTrack.querySelector(".gallery-slide").getBoundingClientRect().width;
-    const viewport=gallerySlider.clientWidth;
-    return ((viewport-slideWidth)/2)-(galleryIndex*step);
-}
+
+
+/* ==================================================
+   갤러리 위치 이동
+================================================== */
 function updateGallery(animate=true){
-    galleryTrack.style.transition=animate?"transform .38s cubic-bezier(.22,.61,.36,1)":"none";
-    galleryTrack.style.transform=`translateX(${getTrackOffset()}px)`;
-    const real=((galleryIndex-1+galleryFiles.length)%galleryFiles.length);
-    galleryCounter.textContent=`${String(real+1).padStart(2,"0")} / ${String(galleryFiles.length).padStart(2,"0")}`;
+
+    const slide=galleryTrack.querySelector(".gallery-slide");
+
+    if(!slide){
+        return;
+    }
+
+    const slideWidth=
+        slide.getBoundingClientRect().width;
+
+    const step=getSlideStep();
+
+    /*
+       현재 사진을 화면 정중앙에 위치
+    */
+    const centerOffset=
+        (gallerySlider.clientWidth-slideWidth)/2;
+
+    const x=
+        centerOffset-(galleryIndex*step);
+
+    if(animate){
+
+        galleryTrack.style.transition=
+            "transform .38s cubic-bezier(.22,.61,.36,1)";
+
+    }else{
+
+        galleryTrack.style.transition="none";
+    }
+
+    galleryTrack.style.transform=
+        `translate3d(${x}px,0,0)`;
+
+
+    /* ==================================================
+       현재 사진 강조
+    ================================================== */
+
+    const slides=
+        galleryTrack.querySelectorAll(".gallery-slide");
+
+    slides.forEach((slide,index)=>{
+
+        if(index===galleryIndex){
+
+            slide.style.transform="scale(1)";
+            slide.style.opacity="1";
+            slide.style.filter="none";
+
+        }else{
+
+            slide.style.transform="scale(.88)";
+            slide.style.opacity=".42";
+            slide.style.filter="blur(.7px)";
+        }
+    });
+
+
+    /* ==================================================
+       사진 번호
+    ================================================== */
+
+    let realIndex=
+        galleryIndex-1;
+
+    if(realIndex<0){
+        realIndex=galleryFiles.length-1;
+    }
+
+    if(realIndex>=galleryFiles.length){
+        realIndex=0;
+    }
+
+    galleryCounter.textContent=
+        `${String(realIndex+1).padStart(2,"0")} / ${String(galleryFiles.length).padStart(2,"0")}`;
 }
+
+
+/* ==================================================
+   사진 한 장 이동
+================================================== */
 function goGallery(direction){
-    if(galleryAnimating)return;
-    galleryAnimating=true;galleryIndex+=direction;updateGallery(true);
+
+    if(galleryAnimating){
+        return;
+    }
+
+    galleryAnimating=true;
+
+    galleryIndex+=direction;
+
+    updateGallery(true);
 }
-galleryTrack.addEventListener("transitionend",()=>{
-    if(galleryIndex===0){galleryIndex=galleryFiles.length;updateGallery(false)}
-    if(galleryIndex===galleryFiles.length+1){galleryIndex=1;updateGallery(false)}
+
+
+/* ==================================================
+   이동 애니메이션 종료
+================================================== */
+galleryTrack.addEventListener("transitionend",e=>{
+
+    if(e.target!==galleryTrack){
+        return;
+    }
+
+    if(e.propertyName!=="transform"){
+        return;
+    }
+
+
+    /* 마지막 → 첫 번째 */
+    if(galleryIndex===galleryFiles.length+1){
+
+        galleryIndex=1;
+
+        updateGallery(false);
+    }
+
+
+    /* 첫 번째 → 마지막 */
+    else if(galleryIndex===0){
+
+        galleryIndex=galleryFiles.length;
+
+        updateGallery(false);
+    }
+
+
     galleryAnimating=false;
 });
-document.getElementById("galleryPrev").addEventListener("click",()=>goGallery(-1));
-document.getElementById("galleryNext").addEventListener("click",()=>goGallery(1));
-let touchStartX=0,touchStartY=0;
-gallerySlider.addEventListener("touchstart",e=>{touchStartX=e.changedTouches[0].clientX;touchStartY=e.changedTouches[0].clientY},{passive:true});
-gallerySlider.addEventListener("touchend",e=>{
-    const dx=e.changedTouches[0].clientX-touchStartX,dy=e.changedTouches[0].clientY-touchStartY;
-    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){goGallery(dx<0?1:-1)}
-},{passive:true});
-window.addEventListener("resize",()=>updateGallery(false));
-requestAnimationFrame(()=>updateGallery(false));
 
-/* 갤러리 팝업 */
-const galleryModal=document.getElementById("galleryModal");
-const galleryModalImage=document.getElementById("galleryModalImage");
+
+/* ==================================================
+   이전 / 다음 화살표
+================================================== */
+
+document
+    .getElementById("galleryPrev")
+    .addEventListener("click",()=>{
+
+        goGallery(-1);
+
+    });
+
+
+document
+    .getElementById("galleryNext")
+    .addEventListener("click",()=>{
+
+        goGallery(1);
+
+    });
+
+
+/* ==================================================
+   스와이프
+================================================== */
+
+let pointerStartX=0;
+let pointerStartY=0;
+let pointerActive=false;
+
+gallerySlider.addEventListener("pointerdown",e=>{
+
+    if(
+        e.pointerType==="mouse" &&
+        e.button!==0
+    ){
+        return;
+    }
+
+    if(galleryAnimating){
+        return;
+    }
+
+    pointerStartX=e.clientX;
+    pointerStartY=e.clientY;
+
+    pointerActive=true;
+
+    galleryDidSwipe=false;
+
+    try{
+        gallerySlider.setPointerCapture(e.pointerId);
+    }catch(err){}
+
+});
+
+
+gallerySlider.addEventListener("pointerup",e=>{
+
+    if(!pointerActive){
+        return;
+    }
+
+    pointerActive=false;
+
+    const dx=
+        e.clientX-pointerStartX;
+
+    const dy=
+        e.clientY-pointerStartY;
+
+
+    /*
+       가로 스와이프인지 확인
+    */
+    if(
+        Math.abs(dx)<30 ||
+        Math.abs(dx)<=Math.abs(dy)
+    ){
+        return;
+    }
+
+
+    /*
+       스와이프가 발생했다는 표시
+       사진 클릭으로 잘못 인식되지 않게 함
+    */
+    galleryDidSwipe=true;
+
+
+    /*
+       왼쪽으로 밀면 다음 사진
+       오른쪽으로 밀면 이전 사진
+    */
+    if(dx<0){
+
+        goGallery(1);
+
+    }else{
+
+        goGallery(-1);
+    }
+
+});
+
+
+gallerySlider.addEventListener("pointercancel",()=>{
+
+    pointerActive=false;
+
+});
+
+
+/* ==================================================
+   화면 크기 변경
+================================================== */
+
+window.addEventListener("resize",()=>{
+
+    if(!galleryAnimating){
+
+        updateGallery(false);
+    }
+
+});
+
+
+/* ==================================================
+   처음 갤러리 위치
+================================================== */
+
+requestAnimationFrame(()=>{
+
+    updateGallery(false);
+
+});
+
+
+/* ==================================================
+   갤러리 전체화면 팝업
+================================================== */
+
+const galleryModal=
+    document.getElementById("galleryModal");
+
+const galleryModalImage=
+    document.getElementById("galleryModalImage");
+
 let modalIndex=0;
-function openGalleryModal(index){modalIndex=index;galleryModalImage.src=`images/gallery/${galleryFiles[modalIndex]}`;galleryModal.classList.add("active");document.body.style.overflow="hidden"}
-function closeGalleryModal(){galleryModal.classList.remove("active");document.body.style.overflow=""}
-function moveModal(direction){modalIndex=(modalIndex+direction+galleryFiles.length)%galleryFiles.length;galleryModalImage.src=`images/gallery/${galleryFiles[modalIndex]}`}
-document.getElementById("galleryClose").addEventListener("click",closeGalleryModal);
-document.getElementById("galleryModalPrev").addEventListener("click",()=>moveModal(-1));
-document.getElementById("galleryModalNext").addEventListener("click",()=>moveModal(1));
-galleryModal.addEventListener("click",e=>{if(e.target===galleryModal)closeGalleryModal()});
+
+
+function openGalleryModal(index){
+
+    modalIndex=index;
+
+    galleryModalImage.src=
+        `images/gallery/${galleryFiles[modalIndex]}`;
+
+    galleryModal.classList.add("active");
+
+    document.body.style.overflow="hidden";
+}
+
+
+function closeGalleryModal(){
+
+    galleryModal.classList.remove("active");
+
+    document.body.style.overflow="";
+}
+
+
+function moveModal(direction){
+
+    modalIndex=
+        (modalIndex+direction+galleryFiles.length)
+        %galleryFiles.length;
+
+    galleryModalImage.src=
+        `images/gallery/${galleryFiles[modalIndex]}`;
+}
+
+
+document
+    .getElementById("galleryClose")
+    .addEventListener("click",closeGalleryModal);
+
+
+document
+    .getElementById("galleryModalPrev")
+    .addEventListener(
+        "click",
+        ()=>moveModal(-1)
+    );
+
+
+document
+    .getElementById("galleryModalNext")
+    .addEventListener(
+        "click",
+        ()=>moveModal(1)
+    );
+
+
+galleryModal.addEventListener("click",e=>{
+
+    if(e.target===galleryModal){
+
+        closeGalleryModal();
+    }
+
+});
 
 /* ==================================================
    교통 아코디언
@@ -816,52 +2192,185 @@ const guestbookWrittenScreen=document.getElementById("guestbook-written-screen")
 const guestbookFormScreen=document.getElementById("guestbook-form-screen");
 const guestbookFormClose=document.getElementById("guestbook-form-close");
 const guestbookEntryList=document.getElementById("guestbook-entry-list");
-const guestbookEmpty=document.getElementById("guestbook-empty");
+const guestbookDescription=document.querySelector(".guestbook-description");
 const guestbookName=document.getElementById("guestbook-name");
 const guestbookContent=document.getElementById("guestbook-content");
 const guestbookPassword=document.getElementById("guestbook-password");
-function getGuestbookEntries(){try{return JSON.parse(localStorage.getItem("weddingGuestbook")||"[]")}catch(e){return[]}}
-function openGuestbookForm(){guestbookFormScreen.classList.add("show");document.body.style.overflow="hidden"}
-function closeGuestbookForm(){guestbookFormScreen.classList.remove("show");document.body.style.overflow=""}
+
+function getGuestbookEntries(){
+    try{
+        return JSON.parse(localStorage.getItem("weddingGuestbook")||"[]");
+    }catch(e){
+        return[];
+    }
+}
+
+function openGuestbookForm(){
+    guestbookFormScreen.classList.add("show");
+    document.body.style.overflow="hidden";
+}
+
+function closeGuestbookForm(){
+    guestbookFormScreen.classList.remove("show");
+    document.body.style.overflow="";
+}
+
 function renderGuestbook(){
     const entries=getGuestbookEntries();
-    if(entries.length===0){guestbookListScreen.style.display="block";guestbookWrittenScreen.style.display="none";return}
-    guestbookListScreen.style.display="none";guestbookWrittenScreen.style.display="block";guestbookEntryList.innerHTML="";
+
+    /* 방명록이 없을 때 */
+    if(entries.length===0){
+        guestbookListScreen.style.display="block";
+        guestbookWrittenScreen.style.display="none";
+
+        /* 설명 문구 다시 표시 */
+        guestbookDescription.style.display="block";
+
+        return;
+    }
+
+    /* 방명록이 하나 이상 있을 때 */
+    guestbookListScreen.style.display="none";
+    guestbookWrittenScreen.style.display="flex";
+
+    /* 설명 문구 숨김 */
+    guestbookDescription.style.display="none";
+
+    guestbookEntryList.innerHTML="";
+
     entries.forEach((entry,index)=>{
-        const card=document.createElement("div");card.className="guestbook-entry";
-        const header=document.createElement("div");header.className="guestbook-entry-header";
-        const name=document.createElement("div");name.className="guestbook-entry-name";name.textContent=entry.name;
-        const right=document.createElement("div");right.className="guestbook-entry-right";
-        const date=document.createElement("div");date.className="guestbook-entry-date";date.textContent=entry.date;
-        const del=document.createElement("button");del.type="button";del.className="guestbook-delete-button";del.dataset.index=index;del.textContent="×";
-        right.append(date,del);header.append(name,right);
-        const content=document.createElement("div");content.className="guestbook-entry-content";content.textContent=entry.content;
-        card.append(header,content);guestbookEntryList.appendChild(card);
+        const card=document.createElement("div");
+        card.className="guestbook-entry";
+
+        const header=document.createElement("div");
+        header.className="guestbook-entry-header";
+
+        const name=document.createElement("div");
+        name.className="guestbook-entry-name";
+        name.textContent=entry.name;
+
+        const right=document.createElement("div");
+        right.className="guestbook-entry-right";
+
+        const date=document.createElement("div");
+        date.className="guestbook-entry-date";
+        date.textContent=entry.date;
+
+        const del=document.createElement("button");
+        del.type="button";
+        del.className="guestbook-delete-button";
+        del.dataset.index=index;
+        del.textContent="×";
+
+        right.append(date,del);
+        header.append(name,right);
+
+        const content=document.createElement("div");
+        content.className="guestbook-entry-content";
+        content.textContent=entry.content;
+
+        card.append(header,content);
+        guestbookEntryList.appendChild(card);
     });
 }
-document.querySelector(".guestbook-write-button").addEventListener("click",openGuestbookForm);
-document.querySelector(".guestbook-write-again-button").addEventListener("click",openGuestbookForm);
-guestbookFormClose.addEventListener("click",closeGuestbookForm);
-guestbookFormScreen.addEventListener("click",e=>{if(e.target===guestbookFormScreen)closeGuestbookForm()});
-document.getElementById("guestbook-submit-button").addEventListener("click",()=>{
-    const name=guestbookName.value.trim(),content=guestbookContent.value.trim(),password=guestbookPassword.value.trim();
-    if(!name){alert("이름을 입력해 주세요.");guestbookName.focus();return}
-    if(!content){alert("내용을 작성해 주세요.");guestbookContent.focus();return}
-    if(!password){alert("비밀번호를 입력해 주세요.");guestbookPassword.focus();return}
-    const entries=getGuestbookEntries();const now=new Date();
-    entries.push({name,content,password,date:`${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,"0")}.${String(now.getDate()).padStart(2,"0")}`});
-    localStorage.setItem("weddingGuestbook",JSON.stringify(entries));
-    guestbookName.value="";guestbookContent.value="";guestbookPassword.value="";closeGuestbookForm();renderGuestbook();
-});
-guestbookEntryList.addEventListener("click",e=>{
-    const del=e.target.closest(".guestbook-delete-button");if(!del)return;
-    const entries=getGuestbookEntries(),index=Number(del.dataset.index),entry=entries[index];if(!entry)return;
-    const password=prompt("방명록 작성 시 입력한 비밀번호를 입력해주세요.");if(password===null)return;
-    if(password!==entry.password){alert("비밀번호가 일치하지 않습니다.");return}
-    entries.splice(index,1);localStorage.setItem("weddingGuestbook",JSON.stringify(entries));renderGuestbook();
-});
-renderGuestbook();
 
+
+/* 방명록 작성하기 */
+document.querySelector(".guestbook-write-button").addEventListener("click",openGuestbookForm);
+
+
+/* 방명록 작성 후 나타나는 작성하기 */
+document.querySelector(".guestbook-write-again-button").addEventListener("click",openGuestbookForm);
+
+
+/* 팝업 닫기 */
+guestbookFormClose.addEventListener("click",closeGuestbookForm);
+
+
+/* 팝업 바깥쪽 클릭 시 닫기 */
+guestbookFormScreen.addEventListener("click",e=>{
+    if(e.target===guestbookFormScreen){
+        closeGuestbookForm();
+    }
+});
+
+
+/* 작성완료 */
+document.getElementById("guestbook-submit-button").addEventListener("click",()=>{
+    const name=guestbookName.value.trim();
+    const content=guestbookContent.value.trim();
+    const password=guestbookPassword.value.trim();
+
+    if(!name){
+        alert("이름을 입력해 주세요.");
+        guestbookName.focus();
+        return;
+    }
+
+    if(!content){
+        alert("내용을 작성해 주세요.");
+        guestbookContent.focus();
+        return;
+    }
+
+    if(!password){
+        alert("비밀번호를 입력해 주세요.");
+        guestbookPassword.focus();
+        return;
+    }
+
+    const entries=getGuestbookEntries();
+    const now=new Date();
+
+    entries.push({
+        name,
+        content,
+        password,
+        date:`${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,"0")}.${String(now.getDate()).padStart(2,"0")}`
+    });
+
+    localStorage.setItem("weddingGuestbook",JSON.stringify(entries));
+
+    guestbookName.value="";
+    guestbookContent.value="";
+    guestbookPassword.value="";
+
+    closeGuestbookForm();
+    renderGuestbook();
+});
+
+
+/* 방명록 삭제 */
+guestbookEntryList.addEventListener("click",e=>{
+    const del=e.target.closest(".guestbook-delete-button");
+
+    if(!del)return;
+
+    const entries=getGuestbookEntries();
+    const index=Number(del.dataset.index);
+    const entry=entries[index];
+
+    if(!entry)return;
+
+    const password=prompt("방명록 작성 시 입력한 비밀번호를 입력해주세요.");
+
+    if(password===null)return;
+
+    if(password!==entry.password){
+        alert("비밀번호가 일치하지 않습니다.");
+        return;
+    }
+
+    entries.splice(index,1);
+
+    localStorage.setItem("weddingGuestbook",JSON.stringify(entries));
+
+    renderGuestbook();
+});
+
+
+/* 페이지 처음 열었을 때 방명록 표시 */
+renderGuestbook();
 /* ==================================================
    계좌 아코디언 / 복사
 ================================================== */
@@ -891,22 +2400,35 @@ contactPopup.addEventListener("click",e=>{if(e.target===contactPopup){contactPop
 /* ==================================================
    공유하기
 ================================================== */
-const shareButton=document.getElementById("shareButton"),shareMenu=document.getElementById("shareMenu");
-shareButton.addEventListener("click",()=>shareMenu.classList.toggle("open"));
+const shareButton=document.getElementById("shareButton");
+const shareMenu=document.getElementById("shareMenu");
+const shareMenuClose=document.getElementById("shareMenuClose");
+
+shareButton.addEventListener("click",()=>{
+    shareMenu.classList.add("open");
+});
+
+shareMenuClose.addEventListener("click",()=>{
+    shareMenu.classList.remove("open");
+});
 document.getElementById("shareCopyButton").addEventListener("click",async()=>{
     const currentUrl=window.location.href;
     try{await navigator.clipboard.writeText(currentUrl)}catch(error){const ta=document.createElement("textarea");ta.value=currentUrl;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta)}
     alert("청첩장 링크가 복사되었습니다.");
+    shareMenu.classList.remove("open");
 });
 document.getElementById("shareKakaoButton").addEventListener("click",()=>{
     Kakao.Share.sendDefault({objectType:"feed",content:{title:"우리의 결혼식",description:"저희 결혼식에 초대합니다.",imageUrl:window.location.origin+"/images/intro/intro-01.jpg",link:{mobileWebUrl:window.location.href,webUrl:window.location.href}},buttons:[{title:"청첩장 보러가기",link:{mobileWebUrl:window.location.href,webUrl:window.location.href}}]});
+    shareMenu.classList.remove("open");
 });
 document.getElementById("shareMoreButton").addEventListener("click",async()=>{
     const currentUrl=window.location.href;
     if(navigator.share){try{await navigator.share({title:"우리의 결혼식",text:"저희 결혼식에 초대합니다.",url:currentUrl})}catch(error){console.log("공유가 취소되었습니다.")}}
     else alert("이 기기에서는 기본 공유 기능을 사용할 수 없습니다.");
+    shareMenu.classList.remove("open");
 });
-document.getElementById("shareSmsButton").addEventListener("click",()=>{window.location.href="sms:?body="+encodeURIComponent("저희 결혼식에 초대합니다.\n\n"+window.location.href)});
+document.getElementById("shareSmsButton").addEventListener("click",()=>{shareMenu.classList.remove("open");window.location.href="sms:?body="+encodeURIComponent("저희 결혼식에 초대합니다.\n\n"+window.location.href)});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){shareMenu.classList.remove("open");closeGalleryModal();locationMapModal.classList.remove("active");contactPopup.classList.remove("show");guestbookFormScreen.classList.remove("show");copyPopup.classList.remove("show");document.body.style.overflow=""}});
 </script>
 </body>
 </html>
