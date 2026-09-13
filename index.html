@@ -88,73 +88,23 @@ button,input,textarea,a,
 .intro-05{transition-delay:.75s}
 
 /* ==================================================
-   메인 — 사진 중심 / 인트로와 어울리는 아이보리·올리브 톤
+   메인
 ================================================== */
 .hero-section{
-    min-height:auto;
-    padding:72px 20px 86px;
-    text-align:center;
+    width:100%;
+    margin:0;
+    padding:0;
+    line-height:0;
     overflow:hidden;
+    background:transparent;
 }
-.hero-kicker{
-    margin:0 0 18px;
-    font-size:12px;
-    letter-spacing:3px;
-    color:#7a756a;
-    line-height:1.1;
-}
-.hero-photo-frame{
-    position:relative;
-    width:min(84vw,470px);
-    margin:0 auto;
-    padding:10px;
-    background:#eee9dd;
-    box-shadow:var(--shadow);
-}
-.hero-photo-frame::before{
-    content:"";
-    position:absolute;
-    inset:6px;
-    border:1px solid rgba(104,115,77,.34);
-    pointer-events:none;
-    z-index:2;
-}
-.hero-photo{
+
+.hero-main-image{
     display:block;
     width:100%;
-    aspect-ratio:3/4;
-    object-fit:cover;
-}
-.hero-copy{
-    width:min(88vw,500px);
-    margin:30px auto 0;
-    color:var(--text);
-}
-.hero-names{
+    height:auto;
     margin:0;
-    font-size:clamp(39px,11vw,65px);
-    font-weight:400;
-    line-height:.82;
-    letter-spacing:2px;
-}
-.hero-names span{display:block}
-.hero-amp{
-    margin:9px 0 8px;
-    font-size:21px;
-    line-height:1;
-    color:#7c765f;
-}
-.hero-date{
-    margin-top:25px;
-    font-size:16px;
-    letter-spacing:1px;
-    line-height:1.1;
-}
-.hero-place{
-    margin-top:9px;
-    font-size:13px;
-    color:#777165;
-    line-height:1.3;
+    padding:0;
 }
 
 /* ==================================================
@@ -1214,19 +1164,7 @@ button,input,textarea,a,
      메인
 ================================================== -->
 <section class="hero-section scroll-reveal">
-    <div class="hero-kicker">WEDDING INVITATION</div>
-    <div class="hero-photo-frame">
-        <img class="hero-photo" src="images/gallery/01.jpg" alt="경진과 홍연의 웨딩 사진">
-    </div>
-    <div class="hero-copy">
-        <h1 class="hero-names">
-            <span>경진</span>
-            <div class="hero-amp">&amp;</div>
-            <span>홍연</span>
-        </h1>
-        <div class="hero-date">2026. 11. 21 SAT 12:40</div>
-        <div class="hero-place">분당앤스퀘어 4층 아모르홀</div>
-    </div>
+    <img class="hero-main-image" src="images/main/main.png" alt="메인 이미지">
 </section>
 
 <!-- ==================================================
