@@ -90,23 +90,213 @@ button,input,textarea,a,
 /* ==================================================
    메인
 ================================================== */
+
 .hero-section{
+    position:relative;
     width:100%;
+    height:auto;
     margin:0;
     padding:0;
-    line-height:0;
     overflow:hidden;
     background:transparent;
+    line-height:0;
 }
 
-.hero-main-image{
+.hero-envelope{
+    position:relative;
+    width:100%;
+    height:auto;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    line-height:0;
+}
+
+
+/* =====================================
+   봉투 뒷면
+   → 절대 움직이지 않음
+===================================== */
+
+.hero-envelope-back{
+    position:relative;
+    z-index:1;
+
     display:block;
     width:100%;
     height:auto;
     margin:0;
     padding:0;
 }
+.hero-start .hero-envelope-back{
+    animation:envelopeBackFade 0.45s ease 1.5s forwards;
+}
 
+@keyframes envelopeBackFade{
+    from{ opacity:1; }
+    to{ opacity:0; }
+}
+
+/* =====================================
+   사진이 보이는 영역
+===================================== */
+
+.hero-photo-clip{
+    position:absolute;
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    overflow:visible;
+
+    z-index:2;
+
+    pointer-events:none;
+}
+
+
+/* =====================================
+   사진
+   → 처음에는 원래 위치
+   → 이후 위로 올라감 + 확대
+===================================== */
+
+.hero-envelope-photo{
+    position:absolute;
+    left:50%;
+    top:0;
+
+    display:block;
+    width:100%;
+    height:auto;
+    margin:0;
+    padding:0;
+
+
+    transform:translateX(-50%) translateY(0) scale(.7);
+    transform-origin:center top;
+
+    will-change:transform;
+}
+
+/* =====================================
+   사진 흰색 프레임
+===================================== */
+
+.hero-photo-frame{
+    position:absolute;
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    padding:0;
+    margin:0;
+
+    pointer-events:none;
+
+    z-index:4;
+}
+
+
+
+/* =====================================
+   봉투 앞면
+   → 절대 움직이지 않음
+===================================== */
+
+.hero-envelope-front{
+    position:absolute;
+    left:0;
+    top:0;
+
+    display:block;
+    width:100%;
+    height:auto;
+    margin:0;
+    padding:0;
+
+    z-index:3;
+
+    pointer-events:none;
+}
+
+
+/* =====================================
+   인트로 종료 후
+   사진만 움직임
+===================================== */
+
+.hero-start .hero-envelope-photo{
+    animation:heroPhotoReveal 4s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+.hero-start .hero-photo-frame::before{
+    animation:photoFrameFade .45s ease 0.9s forwards;
+}
+
+@keyframes photoFrameFade{
+    from{
+        opacity:1;
+    }
+
+    to{
+        opacity:0;
+    }
+}
+/* =====================================
+   사진 애니메이션
+===================================== */
+
+@keyframes heroPhotoReveal{
+
+    /* 처음 */
+    0%{
+        transform:translateX(-50%) translateY(600px) scale(0.68);
+    }
+
+    /* 사진이 먼저 위로 올라감 */
+    45%{
+        transform:translateX(-50%) translateY(50px) scale(0.68);
+    }
+
+    /* 이후 화면을 채우도록 확대 */
+    100%{
+        transform:translateX(-50%) translateY(0px) scale(1);
+    }
+
+}
+/* =====================================
+   사진 확대가 끝날 때 봉투 사라짐
+===================================== */
+
+.hero-start .hero-envelope-front{
+    animation:envelopeFrontFade 0.45s ease 1.5s forwards;
+}
+
+@keyframes envelopeFrontFade{
+    from{
+        opacity:1;
+    }
+
+    to{
+        opacity:0;
+    }
+}
+@keyframes envelopeFadeOut{
+
+    from{
+        opacity:1;
+    }
+
+    to{
+        opacity:0;
+    }
+
+}
 /* ==================================================
    공통 타이틀
 ================================================== */
@@ -129,8 +319,18 @@ button,input,textarea,a,
    INVITATION
 ================================================== */
 .invite-section{
-    padding:70px 24px 82px;
+    padding:120px 24px 82px;
     text-align:center;
+}
+.invite-section{
+    opacity:0;
+    transform:translateY(34px);
+    transition:opacity .8s ease, transform .8s ease;
+}
+
+.invite-section.show{
+    opacity:1;
+    transform:translateY(0);
 }
 .invite-copy{
     margin:35px 0 0;
@@ -1142,6 +1342,9 @@ button,input,textarea,a,
     }
     .gallery-slide{flex-basis:430px}
 }
+body.hero-lock{
+    overflow:hidden;
+}
 </style>
 
 </head>
@@ -1156,21 +1359,50 @@ button,input,textarea,a,
         <img src="images/intro/intro-02.png" class="intro-layer intro-02" alt="">
         <img src="images/intro/intro-03.png" class="intro-layer intro-03" alt="">
         <img src="images/intro/intro-04.png" class="intro-layer intro-04" alt="">
-        <img src="images/intro/intro-05.png" class="intro-layer intro-05" alt="">
+
     </div>
 </div>
 
 <!-- ==================================================
      메인
 ================================================== -->
-<section class="hero-section scroll-reveal">
-    <img class="hero-main-image" src="images/main/main.png" alt="메인 이미지">
+<section class="hero-section">
+    <div class="hero-envelope">
+
+        <!-- 봉투 뒷면 -->
+        <img
+            class="hero-envelope-back"
+            src="images/main/main-01.png"
+            alt=""
+        >
+
+        <!-- 사진 -->
+        <div class="hero-photo-clip">
+
+    <div class="hero-photo-frame">
+        <img
+            class="hero-envelope-photo"
+            src="images/main/main-02.png"
+            alt="경진과 홍연의 웨딩 사진"
+        >
+    </div>
+
+</div>
+
+        <!-- 봉투 앞면 -->
+        <img
+            class="hero-envelope-front"
+            src="images/main/main-03.png"
+            alt=""
+        >
+
+    </div>
 </section>
 
 <!-- ==================================================
      초대 문구
 ================================================== -->
-<section class="invite-section scroll-reveal">
+<section class="invite-section">
     <div class="section-kicker">INVITATION</div>
     <h2 class="section-title">소중한 분들을 초대합니다.</h2>
     <p class="invite-copy">
@@ -1695,6 +1927,7 @@ window.addEventListener("load",()=>{
 });
 
 intro.addEventListener("click",()=>{
+document.body.classList.add("hero-lock");
 
     /* 먼저 스크롤 위치를 맨 위로 고정 */
     document.documentElement.scrollTop=0;
@@ -1702,6 +1935,8 @@ intro.addEventListener("click",()=>{
 
     /* 인트로 숨기기 */
     intro.classList.add("hide");
+
+document.body.classList.add("hero-start");
 
     /* 스크롤 잠금 해제 */
     document.body.style.overflow="";
@@ -1712,7 +1947,13 @@ intro.addEventListener("click",()=>{
         document.documentElement.scrollTop=0;
         document.body.scrollTop=0;
     });
+setTimeout(()=>{
+    /* 사진 확대 완료 → invitation 등장 */
+    document.querySelector(".invite-section").classList.add("show");
 
+    /* 스크롤 잠금 해제 */
+    document.body.classList.remove("hero-lock");
+},3000);
 });
 /* ==================================================
    스크롤 등장 / 사라짐
