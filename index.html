@@ -10,7 +10,10 @@
 Kakao.init("3fc477a2de7052bb8c3cbafdd8e1f779");
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Maru+Buri&display=swap"
+    rel="stylesheet"
+>
 
 
 <style>
@@ -24,7 +27,8 @@ body{
     background-image:url("images/main/paper-texture.jpg");
     background-repeat:repeat;
     background-position:top left;
-    color:#555;
+    background-size:100% auto;
+    color:#55545A;
     font-family:"Gowun Batang",serif;
     overflow-x:hidden;
 }
@@ -129,7 +133,7 @@ button,input,textarea,a,
     padding:0;
 }
 .hero-start .hero-envelope-back{
-    animation:envelopeBackFade 0.45s ease 1.5s forwards;
+    animation:envelopeBackFade 0.35s ease 1.3s forwards;
 }
 
 @keyframes envelopeBackFade{
@@ -250,11 +254,11 @@ button,input,textarea,a,
 ===================================== */
 
 .hero-start .hero-envelope-photo{
-    animation:heroPhotoReveal 3s cubic-bezier(.22,.61,.36,1) forwards;
+    animation:heroPhotoReveal 2s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
 .hero-start .hero-photo-frame::before{
-    animation:photoFrameFade .3s ease 0.9s forwards;
+    animation:photoFrameFade .2s ease 0.9s forwards;
 }
 
 @keyframes photoFrameFade{
@@ -274,12 +278,12 @@ button,input,textarea,a,
 
     /* 처음 */
     0%{
-        transform:translateX(-50%) translateY(600px) scale(0.48);
+        transform:translateX(-50%) translateY(600px) scale(0.55);
     }
 
     /* 사진이 먼저 위로 올라감 */
     45%{
-        transform:translateX(-50%) translateY(200px) scale(0.48);
+        transform:translateX(-50%) translateY(225px) scale(0.55);
     }
 
     /* 이후 화면을 채우도록 확대 */
@@ -293,10 +297,10 @@ button,input,textarea,a,
 ===================================== */
 
 .hero-start .hero-envelope-front{
-    animation:envelopeFrontFade 0.35s ease 1.5s forwards;
+    animation:envelopeFrontFade 0.1s ease 0.9s forwards;
 }
 .hero-start .hero-envelope-top{
-    animation:envelopeTopFade 0.35s ease 1.5s forwards;
+    animation:envelopeTopFade 0.1s ease 0.9s forwards;
 }
 @keyframes envelopeFrontFade{
     from{
@@ -334,14 +338,14 @@ button,input,textarea,a,
     margin-bottom:11px;
     font-size:13px;
     letter-spacing:3px;
-    color:#4f4b42;
+    color:#55545A;
     line-height:1;
 }
 .section-title{
     margin:0;
     font-size:26px;
     font-weight:400;
-    color:#4f4b42;
+    color:#55545A;
     line-height:1.18;
 }
 
@@ -366,7 +370,7 @@ button,input,textarea,a,
     margin:35px 0 0;
     font-size:17px;
     line-height:1.9;
-    color:#666157;
+    color:#55545A;
     word-break:keep-all;
 }
 .invite-names{
@@ -376,135 +380,206 @@ button,input,textarea,a,
     line-height:1.2;
 }
 .invite-names strong{font-weight:400;color:#333}
-
+.invite-heart{
+    color:#eb8c9b;
+}
 /* ==================================================
    CALENDAR
 ================================================== */
+
 .calendar-section{
-    padding:68px 24px 84px;
+    padding:68px 0 84px;
     text-align:center;
+    overflow:hidden;
 }
+
+/* 큰 하트 영역 */
 .calendar-card{
-    width:min(100%,500px);
-    margin:0 auto;
-    padding:18px 8px 16px;
     position:relative;
-}
-.calendar-line{
+    z-index:0;
+
     width:100%;
-    height:1px;
-    background:#d8d1c4;
-    margin-top:18px;
+    max-width:500px;
+    height:530px;
+
+    margin:0 auto;
+    padding:72px 24px 30px;
+
+    background-image:url("images/calendar/calendar-01.png");
+    background-repeat:no-repeat;
+    background-position:center -top;
+    background-size:100% auto;
 }
+
+/* 날짜 */
 .calendar-date{
+    position:relative;
+    z-index:1;
+    margin-top:40px;
     font-size:26px;
-    letter-spacing:.5px;
-    color:#575249;
+    letter-spacing:.3px;
+    color:#55545A;
     line-height:1.15;
 }
+
+/* 시간 */
 .calendar-time{
-    margin-top:9px;
+    position:relative;
+    z-index:1;
+
+    margin-top:8px;
+
     font-size:17px;
-    color:#575249;
+    color:#55545A;
     line-height:1.15;
     white-space:nowrap;
 }
+
+/* 기존 선 제거 */
+.calendar-line{
+    display:none;
+}
+
+/* 달력 */
 .calendar-grid{
-    margin-top:25px;
+    position:relative;
+    z-index:1;
+
+    margin-top:30px;
+
     display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:20px 3px;
+    grid-template-columns:repeat(7,45px);
+
+    gap:14px 2px;
+width:fit-content;
+margin-left:auto;
+margin-right:auto;
+    font-family:"NanumSquare","나눔스퀘어",sans-serif;
     font-size:15px;
+    font-weight:400;
 }
+
+/* 요일 */
 .calendar-week{
+    font-family:"NanumSquare","나눔스퀘어",sans-serif;
+
     font-size:15px;
-    color:#777167;
-    line-height:2;
+    font-weight:400;
+
+    color:#55545A;
+    line-height:1.5;
 }
-.calendar-week:first-child,.calendar-day.sunday{color:#b86b62}
+
+/* 일요일 */
+.calendar-week:first-child,
+.calendar-day.sunday{
+    color:#b86b62;
+}
+
+/* 날짜 */
 .calendar-day{
-    height:29px;
+    height:26px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    color:#5b574f;
+
+    font-family:"NanumSquare","나눔스퀘어",sans-serif;
+    font-size:15px;
+    font-weight:400;
+
+    color:#55545A;
 }
-.calendar-day.empty{visibility:hidden}
+
+/* 빈 날짜 */
+.calendar-day.empty{
+    visibility:hidden;
+}
+
+/* ==================================================
+   21일 하트
+================================================== */
+
 .calendar-day.wedding span{
-    width:33px;height:33px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    background:var(--green);color:#fff;
+    width:35px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background-image:url("images/calendar/calendar-02.png");
+    background-repeat:no-repeat;
+    background-position:center 6px;
+    background-size:35px auto;
+
+    font-family:"NanumSquare","나눔스퀘어",sans-serif;
+    font-size:15px;
+    font-weight:700;
+
+    color:#fff;
+    line-height:1;
+
+    position:relative;
+    z-index:2;
 }
+
+
+/* ==================================================
+   카운트다운
+================================================== */
+
 .countdown{
-    margin:36px auto 0;
+    margin:32px auto 0;
+
     display:flex;
     justify-content:center;
     align-items:flex-end;
 }
-.countdown-item{width:58px;text-align:center}
+
+.countdown-item{
+    width:58px;
+    text-align:center;
+}
+
 .countdown-title{
     font-size:15px;
     letter-spacing:1.5px;
     margin-bottom:7px;
-    color:#8b867c;
+    color:#55545A;
     line-height:1;
 }
+
 .countdown-number{
     font-size:22px;
-    color:#5b574f;
+    color:#55545A;
     line-height:1;
 }
+
 .countdown-colon{
     font-family:"Gowun Batang",serif;
     font-size:17px;
     margin:0 6px 2px;
-    color:#aaa49a;
+    color:#55545A;
 }
-.wedding-dday{
-    margin-top:20px;
-    font-size:17px;
-    line-height:1.5;
-    color:#777167;
-}
-.calendar-card::before{
-    display:none;
-}
-
-.calendar-card::after{
-    content:"";
-    display:block;
-    width:100%;
-    height:1px;
-    background:#d8d1c4;
-    margin-top:18px;
-}
-
-.calendar-line{
-    width:100%;
-    height:1px;
-    background:#d8d1c4;
-    margin-top:40px;
-}
-.wedding-dday #dday{font-weight:bold;color:var(--green)}
 
 /* ==================================================
-   MIDDLE 이미지
+   D-DAY
 ================================================== */
-.middle-scroll,.middle2-scroll{
-    position:relative;
-    background:transparent;
+
+.wedding-dday{
+    margin-top:20px;
+
+    font-size:17px;
+    line-height:1.5;
+
+    color:#55545A;
 }
-.middle-section,.middle2-section{position:relative;width:100%;line-height:0}
-.middle-layer{
-    display:block;width:100%;height:auto;
-    opacity:0;transform:translateY(28px);
-    transition:opacity .62s ease,transform .62s ease
+
+.wedding-dday #dday{
+    font-weight:bold;
+    color:#eb8c9b;
 }
-.middle-layer:first-child{position:relative}
-.middle-layer:not(:first-child){position:absolute;left:0;top:0}
-.middle2-layer{display:block;width:100%;height:auto;transition:opacity .62s ease,transform .62s ease}
-.middle2-background{position:relative;opacity:1;z-index:1}
-.middle2-layer:not(.middle2-background){position:absolute;left:0;top:0;opacity:0;z-index:2}
 
 /* ==================================================
    GALLERY
@@ -642,6 +717,24 @@ button,input,textarea,a,
     text-shadow:0 2px 8px rgba(0,0,0,.35);
 }
 .gallery-prev{left:2px}.gallery-next{right:2px}
+/* ==================================================
+   MIDDLE 이미지
+================================================== */
+.middle-scroll,.middle2-scroll{
+    position:relative;
+    background:transparent;
+}
+.middle-section,.middle2-section{position:relative;width:100%;line-height:0}
+.middle-layer{
+    display:block;width:100%;height:auto;
+    opacity:0;transform:translateY(28px);
+    transition:opacity .62s ease,transform .62s ease
+}
+.middle-layer:first-child{position:relative}
+.middle-layer:not(:first-child){position:absolute;left:0;top:0}
+.middle2-layer{display:block;width:100%;height:auto;transition:opacity .62s ease,transform .62s ease}
+.middle2-background{position:relative;opacity:1;z-index:1}
+.middle2-layer:not(.middle2-background){position:absolute;left:0;top:0;opacity:0;z-index:2}
 
 /* ==================================================
    LOCATION
@@ -655,21 +748,21 @@ button,input,textarea,a,
     margin:0;
     font-size:16px;
     line-height:1.25;
-    color:#514d45;
+    color:#55545A;
     font-weight:400;
 }
 .location-address-small{
     margin:7px 0 0;
     font-size:18px;
     line-height:1.35;
-    color:#68635a;
+    color:#77757B;
     word-break:keep-all;
 }
 .location-tel{
     margin:11px 0 0;
     font-size:13px;
     letter-spacing:.7px;
-    color:#706b61;
+    color:#77757B;
     line-height:1;
 }
 .map-wrap{
@@ -697,19 +790,20 @@ button,input,textarea,a,
 }
 .navigation-copy{
     text-align:left;
-    margin:28px 0 13px;
+    margin:48px 0 15px;
 }
 .navigation-copy h3{
     margin:0;
     font-size:21px;
     font-weight:400;
-    color:#514d45;
+    color:#55545A;
     line-height:1.1;
+    
 }
 .navigation-copy p{
     margin:7px 0 0;
     font-size:14px;
-    color:#777168;
+    color:#77757B;
     line-height:1.35;
 }
 .location-map-button-wrap{
@@ -723,8 +817,9 @@ button,input,textarea,a,
     border:0;
     border-radius:9px;
     background:#fff;
-    color:var(--green);
-    font-size:18px;
+    color:#585858;
+    font-size:19px;
+    font-weight:700;
     box-shadow:var(--shadow);
     display:flex;
     align-items:center;
@@ -733,8 +828,8 @@ button,input,textarea,a,
 }
 
 .location-map-button img{
-    width:24px;
-    height:24px;
+    width:20px;
+    height:20px;
     object-fit:contain;
     display:block;
 }
@@ -752,20 +847,21 @@ button,input,textarea,a,
     align-items:center;
     justify-content:center;
     gap:6px;
-    min-height:46px;
+    min-height:35px;
     border:0;
-    border-radius:9px;
+    border-radius:8px;
     background:#fff;
-    color:#575249;
+    color:#55545A;
     text-decoration:none;
-    font-size:16px;
+    font-size:14px;
     line-height:1;
     box-shadow:var(--shadow);
+    font-family:Arial, sans-serif;
 }
 
 .location-link img{
-    width:24px;
-    height:24px;
+    width:18px;
+    height:18px;
     object-fit:contain;
     display:block;
 }
@@ -791,12 +887,12 @@ button,input,textarea,a,
     min-height:42px;
     border:0;
     border-radius:9px;
-    background:#f3eee6;
+    background:#f6b6c0;
     padding:0 18px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    color:#575249;
+    color:#fff;
     font-size:17px;
     text-align:left;
     line-height:1.2;
@@ -814,7 +910,7 @@ button,input,textarea,a,
     font-size:20px;
     font-weight:300;
     line-height:1;
-    color:#777167;
+    color:#fff;
 }
 
 .transport-box.open .transport-button::after{
@@ -829,7 +925,7 @@ button,input,textarea,a,
     font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
     font-size:13px;
     line-height:1.75;
-    color:#666157;
+    color:#77757B;
     word-break:keep-all;
 }
 
@@ -839,7 +935,7 @@ button,input,textarea,a,
 .transport-box.open .transport-info{display:block}
 .transport-info strong{
     font-weight:500;
-    color:#4f4b43;
+    color:#55545A;
     font-size:14px;
 }
 
@@ -875,7 +971,7 @@ button,input,textarea,a,
     margin:50px 0 60px;
     font-size:18px;
     line-height:1.45;
-    color:#555047;
+    color:#55545A;
 }
 .guestbook-list-screen,.guestbook-written-screen{
     width:min(100%,600px);margin:0 auto;
@@ -884,7 +980,7 @@ button,input,textarea,a,
     border:0;
     border-radius:8px;
     background:#fff;
-    color:#575249;
+    color:#55545A;
     box-shadow:var(--shadow);
     line-height:1;
 }
@@ -894,8 +990,8 @@ button,input,textarea,a,
     padding:0 22px;
     margin-top:0;
     font-family:"Gowun Batang",serif;
-    font-size:16px;
-    font-weight:400;
+    font-size:17px;
+    font-weight:500;
 }
 .guestbook-written-screen{
     width:min(100%,600px);
@@ -941,14 +1037,18 @@ button,input,textarea,a,
     height:38px;
     padding:0 10px;
     font-family:"Gowun Batang",serif;
-    font-size:16px;
+    font-size:15px;
+    font-weight:500;
 }
 
 /* 방명록 전체화면 */
 .guestbook-form-screen{
     position:fixed;inset:0;
     display:none;width:100%;height:100%;
-    background:var(--paper);
+    background-color:#f4f0e7;
+    background-image:url("images/main/paper-texture.jpg");
+    background-repeat:repeat;
+    background-position:top left;
     padding:24px 20px 0;
     overflow-y:auto;
     z-index:99998;
@@ -1022,15 +1122,15 @@ button,input,textarea,a,
     text-align:center;
 }
 .account-description{
-    margin:25px auto 31px;
+    margin:50px auto 51px;
     max-width:520px;
     font-size:18px;
     line-height:1.72;
-    color:#68635a;
+    color:#77757B;
     word-break:keep-all;
 }
 .account-accordion{
-    width:min(100%,600px);margin:0 auto;text-align:left;
+    width:min(70%,600px);margin:0 auto;text-align:left;
 }
 .account-box{
     margin-bottom:8px;
@@ -1042,15 +1142,16 @@ button,input,textarea,a,
 .account-button{
     position:relative;
     width:100%;
-    min-height:42px;
+    margin:0 auto;
+    min-height:44px;
     border:0;
     border-radius:9px;
-    background:#f3eee6;
+    background:#ffc0ca;
     display:flex;
     align-items:center;
     justify-content:center;
     padding:0 20px;
-    color:#4f4b43;
+    color:#fff;
     font-size:17px;
     line-height:1;
 }
@@ -1067,7 +1168,7 @@ button,input,textarea,a,
     font-size:20px;
     font-weight:300;
     line-height:1;
-    color:#777167;
+    color:#fff;
 }
 
 .account-box.open .account-button::after{
@@ -1109,8 +1210,8 @@ button,input,textarea,a,
     display:flex;
     align-items:center;
     justify-content:center;
-    width:30px;
-    height:30px;
+    width:25px;
+    height:25px;
     padding:0;
     margin:0;
     border:0;
@@ -1164,28 +1265,34 @@ button,input,textarea,a,
     max-width:500px;
     font-size:18px;
     line-height:1.42;
-    color:#68635a;
+    color:#77757B;
     word-break:keep-all;
 }
 .contact-open-button{
     width:150px;height:45px;
     border:0;border-radius:8px;
-    background:#fff;color:#575249;
-    font-size:17px;
+    background:#fff;color:#55545A;
+    font-size:18px;
+    font-weight:500;
     box-shadow:var(--shadow);
 }
 .contact-popup{
     position:fixed;inset:0;
     display:none;align-items:stretch;justify-content:center;
     width:100%;height:100%;
-    padding:0;background:var(--paper);z-index:99998;
+    padding:0;
+    background-color:#f4f0e7;
+    background-image:url("images/main/paper-texture.jpg");
+    background-repeat:repeat;
+    background-position:top left;
+z-index:99998;
     font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
 }
 .contact-popup.show{display:flex}
 .contact-popup-content{
     width:min(100%,600px);height:100%;
     max-height:none;overflow-y:auto;
-    background:var(--paper);
+    background:transparent;
     border-radius:0;padding:12px 0 25px;
     box-shadow:none;
 }
@@ -1222,7 +1329,7 @@ button,input,textarea,a,
 .contact-relation{
     font-size:12px;
     font-weight:600;
-    color:#777167;
+    color:#55545A;
 }
 
 .contact-name{
@@ -1246,7 +1353,7 @@ button,input,textarea,a,
 .contact-relation{
     font-size:12px;
     font-weight:600;
-    color:#777167;
+    color:#55545A;
     margin-right:4px;
 }
 /* ==================================================
@@ -1452,7 +1559,9 @@ body.hero-lock{
         바쁘시더라도 함께해 주신다면<br>
         오래도록 감사한 마음으로 간직하겠습니다.
     </p>
-    <div class="invite-names"><strong>민경진</strong> ♥ <strong>엄홍연</strong></div>
+    <div class="invite-names">
+    <strong>민경진</strong> <span class="invite-heart">♥</span> <strong>엄홍연</strong>
+</div>
 </section>
 
 <!-- ==================================================
@@ -1636,6 +1745,18 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
 </div>
 
 <!-- ==================================================
+     연락하기
+================================================== -->
+<section class="contact-section scroll-reveal">
+    <h2 class="section-title">CONTACT</h2>
+    <p class="contact-description">
+        직접 전하고 싶은 마음이 있다면<br>
+        따뜻한 마음을 전해주세요.
+    </p>
+    <button type="button" class="contact-open-button" id="contact-open-button">연락하기</button>
+</section>
+
+<!-- ==================================================
      middle2 — 기존 이미지 유지
 ================================================== -->
 <section class="middle2-scroll">
@@ -1648,25 +1769,7 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
     </div>
 </section>
 
-<!-- ==================================================
-     방명록
-================================================== -->
-<section class="guestbook-section scroll-reveal">
-    <div class="guestbook-header">
-        <div class="section-kicker">GUESTBOOK</div>
-        <h2 class="section-title">방명록</h2>
-        <p class="guestbook-description">신랑, 신부의<br>결혼을 축하해주세요.</p>
-    </div>
 
-    <div class="guestbook-list-screen" id="guestbook-list-screen">
-        <button type="button" class="guestbook-write-button">방명록 작성하기</button>
-    </div>
-
-    <div class="guestbook-written-screen" id="guestbook-written-screen" style="display:none">
-        <div class="guestbook-entry-list" id="guestbook-entry-list"></div>
-        <button type="button" class="guestbook-write-again-button">작성하기</button>
-    </div>
-</section>
 
 <!-- 방명록 작성 팝업 -->
 <div class="guestbook-form-screen" id="guestbook-form-screen">
@@ -1806,6 +1909,25 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
 
     </div>
 </section>
+<!-- ==================================================
+     방명록
+================================================== -->
+<section class="guestbook-section scroll-reveal">
+    <div class="guestbook-header">
+        <div class="section-kicker">GUESTBOOK</div>
+        <h2 class="section-title">방명록</h2>
+        <p class="guestbook-description">신랑, 신부의<br>결혼을 축하해주세요.</p>
+    </div>
+
+    <div class="guestbook-list-screen" id="guestbook-list-screen">
+        <button type="button" class="guestbook-write-button">방명록 작성하기</button>
+    </div>
+
+    <div class="guestbook-written-screen" id="guestbook-written-screen" style="display:none">
+        <div class="guestbook-entry-list" id="guestbook-entry-list"></div>
+        <button type="button" class="guestbook-write-again-button">작성하기</button>
+    </div>
+</section>
 
 <!-- 계좌 복사 팝업 -->
 <div class="copy-popup" id="copy-popup">
@@ -1817,17 +1939,7 @@ new daum.roughmap.Lander({"timestamp":"1788964418676","key":"ufndrmcnn33","mapWi
     </div>
 </div>
 
-<!-- ==================================================
-     연락하기
-================================================== -->
-<section class="contact-section scroll-reveal">
-    <h2 class="section-title">CONTACT</h2>
-    <p class="contact-description">
-        직접 전하고 싶은 마음이 있다면<br>
-        따뜻한 마음을 전해주세요.
-    </p>
-    <button type="button" class="contact-open-button" id="contact-open-button">연락하기</button>
-</section>
+
 
 <!-- 연락하기 팝업 -->
 <div class="contact-popup" id="contact-popup">
@@ -2032,10 +2144,28 @@ const firstDay=new Date(year,month,1).getDay();
 const lastDate=new Date(year,month+1,0).getDate();
 for(let i=0;i<firstDay;i++){const el=document.createElement("div");el.className="calendar-day empty";el.textContent="0";calendarGrid.appendChild(el)}
 for(let day=1;day<=lastDate;day++){
-    const el=document.createElement("div");el.className="calendar-day";
-    if((firstDay+day-1)%7===0)el.classList.add("sunday");
-    const span=document.createElement("span");span.textContent=day;el.appendChild(span);
-    if(day===weddingDay)el.classList.add("wedding");
+
+    /* 29일과 30일은 표시하지 않음 */
+    if(day>28) continue;
+
+    const el=document.createElement("div");
+    el.className="calendar-day";
+
+    if((firstDay+day-1)%7===0){
+        el.classList.add("sunday");
+    }
+
+    const span=document.createElement("span");
+
+    /* 01, 02, 03 형태로 표시 */
+    span.textContent=String(day).padStart(2,"0");
+
+    el.appendChild(span);
+
+    if(day===weddingDay){
+        el.classList.add("wedding");
+    }
+
     calendarGrid.appendChild(el);
 }
 
