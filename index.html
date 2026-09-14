@@ -781,7 +781,7 @@ color:#fff;
 .middle-main-image{
     display:block;
     position:relative;
-    width:90%;
+    width:95%;
     height:auto;
     margin-left:auto;
     margin-right:auto;
@@ -894,7 +894,7 @@ color:#fff;
 }
 
 .navigation-copy{
-    width:90%;
+    width:95%;
 margin-top:8.5vw;
 margin-bottom:3vw;
     margin-left:auto;
@@ -919,7 +919,7 @@ margin-bottom:3vw;
 
 /* 약도 버튼 */
 .location-map-button-wrap{
-    width:90%;
+    width:95%;
     margin:3.67vw auto 0;
 }
 
@@ -951,7 +951,7 @@ margin-bottom:3vw;
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:1.33vw;
-    width:90%;
+    width:95%;
     margin:0 auto;
 }
 
@@ -981,7 +981,7 @@ margin-bottom:3vw;
 
 /* 교통 아코디언 */
 .transport-accordion{
-    width:90%;
+    width:95%;
     margin:5vw auto 0;
     text-align:left;
 }
@@ -1004,7 +1004,7 @@ margin-bottom:3vw;
     min-height:11vw;
     border:0;
     border-radius:2.5vw;
-    background:#f6b6c0;
+    background:#efc3c8;
     padding:0 5vw;
     display:flex;
     align-items:center;
@@ -1361,7 +1361,7 @@ margin-bottom:3vw;
 }
 
 .account-accordion{
-    width:min(80%,600px);
+    width:min(60%,600px);
     margin:0 auto;
     text-align:left;
 }
@@ -1381,7 +1381,7 @@ margin-bottom:3vw;
     min-height:11vw;
     border:0;
     border-radius:2vw;
-    background:#ffc0ca;
+    background:#efc3c8;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -1411,7 +1411,7 @@ margin-bottom:3vw;
 
 .account-box.open .account-button::after{
     content:"︿";
-    transform:translateY(calc(-50% - 0.83vw));
+    transform:translateY(calc(-510% - 0.83vw));
 }
 
 .account-info{
@@ -1551,7 +1551,7 @@ margin-bottom:3vw;
 }
 
 .contact-button-wrap{
-    padding:1vw 0 10vw;
+    padding:8vw 0 0vw;
     text-align:center;
 }
 
@@ -1764,7 +1764,7 @@ margin-bottom:3vw;
 
 .share-menu-header{
     position:relative;
-    height:10.33vw;
+    height:13.33vw;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -1773,7 +1773,7 @@ margin-bottom:3vw;
 .share-menu-header h3{
     margin:0;
     font-family:"Noto Sans KR",sans-serif;
-    font-size:2.67vw;
+    font-size:3.8vw;
     font-weight:500;
     color:#333;
 }
@@ -1782,8 +1782,8 @@ margin-bottom:3vw;
     position:absolute;
     top:0;
     right:2.67vw;
-    width:8.67vw;
-    height:8.67vw;
+    width:10vw;
+    height:10vw;
     padding:0;
     border:0;
     outline:0;
@@ -1791,7 +1791,7 @@ margin-bottom:3vw;
     appearance:none;
     -webkit-appearance:none;
     font-family:Arial,sans-serif;
-    font-size:4vw;
+    font-size:6vw;
     font-weight:300;
     line-height:1;
     color:#222;
@@ -1809,7 +1809,7 @@ margin-bottom:3vw;
     align-items:center;
     justify-content:space-around;
     gap:.67vw;
-    padding:3vw 3vw 0;
+    padding:8vw 3vw 5vw;
 }
 
 .share-menu-button{
@@ -1828,8 +1828,8 @@ margin-bottom:3vw;
 
 .share-menu-button img{
     display:block;
-    width:11.33vw;
-    height:11.33vw;
+    width:14vw;
+    height:14vw;
     object-fit:contain;
 }
 
@@ -1955,6 +1955,18 @@ body.hero-lock{
         <span class="invite-heart">♥</span>
         <strong>엄홍연</strong>
     </div>
+
+<!-- 연락하기 버튼 -->
+<div class="contact-button-wrap">
+    <button
+        type="button"
+        class="contact-open-button"
+        id="contact-open-button"
+    >
+        연락하기
+    </button>
+</div>
+
 </section>
 
 <!-- ==================================================
@@ -2080,29 +2092,18 @@ body.hero-lock{
 
 </section>
 
-<!-- 연락하기 버튼 -->
-<div class="contact-button-wrap">
-    <button
-        type="button"
-        class="contact-open-button"
-        id="contact-open-button"
-    >
-        연락하기
-    </button>
-</div>
+
 
 <!-- ==================================================
      갤러리
 ================================================== -->
 <section class="gallery-section scroll-reveal">
 
-    <div class="gallery-heading">
-        <div class="section-kicker">GALLERY</div>
-        <h2 class="section-title">웨딩 갤러리</h2>
-    </div>
-
+        <div class="gallery-heading"> 
+        <div class="section-kicker">GALLERY</div> 
+        <h2 class="section-title">웨딩 갤러리</h2> 
+    </div> 
     <div class="gallery-slider" id="gallerySlider">
-
         <button
             type="button"
             class="gallery-arrow prev"
