@@ -136,6 +136,74 @@ button,input,textarea,a,
 .intro-05{transition-delay:.75s}
 
 /* ==================================================
+   컨페티
+================================================== */
+.confetti-container{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:9000;
+    opacity:1;
+}
+
+.confetti{
+    position:absolute;
+    top:-4vh;
+    width:0.8vw;
+    height:1.15vw;
+    min-width:4px;
+    min-height:6px;
+    opacity:0;
+    will-change:transform,opacity;
+    animation:confettiFall var(--duration) linear forwards;
+    transform-origin:center center;
+}
+
+.confetti.petal{
+    width:1.25vw;
+    height:0.82vw;
+    min-width:6px;
+    min-height:4px;
+    border-radius:75% 25% 75% 25%;
+}
+
+.confetti.paper{
+    width:0.9vw;
+    height:1.35vw;
+    min-width:5px;
+    min-height:7px;
+    border-radius:2px 5px 2px 4px;
+}
+
+@keyframes confettiFall{
+    0%{
+        opacity:0;
+        transform:translate3d(0,-5vh,0) rotate(var(--rotate-start));
+    }
+    10%{
+        opacity:.82;
+    }
+    35%{
+        transform:translate3d(var(--drift-1),35vh,0) rotate(var(--rotate-1));
+    }
+    60%{
+        transform:translate3d(var(--drift-2),60vh,0) rotate(var(--rotate-2));
+    }
+    82%{
+        opacity:.72;
+        transform:translate3d(var(--drift-3),82vh,0) rotate(var(--rotate-3));
+    }
+    100%{
+        opacity:0;
+        transform:translate3d(var(--drift-4),112vh,0) rotate(var(--rotate-4));
+    }
+}
+
+/* ==================================================
    메인
 ================================================== */
 
@@ -608,7 +676,7 @@ color:#fff;
     background:transparent;
     color:#fff;
     font-family:"Gowun Batang",serif;
-    font-size:4.67vw;
+    font-size:6vw;
     font-weight:400;
     line-height:1;
     padding:1.33vw .67vw;
@@ -681,7 +749,7 @@ color:#fff;
     background:none;
     color:#fff;
     font-family:"Gowun Batang",serif;
-    font-size:4.67vw;
+    font-size:6vw;
     font-weight:400;
     line-height:1;
     z-index:10002;
@@ -926,7 +994,7 @@ margin-bottom:3vw;
     border:0;
     border-radius:2.5vw;
     background:#f6b6c0;
-    padding:0 3vw;
+    padding:0 5vw;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -1462,7 +1530,6 @@ margin-bottom:3vw;
 .contact-section .section-title{
     font-family:"Gowun Batang",serif !important;
 }
-}
 .contact-description{
     margin:4.5vw auto 5.5vw;
     max-width:500px;
@@ -1804,10 +1871,13 @@ body.hero-lock{
     </div>
 </div>
 
+
+
 <!-- ==================================================
      메인
 ================================================== -->
 <section class="hero-section">
+<div class="confetti-container" id="confetti-container"></div>
     <div class="hero-envelope">
 
         <img
@@ -2949,6 +3019,103 @@ new daum.roughmap.Lander({
 
 const intro=document.getElementById("intro");
 const introLayers=document.querySelectorAll(".intro-layer");
+const confettiContainer=document.getElementById("confetti-container");
+
+let confettiStarted=false;
+let confettiTimer=null;
+
+function addConfetti(){
+
+    if(!confettiContainer)return;
+
+    const confetti=document.createElement("span");
+
+    const isPetal=Math.random()<0.52;
+    confetti.className="confetti "+(isPetal?"petal":"paper");
+
+    const startX = Math.random() < 0.5
+    ? 3 + Math.random() * 22
+    : 75 + Math.random() * 22;
+    const drift1=(Math.random()*16-8);
+    const drift2=(Math.random()*24-12);
+    const drift3=(Math.random()*20-10);
+    const drift4=(Math.random()*30-15);
+
+    const duration=9.5+Math.random()*4.5;
+
+    const rotateStart=Math.random()*360;
+    const rotate1=rotateStart+(Math.random()*240-120);
+    const rotate2=rotate1+(Math.random()*360-180);
+    const rotate3=rotate2+(Math.random()*360-180);
+    const rotate4=rotate3+(Math.random()*420-210);
+
+    const colors=[
+        "#f6b6c0",
+        "#e8c8ce",
+        "#f0d9b5",
+        "#d9c8a8",
+        "#e6e0d5",
+        "#d8d9c4",
+        "#ffffff"
+    ];
+
+    confetti.style.left=startX+"%";
+    confetti.style.background=colors[Math.floor(Math.random()*colors.length)];
+    confetti.style.width=(isPetal ? 0.75+Math.random()*0.7 : 0.55+Math.random()*0.55)+"vw";
+    confetti.style.height=(isPetal ? 0.45+Math.random()*0.55 : 0.9+Math.random()*0.75)+"vw";
+    confetti.style.opacity=0.72+Math.random()*0.23;
+
+    if(isPetal){
+        const petalShapes=[
+            "75% 25% 70% 30% / 65% 35% 65% 35%",
+            "60% 40% 75% 25% / 75% 25% 60% 40%",
+            "85% 15% 55% 45% / 70% 30% 80% 20%"
+        ];
+        confetti.style.borderRadius=petalShapes[Math.floor(Math.random()*petalShapes.length)];
+    }else{
+        const paperShapes=[
+            "polygon(8% 18%, 82% 5%, 100% 68%, 68% 100%, 12% 82%)",
+            "polygon(15% 0%, 92% 12%, 82% 88%, 38% 100%, 0% 55%)",
+            "polygon(5% 12%, 70% 0%, 100% 42%, 82% 100%, 20% 82%)",
+            "polygon(0% 25%, 58% 5%, 100% 30%, 78% 95%, 18% 100%)"
+        ];
+        confetti.style.clipPath=paperShapes[Math.floor(Math.random()*paperShapes.length)];
+    }
+
+    confetti.style.setProperty("--drift-1",drift1+"vw");
+    confetti.style.setProperty("--drift-2",drift2+"vw");
+    confetti.style.setProperty("--drift-3",drift3+"vw");
+    confetti.style.setProperty("--drift-4",drift4+"vw");
+    confetti.style.setProperty("--duration",duration+"s");
+    confetti.style.setProperty("--rotate-start",rotateStart+"deg");
+    confetti.style.setProperty("--rotate-1",rotate1+"deg");
+    confetti.style.setProperty("--rotate-2",rotate2+"deg");
+    confetti.style.setProperty("--rotate-3",rotate3+"deg");
+    confetti.style.setProperty("--rotate-4",rotate4+"deg");
+
+    confetti.addEventListener("animationend",()=>confetti.remove(),{once:true});
+    confettiContainer.appendChild(confetti);
+}
+
+function startConfetti(){
+
+    if(confettiStarted)return;
+    confettiStarted=true;
+
+    let initialCount=0;
+
+    const initialTimer=setInterval(()=>{
+        addConfetti();
+        initialCount++;
+        if(initialCount>=7){
+            clearInterval(initialTimer);
+        }
+    },360);
+
+    confettiTimer=setInterval(()=>{
+        addConfetti();
+    },900);
+}
 
 window.addEventListener("load",()=>{
 
@@ -2974,6 +3141,11 @@ intro.addEventListener("click",()=>{
     intro.classList.add("hide");
 
     document.body.classList.add("hero-start");
+
+    /* 메인 사진 확대 2초가 완전히 끝난 뒤 시작 */
+    setTimeout(()=>{
+        startConfetti();
+    },1300);
 
     document.body.style.overflow="";
 
