@@ -4,18 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>우리의 결혼식</title>
-
+<link
+    href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
+    rel="stylesheet"
+>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.3/kakao.min.js" crossorigin="anonymous"></script>
 <script>
 Kakao.init("3fc477a2de7052bb8c3cbafdd8e1f779");
 </script>
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
-    rel="stylesheet"
->
 
 <style>
+@font-face{
+    font-family:"고운돋움";
+    src:url("고운돋움.ttf") format("truetype");
+    font-weight:400;
+    font-style:normal;
+}
+
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 html{
@@ -28,7 +34,7 @@ body{
     background-position:top left;
     background-size:100% auto;
     color:#55545A;
-    font-family:"Gowun Batang",serif;
+    font-family:"고운돋움",sans-serif;
     overflow-x:hidden;
 }
 button,input,textarea,a{font:inherit}
@@ -47,14 +53,16 @@ section{
 }
 button,input,textarea,a,
 .hero-kicker,.hero-date,.hero-place,
-.section-kicker,.section-title,
+.section-title,
 .calendar-date,.calendar-time,.calendar-grid,
 .countdown-title,.countdown-number,.gallery-counter,
 .location-tel,.location-address,.location-address-small,
 .guestbook-description,.account-description,.contact-description{
-    font-family:"Gowun Batang",serif
+    font-family:"고운돋움",sans-serif
 }
-
+.section-kicker{
+    font-family:"Gowun Batang",serif;
+}
 .section-inner{
     width:92%;
     margin:0 auto;
@@ -292,17 +300,18 @@ button,input,textarea,a,
 ================================================== */
 
 .section-kicker{
-    margin-bottom:1.83vw;
-    font-size:3.2vw;
+    margin-bottom:2.95vw;
+    font-size:3vw;
     letter-spacing:3px;
     color:#55545A;
     line-height:1;
+    font-family:"Gowun Batang",serif;
 }
 
 .section-title{
     margin:0;
-    font-size:5.7vw;
-    font-weight:400;
+    font-size:4.5vw;
+    font-weight:600;
     color:#55545A;
     line-height:1.18;
 }
@@ -328,16 +337,16 @@ button,input,textarea,a,
 }
 
 .invite-copy{
-    margin:5.83vw 0 0;
-    font-size:3.8vw;
-    line-height:1.9;
+    margin:8.83vw 0 0;
+    font-size:3.9vw;
+    line-height:1.7;
     color:#55545A;
     word-break:keep-all;
 }
 
 .invite-names{
-    margin-top:5.83vw;
-    font-size:3.5vw;
+    margin-top:6.83vw;
+    font-size:3.8vw;
     color:#514d44;
     line-height:1.2;
 }
@@ -457,7 +466,7 @@ button,input,textarea,a,
 
 .calendar-day.wedding span{
     width:7.9vw;
-    height:10.5vw;
+    height:10vw;
     display:flex;
 color:#fff;
     align-items:center;
@@ -490,6 +499,7 @@ color:#fff;
     margin-bottom:1.17vw;
     color:#55545A;
     line-height:1;
+    font-family:"Gowun Batang",serif;
 }
 
 .countdown-number{
@@ -754,7 +764,7 @@ color:#fff;
 
 .location-address{
     margin:0;
-    font-size:4.2vw;
+    font-size:4.5vw;
     line-height:1.3;
     color:#55545A;
     font-weight:400;
@@ -762,7 +772,7 @@ color:#fff;
 
 .location-address-small{
     margin:1.5vw 0 0;
-    font-size:3.4vw;
+    font-size:3.7vw;
     line-height:1.4;
     color:#77757B;
     word-break:keep-all;
@@ -770,7 +780,7 @@ color:#fff;
 
 .location-tel{
     margin:2vw 0 0;
-    font-size:3vw;
+    font-size:3.3vw;
     letter-spacing:.7px;
     color:#77757B;
     line-height:1.2;
@@ -834,10 +844,10 @@ color:#fff;
     width:100%;
     min-height:11vw;
     border:0;
-    border-radius:1.5vw;
+    border-radius:2.5vw;
     background:#fff;
     color:#585858;
-    font-size:3.8vw;
+    font-size:3.9vw;
     font-weight:700;
     box-shadow:var(--shadow);
     display:flex;
@@ -847,8 +857,8 @@ color:#fff;
 }
 
 .location-map-button img{
-    width:3.33vw;
-    height:3.33vw;
+    width:3.93vw;
+    height:3.93vw;
     object-fit:contain;
     display:block;
 }
@@ -869,19 +879,19 @@ color:#fff;
     gap:1vw;
     min-height:8.5vw;
     border:0;
-    border-radius:1.33vw;
+    border-radius:2vw;
     background:#fff;
     color:#55545A;
     text-decoration:none;
-    font-size:3.2vw;
+    font-size:3.4vw;
     line-height:1;
     box-shadow:var(--shadow);
     font-family:Arial,sans-serif;
 }
 
 .location-link img{
-    width:3vw;
-    height:3vw;
+    width:3.5vw;
+    height:3.5vw;
     object-fit:contain;
     display:block;
 }
@@ -896,13 +906,13 @@ color:#fff;
 .transport-box{
     margin-bottom:1.17vw;
     background:#fff;
-    border-radius:1.5vw;
+    border-radius:2.5vw;
     overflow:hidden;
     box-shadow:var(--shadow);
 }
 
 .transport-box.open .transport-button{
-    border-radius:1.5vw 1.5vw 0 0;
+    border-radius:2.5vw 2.5vw 0 0;
 }
 
 .transport-button{
@@ -910,14 +920,15 @@ color:#fff;
     width:100%;
     min-height:11vw;
     border:0;
-    border-radius:1.5vw;
+    border-radius:2.5vw;
     background:#f6b6c0;
     padding:0 3vw;
     display:flex;
     align-items:center;
     justify-content:space-between;
     color:#fff;
-    font-size:3.8vw;
+    font-size:3.9vw;
+    font-weight:600;
     text-align:left;
     line-height:1.2;
 }
@@ -929,7 +940,7 @@ color:#fff;
     top:50%;
     transform:translateY(calc(-50% + 0.83vw));
     font-family:"Gowun Batang",serif;
-    font-size:3.33vw;
+    font-size:3.5vw;
     font-weight:300;
     line-height:1;
     color:#fff;
@@ -944,9 +955,9 @@ color:#fff;
     display:none;
     padding:2.83vw 3vw 3.17vw;
     background:#fff;
-    border-radius:0 0 1.5vw 1.5vw;
+    border-radius:0 0 2.5vw 2.5vw;
     font-family:"Noto Sans KR",sans-serif;
-    font-size:2.9vw;
+    font-size:3.2vw;
     line-height:1.75;
     color:#77757B;
     word-break:keep-all;
@@ -959,7 +970,7 @@ color:#fff;
 .transport-info strong{
     font-weight:500;
     color:#55545A;
-    font-size:3.1vw;
+    font-size:3.9vw;
 }
 
 /* 약도 팝업 */
@@ -1002,7 +1013,7 @@ color:#fff;
     box-shadow:none;
     color:#fff;
     font-family:Arial,sans-serif;
-    font-size:5.67vw;
+    font-size:6.67vw;
     line-height:1;
     z-index:10002;
     cursor:pointer;
@@ -1023,7 +1034,7 @@ color:#fff;
 
 .guestbook-description{
     margin:8.33vw 0 10vw;
-    font-size:3.8vw;
+    font-size:3.9vw;
     line-height:1.45;
     color:#55545A;
 }
@@ -1037,7 +1048,7 @@ color:#fff;
 .guestbook-write-button,
 .guestbook-write-again-button{
     border:0;
-    border-radius:2vw;
+    border-radius:2.5vw;
     background:#fff;
     color:#55545A;
     box-shadow:var(--shadow);
@@ -1051,7 +1062,7 @@ color:#fff;
     margin-top:0;
     font-family:"Gowun Batang",serif;
     font-size:4.15vw;
-    font-weight:500;
+    font-weight:600;
 }
 
 .guestbook-written-screen{
@@ -1087,7 +1098,7 @@ color:#fff;
 }
 
 .guestbook-entry-name{
-    font-size:3.2vw;
+    font-size:3.9vw;
     color:#333;
     font-weight:400
 }
@@ -1099,7 +1110,7 @@ color:#fff;
 }
 
 .guestbook-entry-date{
-    font-size:2.5vw;
+    font-size:3.2vw;
     color:#aaa
 }
 
@@ -1108,14 +1119,14 @@ color:#fff;
     background:none;
     padding:0;
     font-family:Arial,sans-serif;
-    font-size:3.17vw;
+    font-size:3.9vw;
     line-height:1;
     color:#aaa
 }
 
 .guestbook-entry-content{
-    font-size:3vw;
-    line-height:1.7;
+    font-size:3.5vw;
+    line-height:1.5;
     color:#555;
     white-space:pre-wrap;
     word-break:break-word
@@ -1126,11 +1137,11 @@ color:#fff;
     align-self:flex-end;
     margin-top:1.33vw;
     margin-left:auto;
-    width:18vw;
-    height:8vw;
-    padding:0 1.67vw;
+    width:23vw;
+    height:9vw;
+    padding:0 1.5vw;
     font-family:"Noto Sans KR",sans-serif;
-    font-size:3.2vw;
+    font-size:3.9vw;
     font-weight:500;
 }
 
@@ -1173,8 +1184,8 @@ color:#fff;
 
 .guestbook-form-title{
     font-family:"Noto Sans KR",sans-serif;
-    font-size:4.2vw;
-    font-weight:400;
+    font-size:4.5vw;
+    font-weight:500;
     color:#333;
 }
 
@@ -1187,7 +1198,7 @@ color:#fff;
     border:0;
     background:none;
     font-family:Arial,sans-serif;
-    font-size:3.67vw;
+    font-size:6.67vw;
     color:#222
 }
 
@@ -1202,8 +1213,8 @@ color:#fff;
 .guestbook-form-item label{
     display:block;
     font-family:"Noto Sans KR",sans-serif;
-    font-size:3.2vw;
-    margin-bottom:1.83vw;
+    font-size:3.9vw;
+    margin-bottom:2.83vw;
     color:#333;
 }
 
@@ -1221,7 +1232,7 @@ color:#fff;
     border-radius:0;
     padding:1.33vw 0 2vw;
     font-family:"Noto Sans KR",sans-serif;
-    font-size:3.2vw;
+    font-size:3.8vw;
     line-height:1.5;
     color:#222;
     outline:none
@@ -1234,8 +1245,8 @@ color:#fff;
 
 .guestbook-submit-button{
     display:block;
-    width:18vw;
-    height:8vw;
+    width:29vw;
+    height:9vw;
     margin:1.33vw 0 0 auto;
     padding:0 1.67vw;
     border:1px solid #e7e1d7;
@@ -1244,7 +1255,7 @@ color:#fff;
     color:#555;
     box-shadow:none;
     font-family:"Noto Sans KR",sans-serif;
-    font-size:3.2vw;
+    font-size:3.9vw;
     line-height:1;
 }
 
@@ -1260,14 +1271,14 @@ color:#fff;
 .account-description{
     margin:8.33vw auto 8.5vw;
     max-width:520px;
-    font-size:3.8vw;
+    font-size:3.9vw;
     line-height:1.72;
     color:#77757B;
     word-break:keep-all;
 }
 
 .account-accordion{
-    width:min(70%,600px);
+    width:min(80%,600px);
     margin:0 auto;
     text-align:left;
 }
@@ -1276,7 +1287,7 @@ color:#fff;
     margin-bottom:1.33vw;
     overflow:hidden;
     background:#fff;
-    border-radius:1.5vw;
+    border-radius:2vw;
     box-shadow:var(--shadow);
 }
 
@@ -1286,14 +1297,15 @@ color:#fff;
     margin:0 auto;
     min-height:11vw;
     border:0;
-    border-radius:1.5vw;
+    border-radius:2vw;
     background:#ffc0ca;
     display:flex;
     align-items:center;
     justify-content:center;
     padding:0 3.33vw;
     color:#fff;
-    font-size:3.8vw;
+    font-size:3.9vw;
+    font-weight:600;
     line-height:1;
 }
 
@@ -1349,7 +1361,7 @@ color:#fff;
 }
 
 .account-bank-title{
-    font-size:3.2vw;
+    font-size:3.5vw;
     color:#444;
     line-height:1.2;
     margin-bottom:1.17vw
@@ -1360,14 +1372,14 @@ color:#fff;
 }
 
 .account-bank{
-    font-size:2.8vw;
+    font-size:3.1vw;
     color:#777;
     line-height:1.2
 }
 
 .account-number{
     margin-top:.83vw;
-    font-size:2.5vw;
+    font-size:2.8vw;
     letter-spacing:.3px;
     color:#333
 }
@@ -1418,20 +1430,20 @@ color:#fff;
 }
 
 .copy-popup-message{
-    font-size:2.33vw;
+    font-size:3.33vw;
     line-height:1.6;
     color:#555
 }
 
 .copy-confirm-button{
     margin-top:2.17vw;
-    width:11.33vw;
-    height:5.33vw;
+    width:12.33vw;
+    height:6.33vw;
     border:0;
-    border-radius:1vw;
+    border-radius:1.5vw;
     background:#fff;
     color:#555;
-    font-size:2.17vw;
+    font-size:3.17vw;
     box-shadow:var(--shadow)
 }
 
@@ -1447,21 +1459,21 @@ color:#fff;
 .contact-description{
     margin:4.5vw auto 5.5vw;
     max-width:500px;
-    font-size:4vw;
+    font-size:3.9vw;
     line-height:1.7;
     color:#77757B;
     word-break:keep-all;
 }
 
 .contact-open-button{
-    width:25vw;
+    width:32vw;
     height:11vw;
     border:0;
-    border-radius:2vw;
+    border-radius:2.5vw;
     background:#fff;
     color:#55545A;
     font-size:4.15vw;
-    font-weight:500;
+    font-weight:600;
     box-shadow:var(--shadow);
 }
 
@@ -1507,7 +1519,7 @@ color:#fff;
 
 .contact-popup-header-title{
     margin:0;
-    font-size:4.2vw;
+    font-size:5.2vw;
     font-weight:400;
     color:#333
 }
@@ -1521,7 +1533,7 @@ color:#fff;
     border:0;
     background:none;
     font-family:Arial,sans-serif;
-    font-size:3.67vw;
+    font-size:5.2vw;
     color:#333
 }
 
@@ -1531,14 +1543,14 @@ color:#fff;
 
 .contact-group-title{
     margin:3vw 0 1.5vw;
-    font-size:3.8vw;
-    font-weight:400;
+    font-size:3.9vw;
+    font-weight:500;
     color:#444
 }
 
 .contact-group-line{
     height:1px;
-    background:#d9d3c8
+    background:#dedede
 }
 
 .contact-person{
@@ -1553,18 +1565,18 @@ color:#fff;
     display:flex;
     align-items:baseline;
     gap:1vw;
-    font-size:3.2vw;
+    font-size:3.9vw;
     color:#444;
 }
 
 .contact-relation{
-    font-size:2.9vw;
+    font-size:3.5vw;
     font-weight:600;
     color:#55545A;
 }
 
 .contact-name{
-    font-size:3.4vw;
+    font-size:3.8vw;
     font-weight:400;
     color:#444;
 }
@@ -1626,8 +1638,8 @@ color:#fff;
 
 .share-button{
     display:block;
-    width:12.67vw;
-    height:12.67vw;
+    width:17.67vw;
+    height:17.67vw;
     padding:0;
     margin:0 auto;
     border:0;
