@@ -3115,17 +3115,17 @@ function startConfetti(){
 
     let initialCount=0;
 
-    const initialTimer=setInterval(()=>{
-        addConfetti();
-        initialCount++;
-        if(initialCount>=7){
-            clearInterval(initialTimer);
-        }
-    },360);
+const initialTimer=setInterval(()=>{
+    addConfetti();
+    initialCount++;
+    if(initialCount>=15){
+        clearInterval(initialTimer);
+    }
+},450);
 
-    confettiTimer=setInterval(()=>{
-        addConfetti();
-    },900);
+confettiTimer=setInterval(()=>{
+    addConfetti();
+},500);
 }
 
 window.addEventListener("load",()=>{
@@ -3153,10 +3153,8 @@ intro.addEventListener("click",()=>{
 
     document.body.classList.add("hero-start");
 
-    /* 메인 사진 확대 2초가 완전히 끝난 뒤 시작 */
-    setTimeout(()=>{
-        startConfetti();
-    },1300);
+/* 인트로가 끝나는 즉시 컨페티 시작 */
+startConfetti();
 
     document.body.style.overflow="";
 
