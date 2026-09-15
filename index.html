@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>우리의 결혼식</title>
-<!-- 카카오톡 링크 미리보기 -->
+
 <meta property="og:type" content="website">
-<meta property="og:title" content="민경진 ♥ 홍연">
+<meta property="og:title" content="민경진 ♥ 엄홍연">
 <meta property="og:description" content="2026년 11월 21일 토요일 오후 1시 40분">
 <meta property="og:image" content="https://invitation-our.github.io/wedding/images/share/kakao-preview.jpg">
 <meta property="og:url" content="https://invitation-our.github.io/wedding/">
@@ -1705,8 +1705,7 @@ margin-bottom:3vw;
 }
 
 /* ==================================================
-   마지막 이미지 전환
-   end.png는 움직이지 않고 종이 배경이 사진 크기만큼 덮는 방식
+   END
 ================================================== */
 
 .end-section{
@@ -1716,6 +1715,8 @@ margin-bottom:3vw;
     padding:0;
     background:transparent;
     overflow:visible;
+
+
 }
 
 .end-stage{
@@ -1733,63 +1734,93 @@ margin-bottom:3vw;
     width:100%;
     height:auto;
     margin:0;
-    transform:none;
+
+    /*
+       처음에는 end.png 전체가 보임
+       아래에서 위로 안개처럼 사라지도록
+       같은 마스크를 움직이는 방식으로 처리
+    */
+-webkit-mask-image:linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 42%,
+    rgba(0,0,0,.85) 47%,
+    rgba(0,0,0,.65) 52%,
+    rgba(0,0,0,.4) 57%,
+    rgba(0,0,0,.15) 62%,
+    transparent 67%,
+    transparent 100%
+);
+
+mask-image:linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 42%,
+    rgba(0,0,0,.85) 47%,
+    rgba(0,0,0,.65) 52%,
+    rgba(0,0,0,.4) 57%,
+    rgba(0,0,0,.15) 62%,
+    transparent 67%,
+    transparent 100%
+);
+
+    -webkit-mask-repeat:no-repeat;
+    mask-repeat:no-repeat;
+
+    /*
+       300% 높이의 마스크를 아래로 이동시키면서
+       end.png가 아래쪽부터 위쪽으로 사라짐
+    */
+    -webkit-mask-size:100% 300%;
+    mask-size:100% 300%;
+
+    -webkit-mask-position:0 0%;
+    mask-position:0 0%;
+
+    transition:
+        -webkit-mask-position 1.2s cubic-bezier(.22,.61,.36,1),
+        mask-position 1.2s cubic-bezier(.22,.61,.36,1);
+
+    
+    /*
+       위로 스크롤할 때 text가 먼저 사라진 뒤
+       end.png가 다시 나타나도록 0.9초 대기
+    */
+    transition-delay:.9s;
 }
 
-/* 사진과 정확히 같은 높이의 덮개 */
-.end-cover{
-    position:absolute;
-    left:0;
-    top:-7vw;
-    width:100%;
-    height:100%;
-    z-index:2;
-    overflow:hidden;
-background-image:url("images/end/end-bg.png");
-background-repeat:no-repeat;
-background-position:center center;
-background-size:100% 100%;
+.end-section.end-change .end-image{
+    -webkit-mask-position:0 100%;
+    mask-position:0 100%;
 
-    transform:translateY(100%);
-transition:transform 1s cubic-bezier(.22,.61,.36,1) .5s;
-    will-change:transform;
-
-
+    /*
+       END 이미지 사라지기는 바로 시작
+    */
+    transition-delay:0s;
 }
-
-/* 배경이 완전히 덮은 다음 올라오는 텍스트 */
 .end-text-image{
     position:absolute;
     left:0;
     bottom:0;
+
     width:100%;
     height:auto;
-    z-index:3;
-    display:block;
-    transform:translateY(100%);
-    transition:
-        transform 1.5s cubic-bezier(.22,.61,.36,1) .9s;
-    will-change:transform;
-}
 
-.end-section.end-change .end-cover{
-    transform:translateY(0);
+    z-index:2;
+    display:block;
+
+    transform:translateY(100%);
+
+    transition:
+        transform .9s cubic-bezier(.22,.61,.36,1);
 }
 
 .end-section.end-change .end-text-image{
     transform:translateY(0);
+
+    transition-delay:0.5s;
 }
 
-/* 위로 스크롤하면 텍스트 → 배경 순서로 되돌아감 */
-.end-section.end-return .end-text-image{
-    transform:translateY(100%);
-    transition-delay:0s;
-}
-
-.end-section.end-return .end-cover{
-    transform:translateY(100%);
-    transition-delay:.3s;
-}
 
 /* ==================================================
    MIDDLE2
@@ -3007,7 +3038,6 @@ new daum.roughmap.Lander({
             class="end-image"
         >
 
-        <div class="end-cover"></div>
 
         <img
             src="images/end/end-text.png"
@@ -3349,12 +3379,18 @@ document
    마지막 이미지 전환
 ================================================== */
 
-const endSection=document.querySelector(".end-section");
-const endStage=document.querySelector(".end-stage");
-const endImage=document.querySelector(".end-image");
+const endSection = document.querySelector(".end-section");
+const endStage = document.querySelector(".end-stage");
+const endImage = document.querySelector(".end-image");
+const endTextImage = document.querySelector(".end-text-image");
 
-let endTransitionStarted=false;
-let endScrollTick=false;
+let endAtBottom = false;
+let endScrollTick = false;
+
+
+/* ==================================================
+   END 초기 설정
+================================================== */
 
 function setupEndTransition(){
 
@@ -3362,97 +3398,149 @@ function setupEndTransition(){
         return;
     }
 
-    const imageHeight=endImage.getBoundingClientRect().height;
+    const imageHeight =
+        endImage.getBoundingClientRect().height;
 
-    /* stage는 사진과 정확히 같은 높이 */
-    endStage.style.height=imageHeight+"px";
+    /* end.png와 같은 높이로 유지 */
+    endStage.style.height =
+        imageHeight + "px";
 
-    /*
-       전환을 위한 추가 스크롤 공간만 확보.
-       end.png 자체에는 transform을 적용하지 않는다.
-    */
-   
-
-    checkEndTransition();
+    checkEndBottom();
 }
 
-function checkEndTransition(){
+
+/* ==================================================
+   페이지 맨 끝 도달 확인
+================================================== */
+
+function checkEndBottom(){
 
     if(!endSection || !endImage){
         return;
     }
 
-    const sectionTop=endSection.getBoundingClientRect().top;
-    const imageHeight=endImage.getBoundingClientRect().height;
+    /*
+       END 이미지의 아래쪽이 화면 아래에 닿으면
+       END 전환을 시작함.
+
+       공유하기 영역이 END 아래에 있기 때문에
+       document 전체의 맨 끝을 기준으로 잡으면
+       END가 이미 화면에서 사라진 뒤에 전환이 시작됨.
+    */
+    const sectionBottom =
+        endSection.getBoundingClientRect().bottom;
 
     /*
-       사진이 화면에 완전히 들어온 순간부터
-       cover가 아래에서 위로 올라온다.
+       END 이미지가 화면 아래에 닿자마자 바로 시작하지 않고,
+       약 100px 더 스크롤한 뒤 END 전환을 시작함.
+       애니메이션 속도 자체는 변경하지 않음.
     */
-    const transitionPoint=
-        sectionTop + imageHeight - window.innerHeight;
+    const isEndReached =
+        sectionBottom <= window.innerHeight - 100;
 
-    const sectionBottom=
-    endSection.getBoundingClientRect().bottom;
 
-if(sectionBottom <= window.innerHeight){
+    /* ==============================================
+       END에 도착
+    ============================================== */
 
-    if(!endTransitionStarted){
+    if(isEndReached){
 
-        endTransitionStarted=true;
+        if(!endAtBottom){
 
-        endSection.classList.remove("end-return");
-        endSection.classList.add("end-change");
+            endAtBottom = true;
+
+            /*
+               end.png를 아래에서 위로 사라지게 하고
+               end-text.png를 아래에서 위로 등장시킴
+            */
+            endSection.classList.add("end-change");
+
+        }
 
     }
 
-}else{
 
-    if(endTransitionStarted){
+    /* ==============================================
+       다시 위로 올라감
+    ============================================== */
 
-        endTransitionStarted=false;
+    else{
 
-        endSection.classList.remove("end-change");
-        endSection.classList.add("end-return");
+        if(endAtBottom){
+
+            endAtBottom = false;
+
+            /*
+               end-text.png를 다시 아래로 숨기고
+               end.png를 원래대로 다시 보이게 함
+            */
+            endSection.classList.remove("end-change");
+
+        }
 
     }
 
 }
-}
+
+
+/* ==================================================
+   스크롤
+================================================== */
 
 window.addEventListener(
     "scroll",
     ()=>{
+
         if(endScrollTick){
             return;
         }
 
-        endScrollTick=true;
+        endScrollTick = true;
 
         requestAnimationFrame(()=>{
-            checkEndTransition();
-            endScrollTick=false;
+
+            checkEndBottom();
+
+            endScrollTick = false;
+
         });
 
     },
     {passive:true}
 );
 
+
+/* ==================================================
+   화면 크기 변경
+================================================== */
+
 window.addEventListener(
     "resize",
     setupEndTransition
 );
 
-if(endImage.complete){
-    setupEndTransition();
-}else{
-    endImage.addEventListener(
-        "load",
-        setupEndTransition,
-        {once:true}
-    );
-}
 
+/* ==================================================
+   이미지 로딩 후 실행
+================================================== */
+
+if(endImage){
+
+    if(endImage.complete){
+
+        setupEndTransition();
+
+    }else{
+
+        endImage.addEventListener(
+            "load",
+            setupEndTransition,
+            {once:true}
+        );
+
+    }
+
+}
 /* ==================================================
    D-Day
 ================================================== */
