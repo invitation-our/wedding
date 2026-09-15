@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta property="og:image" content="images/gallery/02.jpg">
 <title>우리의 결혼식</title>
 <link
     href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
@@ -98,12 +99,12 @@ button,input,textarea,a,
     cursor:pointer;
     opacity:1;
     visibility:visible;
-    transition:opacity .8s ease,visibility .8s ease;
+    
 }
 .intro.hide{
     opacity:0;
     visibility:hidden;
-    pointer-events:none
+    pointer-events:none;
 }
 .intro-inner{
     position:relative;
@@ -1361,7 +1362,7 @@ margin-bottom:3vw;
 }
 
 .account-accordion{
-    width:min(60%,600px);
+    width:min(65%,600px);
     margin:0 auto;
     text-align:left;
 }
@@ -1680,8 +1681,8 @@ margin-bottom:3vw;
     display:flex;
     align-items:center;
     justify-content:center;
-    width:11vw;
-    height:8.7vw;
+    width:13vw;
+    height:10.7vw;
     border:0;
     border-radius:1.33vw;
     background:transparent;
@@ -1828,8 +1829,8 @@ margin-bottom:3vw;
 
 .share-menu-button img{
     display:block;
-    width:14vw;
-    height:14vw;
+    width:17vw;
+    height:17vw;
     object-fit:contain;
 }
 
@@ -2192,18 +2193,7 @@ body.hero-lock{
 
     </div>
 
-    <div class="location-map-button-wrap">
-
-        <button
-            type="button"
-            class="location-map-button"
-            id="locationMapButton"
-        >
-            <img src="images/location/map-icon.png" alt="">
-            <span>약도 이미지 보기</span>
-        </button>
-
-    </div>
+    
 
     <div class="navigation-copy">
 
@@ -3947,21 +3937,6 @@ const locationMapModal=
         "locationMapModal"
     );
 
-document
-    .getElementById("locationMapButton")
-    .addEventListener(
-        "click",
-        ()=>{
-
-            locationMapModal.classList.add(
-                "active"
-            );
-
-            document.body.style.overflow=
-                "hidden";
-
-        }
-    );
 
 document
     .getElementById("locationMapClose")
@@ -4697,7 +4672,7 @@ document
                     description:"저희 결혼식에 초대합니다.",
                     imageUrl:
                         window.location.origin+
-                        "/images/intro/intro-01.jpg",
+                        "/images/gallery/02.jpg",
 
                     link:{
                         mobileWebUrl:
