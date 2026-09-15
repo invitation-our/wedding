@@ -1,26 +1,21 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <title>우리의 결혼식</title>
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="민경진 ♥ 엄홍연">
-<meta property="og:description" content="2026년 11월 21일 토요일 오후 1시 40분">
-<meta property="og:image" content="https://invitation-our.github.io/wedding/images/share/kakao-preview.jpg">
-<meta property="og:url" content="https://invitation-our.github.io/wedding/">
-<meta property="og:site_name" content="우리의 결혼식">
-<link
-    href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
-    rel="stylesheet"
->
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.3/kakao.min.js" crossorigin="anonymous"></script>
+<meta content="website" property="og:type"/>
+<meta content="민경진 ♥ 엄홍연" property="og:title"/>
+<meta content="2026년 11월 21일 토요일 오후 1시 40분" property="og:description"/>
+<meta content="https://invitation-our.github.io/wedding/images/share/kakao-preview.jpg" property="og:image"/>
+<meta content="https://invitation-our.github.io/wedding/" property="og:url"/>
+<meta content="우리의 결혼식" property="og:site_name"/>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&amp;display=swap" rel="stylesheet"/>
+<script crossorigin="anonymous" src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.3/kakao.min.js"></script>
 <script>
 Kakao.init("3fc477a2de7052bb8c3cbafdd8e1f779");
 </script>
-
-
 <style>
 @font-face{
     font-family:"고운돋움";
@@ -35,11 +30,11 @@ html{
     scroll-behavior:auto;
 }
 body{
-    background-color:#f4f0e7;
+    background-color:#ffffff;
     background-image:url("images/main/paper-texture.jpg");
     background-repeat:repeat;
     background-position:top left;
-    background-size:600px auto;
+    background-size:100% auto;
     color:#55545A;
     font-family:"고운돋움",sans-serif;
     overflow-x:hidden;
@@ -48,7 +43,7 @@ button,input,textarea,a{font:inherit}
 button,a{-webkit-tap-highlight-color:transparent}
 button{cursor:pointer}
 :root{
-    --paper:#f4f0e7;
+    --paper:#ffffff;
     --paper-light:#faf8f3;
     --text:#565247;
     --green:#68734d;
@@ -114,7 +109,7 @@ button,input,textarea,a,
 }
 .intro-inner{
     position:relative;
-    width:min(600px,100%);
+    width:100%;
     height:100%;
     overflow:hidden
 }
@@ -246,7 +241,7 @@ button,input,textarea,a,
     padding:0;
 }
 .hero-start .hero-envelope-back{
-    animation:envelopeBackFade 0.35s ease 1.3s forwards;
+    animation:envelopeBackFade 0.1s ease 1s forwards;
 }
 
 @keyframes envelopeBackFade{
@@ -324,11 +319,11 @@ button,input,textarea,a,
 
 /* 인트로 종료 후 사진만 움직임 */
 .hero-start .hero-envelope-photo{
-    animation:heroPhotoReveal 2s cubic-bezier(.22,.61,.36,1) forwards;
+    animation:heroPhotoReveal 2.3s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
 .hero-start .hero-photo-frame::before{
-    animation:photoFrameFade .2s ease 0.9s forwards;
+    animation:photoFrameFade 0.1s ease 1s forwards;
 }
 
 @keyframes photoFrameFade{
@@ -351,10 +346,10 @@ button,input,textarea,a,
 
 /* 사진 확대가 끝날 때 봉투 사라짐 */
 .hero-start .hero-envelope-front{
-    animation:envelopeFrontFade 0.1s ease 0.9s forwards;
+    animation:envelopeFrontFade 0.1s ease 1s forwards;
 }
 .hero-start .hero-envelope-top{
-    animation:envelopeTopFade 0.1s ease 0.9s forwards;
+    animation:envelopeTopFade 0.1s ease 1s forwards;
 }
 
 @keyframes envelopeFrontFade{
@@ -449,7 +444,7 @@ button,input,textarea,a,
     position:relative;
     z-index:0;
     width:100%;
-    max-width:500px;
+    max-width:none;
     height:auto;
     margin:0 auto;
     padding:14.5% 4.8% 6%;
@@ -493,11 +488,12 @@ button,input,textarea,a,
     margin-top:6.8vw;
     margin-bottom:28vw;
     display:grid;
-    grid-template-columns:repeat(7,10.2vw);
+    grid-template-columns:repeat(7,1fr);
     gap:3.5vw 0.25vw;
-    width:fit-content;
+    width:71.75vw;
     margin-left:auto;
     margin-right:auto;
+    justify-items:center;
     font-family:"Noto Sans KR",sans-serif;
     font-size:2.5vw;
     font-weight:400;
@@ -510,6 +506,8 @@ button,input,textarea,a,
     font-weight:400;
     color:#55545A;
     line-height:1.5;
+    width:100%;
+    text-align:center;
 }
 
 /* 일요일 */
@@ -798,9 +796,9 @@ color:#fff;
 
 .middle-heart{
     position:absolute;
-    left:19%;
-    top:0;
-    width:65%;
+    left:22%;
+    top:4.5%;
+    width:58.5%;
     height:100%;
     display:block;
     z-index:1;
@@ -872,32 +870,52 @@ color:#fff;
     line-height:1.2;
 }
 
-.map-wrap{
+ .map-wrap{
     width:calc(100% + 6.67vw);
     margin:4.67vw -3.33vw 0;
-    overflow:hidden;
+    overflow:visible;
     background:#eee;
+    position:relative;
 }
 
-/* 지도 높이 300px로 복구 */
-#daumRoughmapContainer1788964418676{
-    width:100%!important;
-    max-width:600px!important;
-    margin:0 auto!important;
-    padding:0!important;
-    height:300px!important;
-    overflow:hidden!important;
+.map-area{
+    position:relative;
+    width:100%;
 }
 
-#daumRoughmapContainer1788964418676 .wrap_map,
-#daumRoughmapContainer1788964418676 .map{
-    height:300px!important;
+#kakaoWeddingMap{
+    width:100%;
+    height:300px;
+    margin:0 auto;
 }
 
-#daumRoughmapContainer1788964418676 .roughmap_maker_label,
-#daumRoughmapContainer1788964418676 .wrap_cont,
-#daumRoughmapContainer1788964418676 .map_info{
-    display:none!important
+.map-controls{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    position:absolute;
+    right:8px;
+    top:8px;
+    z-index:10;
+}
+
+.map-control-button{
+    width:38px;
+    height:38px;
+    padding:0;
+    border:1px solid #d8d8d8;
+    border-radius:4px;
+    background:#fff;
+    color:#55545A;
+    font-family:inherit;
+    font-size:20px;
+    line-height:1;
+    cursor:pointer;
+    box-shadow:0 1px 4px rgba(0,0,0,.15);
+}
+
+.map-control-button.reset{
+    font-size:15px;
 }
 
 .navigation-copy{
@@ -1242,7 +1260,7 @@ margin-bottom:3vw;
     display:none;
     width:100%;
     height:100%;
-    background-color:#f4f0e7;
+    background-color:#ffffff;
     background-image:url("images/main/paper-texture.jpg");
     background-repeat:repeat;
     background-position:top left;
@@ -1368,7 +1386,7 @@ margin-bottom:3vw;
 }
 
 .account-accordion{
-    width:min(60%,600px);
+    width:min(70%,600px);
     margin:0 auto;
     text-align:left;
 }
@@ -1385,7 +1403,7 @@ margin-bottom:3vw;
     position:relative;
     width:100%;
     margin:0 auto;
-    min-height:11vw;
+    min-height:12vw;
     border:0;
     border-radius:2vw;
     background:#efc3c8;
@@ -1583,7 +1601,7 @@ margin-bottom:3vw;
     width:100%;
     height:100%;
     padding:0;
-    background-color:#f4f0e7;
+    background-color:#ffffff;
     background-image:url("images/main/paper-texture.jpg");
     background-repeat:repeat;
     background-position:top left;
@@ -1740,29 +1758,27 @@ margin-bottom:3vw;
        아래에서 위로 안개처럼 사라지도록
        같은 마스크를 움직이는 방식으로 처리
     */
--webkit-mask-image:linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 42%,
-    rgba(0,0,0,.85) 47%,
-    rgba(0,0,0,.65) 52%,
-    rgba(0,0,0,.4) 57%,
-    rgba(0,0,0,.15) 62%,
-    transparent 67%,
-    transparent 100%
-);
+    -webkit-mask-image:linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 45%,
+        rgba(0,0,0,.85) 48%,
+        rgba(0,0,0,.55) 51%,
+        rgba(0,0,0,.25) 54%,
+        transparent 57%,
+        transparent 100%
+    );
 
-mask-image:linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 42%,
-    rgba(0,0,0,.85) 47%,
-    rgba(0,0,0,.65) 52%,
-    rgba(0,0,0,.4) 57%,
-    rgba(0,0,0,.15) 62%,
-    transparent 67%,
-    transparent 100%
-);
+    mask-image:linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 45%,
+        rgba(0,0,0,.85) 48%,
+        rgba(0,0,0,.55) 51%,
+        rgba(0,0,0,.25) 54%,
+        transparent 57%,
+        transparent 100%
+    );
 
     -webkit-mask-repeat:no-repeat;
     mask-repeat:no-repeat;
@@ -1818,7 +1834,7 @@ mask-image:linear-gradient(
 .end-section.end-change .end-text-image{
     transform:translateY(0);
 
-    transition-delay:0.5s;
+    transition-delay:1.2s;
 }
 
 
@@ -1963,222 +1979,268 @@ mask-image:linear-gradient(
    모바일 화면 비율 보정
 ================================================== */
 
-@media (min-width:601px){
+@media (min-width:601px) and (pointer:fine) and (hover:hover){
 
-
-    .intro,
-    .intro-inner{
-        max-width:600px
-    }
-
-    .hero-section,
-    .invite-section,
-    .calendar-section,
-    .gallery-section,
-    .location-section,
-    .guestbook-section,
-    .account-section,
-    .contact-section,
-    .share-section{
-        max-width:600px;
-        margin-left:auto;
-        margin-right:auto
-    }
-
-    .gallery-slide{
-        flex-basis:430px
-    }
+    /*
+       PC에서는 기존 모바일 vw 비율을 그대로 유지하면서
+       청첩장 전체를 최대 860px 폭으로 가운데 배치한다.
+    */
+body{
+    background:#ffffff;
+}
+.pc-page{
+    width:100vw;
+    max-width:none;
+    margin-left:0;
+    margin-right:0;
+    zoom:var(--pc-scale,1);
+    background-color:#ffffff;
+    background-image:url("images/main/paper-texture.jpg");
+    background-repeat:repeat;
+    background-position:top left;
+    background-size:auto;
 }
 
+    .pc-page > .hero-section,
+    .pc-page > .invite-section,
+    .pc-page > .calendar-section,
+    .pc-page > .middle-scroll,
+    .pc-page > .gallery-section,
+    .pc-page > .location-section,
+    .pc-page > .middle2-section,
+    .pc-page > .account-section,
+    .pc-page > .guestbook-section,
+    .pc-page > .end-section,
+    .pc-page > .share-section{
+        width:100vw;
+        max-width:none;
+        margin-left:0;
+        margin-right:0;
+    }
+
+    /* 달력: PC에서도 모바일과 같은 비율로 전체 폭 사용 */
+    .pc-page .calendar-card{
+        max-width:none;
+    }
+
+    /* 갤러리: 기존 vw 비율을 그대로 사용 */
+    .pc-page .gallery-slide{
+        flex-basis:72%;
+        max-width:68.33vw;
+    }
+
+    .pc-page .navigation-copy{
+        max-width:none;
+    }
+
+    /* 계좌 안내 문구는 모바일의 520px 기준 폭을 PC에서도 같은
+       실제 화면 비율로 유지해서 원래의 3줄을 그대로 보여준다. */
+    .pc-page .account-description{
+        max-width:var(--pc-520,520px);
+        margin-left:auto;
+        margin-right:auto;
+        text-align:center;
+    }
+
+    /*
+       지도는 모바일 600x300의 지도 영역을 기준으로 PC에서 더 확대해서
+       보여준다. 바깥 PC 화면은 기존처럼 860x430 비율을 유지한다.
+    */
+        .map-wrap{
+        overflow:visible!important;
+    }
+
+    .map-area{
+        width:var(--pc-map-width,860px);
+        max-width:none;
+        margin:0 auto;
+        position:relative;
+    }
+
+#kakaoWeddingMap{
+    width:var(--pc-map-width,1100px)!important;
+    height:auto!important;
+    aspect-ratio:2 / 1;
+}
+
+    .map-controls{
+        right:-58px;
+        top:50%;
+        transform:translateY(-50%);
+        gap:8px;
+    }
+
+    .map-control-button{
+        width:46px;
+        height:46px;
+        font-size:24px;
+    }
+
+    .map-control-button.reset{
+        font-size:16px;
+    }
+
+
+
+    /* 계좌 버튼: 60vw 비율을 그대로 유지 */
+    .pc-page .account-accordion{
+        width:60%;
+        max-width:none;
+    }
+
+    /* 방명록 작성 영역: 버튼이 부모 폭 때문에 밀리지 않도록 전체 폭 사용 */
+    .pc-page .guestbook-list-screen,
+    .pc-page .guestbook-written-screen{
+        width:100%;
+        max-width:none;
+    }
+
+    .pc-page .guestbook-write-button{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .pc-page .contact-description{
+        max-width:none;
+        width:95%;
+    }
+
+    .pc-page .share-menu{
+        width:min(100%,var(--pc-600,600px));
+    }
+
+    /* fixed 팝업은 pc-page 밖에 있으므로 기존처럼 같은 축소 비율 적용 */
+.intro,
+.gallery-modal,
+.location-map-modal,
+.guestbook-form-screen,
+.copy-popup,
+.contact-popup{
+    zoom:var(--pc-scale,1);
+}
+
+    .intro{
+        width:100vw;
+        max-width:none;
+    }
+
+.intro{
+        width:100vw;
+        max-width:none;
+        height:100vh;
+    }
+
+    .gallery-modal,
+    .location-map-modal,
+    .guestbook-form-screen,
+    .copy-popup,
+    .contact-popup{
+        width:100vw;
+        max-width:none;
+    }
+
+    .guestbook-form-inner,
+    .contact-popup-content{
+        width:min(100%,var(--pc-600,600px));
+        max-width:var(--pc-600,600px);
+    }
+
+}
 body.hero-lock{
     overflow:hidden;
 }
 
 </style>
 </head>
-
-<body>
-
-<!-- ==================================================
-     인트로
-================================================== -->
-<div class="intro" id="intro">
-    <div class="intro-inner">
-        <img src="images/intro/intro-01.jpg" class="intro-01" alt="">
-        <img src="images/intro/intro-02.png" class="intro-layer intro-02" alt="">
-        <img src="images/intro/intro-03.png" class="intro-layer intro-03" alt="">
-        <img src="images/intro/intro-04.png" class="intro-layer intro-04" alt="">
-    </div>
-</div>
-
-
-
-<!-- ==================================================
-     메인
-================================================== -->
-<section class="hero-section">
+<body><div class="pc-page" id="pcPage"><section class="hero-section">
 <div class="confetti-container" id="confetti-container"></div>
-    <div class="hero-envelope">
+<div class="hero-envelope">
+<img alt="" class="hero-envelope-back" src="images/main/main-01.png"/>
+<div class="hero-photo-clip">
+<div class="hero-photo-frame">
+<img alt="경진과 홍연의 웨딩 사진" class="hero-envelope-photo" src="images/main/main-02.png"/>
+</div>
+</div>
+<img alt="" class="hero-envelope-front" src="images/main/main-03.png"/>
+<img alt="" class="hero-envelope-top" src="images/main/main-04.png"/>
+</div>
+</section><section class="invite-section">
+<div class="section-kicker">INVITATION</div>
+<h2 class="section-title">소중한 분들을 초대합니다.</h2>
+<p class="invite-copy">
+        살다 보면 많은 사람을 만나지만<br/>
+        마음이 편안해지고, 함께 있는 시간이<br/>
+        자연스러운 사람을 만나는 일은<br/>
+        참 소중한 것 같습니다.<br/><br/>
 
-        <img
-            class="hero-envelope-back"
-            src="images/main/main-01.png"
-            alt=""
-        >
+        저희는 그런 서로를 만나<br/>
+        앞으로의 날들을 함께 살아가기로 했습니다.<br/><br/>
 
-        <div class="hero-photo-clip">
+        저희가 함께하는 첫걸음에<br/>
+        소중한 분들을 모시고 인사를 드리고자 합니다.<br/><br/>
 
-            <div class="hero-photo-frame">
-                <img
-                    class="hero-envelope-photo"
-                    src="images/main/main-02.png"
-                    alt="경진과 홍연의 웨딩 사진"
-                >
-            </div>
-
-        </div>
-
-        <img
-            class="hero-envelope-front"
-            src="images/main/main-03.png"
-            alt=""
-        >
-
-        <img
-            class="hero-envelope-top"
-            src="images/main/main-04.png"
-            alt=""
-        >
-
-    </div>
-</section>
-
-<!-- ==================================================
-     초대 문구
-================================================== -->
-<section class="invite-section">
-    <div class="section-kicker">INVITATION</div>
-    <h2 class="section-title">소중한 분들을 초대합니다.</h2>
-
-    <p class="invite-copy">
-        살다 보면 많은 사람을 만나지만<br>
-        마음이 편안해지고, 함께 있는 시간이<br>
-        자연스러운 사람을 만나는 일은<br>
-        참 소중한 것 같습니다.<br><br>
-
-        저희는 그런 서로를 만나<br>
-        앞으로의 날들을 함께 살아가기로 했습니다.<br><br>
-
-        저희가 함께하는 첫걸음에<br>
-        소중한 분들을 모시고 인사를 드리고자 합니다.<br><br>
-
-        바쁘시더라도 함께해 주신다면<br>
+        바쁘시더라도 함께해 주신다면<br/>
         오래도록 감사한 마음으로 간직하겠습니다.
     </p>
-
-    <div class="invite-names">
-        <strong>민경진</strong>
-        <span class="invite-heart">♥</span>
-        <strong>엄홍연</strong>
-    </div>
-
+<div class="invite-names">
+<strong>민경진</strong>
+<span class="invite-heart">♥</span>
+<strong>엄홍연</strong>
+</div>
 <!-- 연락하기 버튼 -->
 <div class="contact-button-wrap">
-    <button
-        type="button"
-        class="contact-open-button"
-        id="contact-open-button"
-    >
+<button class="contact-open-button" id="contact-open-button" type="button">
         연락하기
     </button>
 </div>
-
-</section>
-
-<!-- ==================================================
-     달력 + D-Day
-================================================== -->
-<section class="calendar-section scroll-reveal">
-
-    <div class="calendar-card">
-        <div class="calendar-date">2026.11.21</div>
-        <div class="calendar-time">토요일 낮 12시 40분</div>
-
-        <div class="calendar-line"></div>
-
-        <div class="calendar-grid" id="calendarGrid"></div>
-    </div>
-
-    <div class="countdown">
-
-        <div class="countdown-item">
-            <div class="countdown-title">DAYS</div>
-            <div class="countdown-number">
-                <span id="days">00</span>
-            </div>
-        </div>
-
-        <div class="countdown-colon">:</div>
-
-        <div class="countdown-item">
-            <div class="countdown-title">HOUR</div>
-            <div class="countdown-number">
-                <span id="hours">00</span>
-            </div>
-        </div>
-
-        <div class="countdown-colon">:</div>
-
-        <div class="countdown-item">
-            <div class="countdown-title">MIN</div>
-            <div class="countdown-number">
-                <span id="minutes">00</span>
-            </div>
-        </div>
-
-        <div class="countdown-colon">:</div>
-
-        <div class="countdown-item">
-            <div class="countdown-title">SEC</div>
-            <div class="countdown-number">
-                <span id="seconds">00</span>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="wedding-dday">
+</section><section class="calendar-section scroll-reveal">
+<div class="calendar-card">
+<div class="calendar-date">2026.11.21</div>
+<div class="calendar-time">토요일 낮 12시 40분</div>
+<div class="calendar-line"></div>
+<div class="calendar-grid" id="calendarGrid"></div>
+</div>
+<div class="countdown">
+<div class="countdown-item">
+<div class="countdown-title">DAYS</div>
+<div class="countdown-number">
+<span id="days">00</span>
+</div>
+</div>
+<div class="countdown-colon">:</div>
+<div class="countdown-item">
+<div class="countdown-title">HOUR</div>
+<div class="countdown-number">
+<span id="hours">00</span>
+</div>
+</div>
+<div class="countdown-colon">:</div>
+<div class="countdown-item">
+<div class="countdown-title">MIN</div>
+<div class="countdown-number">
+<span id="minutes">00</span>
+</div>
+</div>
+<div class="countdown-colon">:</div>
+<div class="countdown-item">
+<div class="countdown-title">SEC</div>
+<div class="countdown-number">
+<span id="seconds">00</span>
+</div>
+</div>
+</div>
+<div class="wedding-dday">
         경진, 홍연의 결혼식이
         <span id="dday">00</span>일 남았습니다.
     </div>
-
-</section>
-
-<!-- ==================================================
-     middle
-================================================== -->
-<section class="middle-scroll">
-
-    <div class="middle-section">
-
-        <!-- 첫 번째 PNG -->
-        <img
-            src="images/middle/middle.png"
-            class="middle-main-image"
-            alt=""
-        >
-
-                <!-- 하트 선 애니메이션 -->
-<svg
-    id="middleHeart"
-    class="middle-heart"
-    viewBox="0 0 860 1150"
-    preserveAspectRatio="xMidYMid meet"
-    aria-hidden="true"
->
-            <path
-    class="middle-heart-path"
-    d="
+</section><section class="middle-scroll">
+<div class="middle-section">
+<!-- 첫 번째 PNG -->
+<img alt="" class="middle-main-image" src="images/middle/middle.png"/>
+<!-- 하트 선 애니메이션 -->
+<svg aria-hidden="true" class="middle-heart" id="middleHeart" preserveaspectratio="xMidYMid meet" viewbox="0 0 860 1150">
+<path class="middle-heart-path" d="
       M 625 436
       C 606 446, 586 459, 568 474
       C 548 491, 532 511, 516 530
@@ -2207,934 +2269,589 @@ body.hero-lock{
       C 192 674, 180 688, 170 701
       C 160 713, 151 724, 144 734
       C 137 744, 131 752, 127 761
-    "
-    pathLength="1"
-    stroke-dasharray="1"
-    stroke-dashoffset="1"
-></path>
-        </svg>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==================================================
-     갤러리
-================================================== -->
-<section class="gallery-section scroll-reveal">
-
-        <div class="gallery-heading"> 
-        <div class="section-kicker">GALLERY</div> 
-        <h2 class="section-title">웨딩 갤러리</h2> 
-    </div> 
-    <div class="gallery-slider" id="gallerySlider">
-        <button
-            type="button"
-            class="gallery-arrow prev"
-            id="galleryPrev"
-            aria-label="이전 사진"
-        >〈</button>
-
-        <div class="gallery-track" id="galleryTrack"></div>
-
-        <button
-            type="button"
-            class="gallery-arrow next"
-            id="galleryNext"
-            aria-label="다음 사진"
-        >〉</button>
-
-    </div>
-
-    <div class="gallery-counter" id="galleryCounter">
+    " pathlength="1" stroke-dasharray="1" stroke-dashoffset="1"></path>
+</svg>
+</div>
+</section><section class="gallery-section scroll-reveal">
+<div class="gallery-heading">
+<div class="section-kicker">GALLERY</div>
+<h2 class="section-title">웨딩 갤러리</h2>
+</div>
+<div class="gallery-slider" id="gallerySlider">
+<button aria-label="이전 사진" class="gallery-arrow prev" id="galleryPrev" type="button">〈</button>
+<div class="gallery-track" id="galleryTrack"></div>
+<button aria-label="다음 사진" class="gallery-arrow next" id="galleryNext" type="button">〉</button>
+</div>
+<div class="gallery-counter" id="galleryCounter">
         01 / 09
     </div>
-
-</section>
-
-<!-- 갤러리 팝업 -->
-<div class="gallery-modal" id="galleryModal">
-
-    <button
-        type="button"
-        class="gallery-close"
-        id="galleryClose"
-        aria-label="닫기"
-    >×</button>
-
-    <button
-        type="button"
-        class="gallery-prev"
-        id="galleryModalPrev"
-        aria-label="이전 사진"
-    >〈</button>
-
-    <img
-        class="gallery-modal-image"
-        id="galleryModalImage"
-        src=""
-        alt=""
-    >
-
-    <button
-        type="button"
-        class="gallery-next"
-        id="galleryModalNext"
-        aria-label="다음 사진"
-    >〉</button>
-
+</section><section class="location-section scroll-reveal">
+<div class="location-heading">
+<div class="section-kicker">LOCATION</div>
+<h2 class="section-title">오시는 길</h2>
 </div>
-
-<!-- ==================================================
-     오시는 길
-================================================== -->
-<section class="location-section scroll-reveal">
-
-    <div class="location-heading">
-        <div class="section-kicker">LOCATION</div>
-        <h2 class="section-title">오시는 길</h2>
-    </div>
-
-    <h3 class="location-address">
+<h3 class="location-address">
         분당앤스퀘어 4층 아모르홀
     </h3>
-
-    <p class="location-address-small">
+<p class="location-address-small">
         경기 성남시 분당구 탄천상로 151번길 20
     </p>
-
-    <p class="location-tel">
+<p class="location-tel">
         tel. 031-728-5300
     </p>
+<div class="map-wrap">
+<div class="map-area">
+<div id="kakaoWeddingMap"></div>
 
-    <div class="map-wrap">
-
-        <div
-            id="daumRoughmapContainer1788964418676"
-            class="root_daum_roughmap root_daum_roughmap_landing"
-        ></div>
-
-    </div>
-
-    <div class="navigation-copy">
-
-        <h3>내비게이션</h3>
-
-        <p>
+<div class="map-controls">
+<button class="map-control-button" id="mapZoomIn" type="button" aria-label="지도 확대">+</button>
+<button class="map-control-button" id="mapZoomOut" type="button" aria-label="지도 축소">−</button>
+<button class="map-control-button reset" id="mapReset" type="button" aria-label="지도 초기화">↺</button>
+</div>
+</div>
+</div>
+<div class="navigation-copy">
+<h3>내비게이션</h3>
+<p>
             원하시는 앱을 선택하시면 길안내가 시작됩니다.
         </p>
-
-    </div>
-
-    <div class="location-links">
-
-        <a
-            href="https://map.naver.com/p/entry/place/11872992"
-            class="location-link"
-            target="_blank"
-            rel="noopener"
-        >
-            <img src="images/location/naver.png" alt="">
-            <span>네이버지도</span>
-        </a>
-
-        <a
-            href="https://tmap.life/674d14ec"
-            class="location-link"
-            target="_blank"
-            rel="noopener"
-        >
-            <img src="images/location/tmap.png" alt="">
-            <span>티맵</span>
-        </a>
-
-        <a
-            href="https://map.kakao.com/?itemId=936406406"
-            class="location-link"
-            target="_blank"
-            rel="noopener"
-        >
-            <img src="images/location/kakaomap.png" alt="">
-            <span>카카오맵</span>
-        </a>
-
-    </div>
-
-    <div class="transport-accordion">
-
-        <div class="transport-box">
-
-            <button
-                type="button"
-                class="transport-button"
-            >
+</div>
+<div class="location-links">
+<a class="location-link" href="https://map.naver.com/p/entry/place/11872992" rel="noopener" target="_blank">
+<img alt="" src="images/location/naver.png"/>
+<span>네이버지도</span>
+</a>
+<a class="location-link" href="https://tmap.life/674d14ec" rel="noopener" target="_blank">
+<img alt="" src="images/location/tmap.png"/>
+<span>티맵</span>
+</a>
+<a class="location-link" href="https://map.kakao.com/?itemId=936406406" rel="noopener" target="_blank">
+<img alt="" src="images/location/kakaomap.png"/>
+<span>카카오맵</span>
+</a>
+</div>
+<div class="transport-accordion">
+<div class="transport-box">
+<button class="transport-button" type="button">
                 지하철 이용 시
             </button>
+<div class="transport-info">
+<strong>수인분당선 오리역 하차</strong><br/>
 
-            <div class="transport-info">
-
-                <strong>수인분당선 오리역 하차</strong><br>
-
-                ① 오리역 6번 출구로 나오세요.<br>
-                ② 6번 출구 에스컬레이터를 이용하세요.<br>
-                ③ 출구에서 약 50m 직진하면 분당앤스퀘어가 있습니다.<br>
-                ④ 건물 4층으로 이동하시면 아모르홀입니다.<br><br>
-
-                <strong>분당앤스퀘어 아모르홀</strong><br>
+                ① 오리역 6번 출구로 나오세요.<br/>
+                ② 6번 출구 에스컬레이터를 이용하세요.<br/>
+                ③ 출구에서 약 50m 직진하면 분당앤스퀘어가 있습니다.<br/>
+                ④ 건물 4층으로 이동하시면 아모르홀입니다.<br/><br/>
+<strong>분당앤스퀘어 아모르홀</strong><br/>
                 수인분당선 오리역 6번 출구 도보 약 1분
 
             </div>
-
-        </div>
-
-        <div class="transport-box">
-
-            <button
-                type="button"
-                class="transport-button"
-            >
+</div>
+<div class="transport-box">
+<button class="transport-button" type="button">
                 버스 이용 시
             </button>
+<div class="transport-info">
+<strong>오리역 하차 → 도보 200m</strong><br/><br/>
 
-            <div class="transport-info">
+                [오리역 방면] 300, 310, 395, 520<br/><br/>
 
-                <strong>오리역 하차 → 도보 200m</strong><br><br>
+                [구미동차고지 방면] 351<br/><br/>
 
-                [오리역 방면] 300, 310, 395, 520<br><br>
-
-                [구미동차고지 방면] 351<br><br>
-
-                [서울 방면 → 오리역] M4102<br><br>
+                [서울 방면 → 오리역] M4102<br/><br/>
 
                 [죽전·단국대 방면 → 오리역]
-                9000-1, 9000-1A<br><br>
+                9000-1, 9000-1A<br/><br/>
 
                 [기타 오리역 경유]
                 101, 102, 116, 116-1, 116-3,
-                1241, 1303, 3500, 370, 390,<br>
+                1241, 1303, 3500, 370, 390,<br/>
                 5500-1, 60, 700-2, 7007-1,
                 720-2, 8100, 8101, 8106, 8109, 820, 9414
 
             </div>
-
-        </div>
-
-        <div class="transport-box">
-
-            <button
-                type="button"
-                class="transport-button"
-            >
+</div>
+<div class="transport-box">
+<button class="transport-button" type="button">
                 자차 이용 시
             </button>
+<div class="transport-info">
+<strong>분당앤스퀘어</strong><br/>
 
-            <div class="transport-info">
+                경기도 성남시 분당구 탄천상로 151번길 20<br/><br/>
 
-                <strong>분당앤스퀘어</strong><br>
-
-                경기도 성남시 분당구 탄천상로 151번길 20<br><br>
-
-                주차장 진입<br>
+                주차장 진입<br/>
 
                 분당앤스퀘어 건물 뒤편
-                → 홈플러스·CGV·애플플라자 주차장 입구 이용<br><br>
+                → 홈플러스·CGV·애플플라자 주차장 입구 이용<br/><br/>
 
-                주차 위치<br>
+                주차 위치<br/>
 
-                지하 3층 또는 지하 4층<br>
-                → 77번 기둥에서 우회전<br>
-                → 주차 후 웨딩홀 전용 엘리베이터 7·8호기 이용<br><br>
+                지하 3층 또는 지하 4층<br/>
+                → 77번 기둥에서 우회전<br/>
+                → 주차 후 웨딩홀 전용 엘리베이터 7·8호기 이용<br/><br/>
 
                 ※ 하객 전용 주차장은 지하 3~4층이며
                 약 1,500대 주차가 가능합니다.
 
             </div>
-
+</div>
+</div>
+</section><section class="middle2-section scroll-reveal">
+<img alt="" class="middle2-image" src="images/middle2/middle2.png"/>
+</section><section class="account-section scroll-reveal">
+<div class="section-kicker">ACCOUNT</div>
+<h2 class="section-title">
+        마음 전하실 곳
+    </h2>
+<p class="account-description">
+        참석이 어려우신 분들을 위해<br/>
+        계좌번호를 개재하였습니다.<br/>
+        너그러운 마음으로 양해 부탁드립니다.
+    </p>
+<div class="account-accordion">
+<div class="account-box">
+<button class="account-button" type="button">
+                신랑측
+            </button>
+<div class="account-info">
+<div class="account-person">
+<div class="account-person-copy">
+<div class="account-bank-title">
+                            신랑 <span>민경진</span>
+</div>
+<div class="account-bank">
+                            신한은행 · 110-508-795337
+                        </div>
+</div>
+<button aria-label="계좌번호 복사" class="account-copy-button" data-account="110508795337" type="button">
+<img alt="계좌번호 복사" src="images/account/copy-icon.png"/>
+</button>
+</div>
+<div class="account-person">
+<div class="account-person-copy">
+<div class="account-bank-title">
+                            아버지 <span>민도선</span>
+</div>
+<div class="account-bank">
+                            우리은행 · 1002-033-848184
+                        </div>
+</div>
+<button aria-label="계좌번호 복사" class="account-copy-button" data-account="1002033848184" type="button">
+<img alt="계좌번호 복사" src="images/account/copy-icon.png"/>
+</button>
+</div>
+</div>
+</div>
+<div class="account-box">
+<button class="account-button" type="button">
+                신부측
+            </button>
+<div class="account-info">
+<div class="account-person">
+<div class="account-person-copy">
+<div class="account-bank-title">
+                            신부 <span>YANHONGYAN</span>
+</div>
+<div class="account-bank">
+                            NH농협은행 · 302-0757-9934-11
+                        </div>
+</div>
+<button aria-label="계좌번호 복사" class="account-copy-button" data-account="3020757993411" type="button">
+<img alt="계좌번호 복사" src="images/account/copy-icon.png"/>
+</button>
+</div>
+<div class="account-person">
+<div class="account-person-copy">
+<div class="account-bank-title">
+                            어머니 <span>ZHENGZHENZI</span>
+</div>
+<div class="account-bank">
+                            신한은행 · 110-400-976752
+                        </div>
+</div>
+<button aria-label="계좌번호 복사" class="account-copy-button" data-account="110400976752" type="button">
+<img alt="계좌번호 복사" src="images/account/copy-icon.png"/>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section><section class="guestbook-section scroll-reveal">
+<div class="guestbook-header">
+<div class="section-kicker">
+            GUESTBOOK
         </div>
+<h2 class="section-title">
+            방명록
+        </h2>
+<p class="guestbook-description">
+            신랑, 신부의<br/>
+            결혼을 축하해주세요.
+        </p>
+</div>
+<div class="guestbook-list-screen" id="guestbook-list-screen">
+<button class="guestbook-write-button" type="button">
+            방명록 작성하기
+        </button>
+</div>
+<div class="guestbook-written-screen" id="guestbook-written-screen" style="display:none">
+<div class="guestbook-entry-list" id="guestbook-entry-list"></div>
+<button class="guestbook-write-again-button" type="button">
+            작성하기
+        </button>
+</div>
+</section><section class="end-section">
+<div class="end-stage">
+<img alt="마지막 이미지" class="end-image" src="images/end/end.png"/>
+<img alt="" class="end-text-image" src="images/end/end-text.png"/>
+</div>
+</section><section class="share-section scroll-reveal">
+<button class="share-button" id="shareButton" type="button">
+<img alt="공유하기" src="images/share/share-button.png"/>
+</button>
+<div class="share-menu" id="shareMenu">
+<div class="share-menu-header">
+<h3>공유하기</h3>
+<button class="share-menu-close" id="shareMenuClose" type="button">×</button>
+</div>
+<div class="share-menu-line"></div>
+<div class="share-menu-buttons">
+<button class="share-menu-button" id="shareKakaoButton" type="button">
+<img alt="카카오톡" src="images/share/share-kakao.png"/>
+</button>
+<button class="share-menu-button" id="shareSmsButton" type="button">
+<img alt="문자" src="images/share/share-sms.png"/>
+</button>
+<button class="share-menu-button" id="shareCopyButton" type="button">
+<img alt="링크 복사" src="images/share/share-copy.png"/>
+</button>
+<button class="share-menu-button" id="shareMoreButton" type="button">
+<img alt="더보기" src="images/share/share-more.png"/>
+</button>
+</div>
+</div>
+</section></div>
+<!-- ==================================================
+     인트로
+================================================== -->
+<div class="intro" id="intro">
+<div class="intro-inner">
+<img alt="" class="intro-01" src="images/intro/intro-01.jpg"/>
+<img alt="" class="intro-layer intro-02" src="images/intro/intro-02.png"/>
+<img alt="" class="intro-layer intro-03" src="images/intro/intro-03.png"/>
+<img alt="" class="intro-layer intro-04" src="images/intro/intro-04.png"/>
+</div>
+</div>
+<!-- ==================================================
+     메인
+================================================== -->
 
-    </div>
+<!-- ==================================================
+     초대 문구
+================================================== -->
 
-</section>
+<!-- ==================================================
+     달력 + D-Day
+================================================== -->
 
-<script
-    charset="UTF-8"
-    src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"
-></script>
+<!-- ==================================================
+     middle
+================================================== -->
 
-<script charset="UTF-8">
-new daum.roughmap.Lander({
-    "timestamp":"1788964418676",
-    "key":"ufndrmcnn33",
-    "mapWidth":"600",
-    "mapHeight":"300"
-}).render();
+<!-- ==================================================
+     갤러리
+================================================== -->
+
+<!-- 갤러리 팝업 -->
+<div class="gallery-modal" id="galleryModal">
+<button aria-label="닫기" class="gallery-close" id="galleryClose" type="button">×</button>
+<button aria-label="이전 사진" class="gallery-prev" id="galleryModalPrev" type="button">〈</button>
+<img alt="" class="gallery-modal-image" id="galleryModalImage" src=""/>
+<button aria-label="다음 사진" class="gallery-next" id="galleryModalNext" type="button">〉</button>
+</div>
+<!-- ==================================================
+     오시는 길
+================================================== -->
+
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3fc477a2de7052bb8c3cbafdd8e1f779&libraries=services&autoload=false"></script>
+
+<script>
+kakao.maps.load(function(){
+
+    const kakaoMapContainer =
+        document.getElementById('kakaoWeddingMap');
+
+    const kakaoGeocoder =
+        new kakao.maps.services.Geocoder();
+
+    const weddingAddress =
+        '경기 성남시 분당구 탄천상로 151번길 20';
+
+    let kakaoWeddingMap;
+    let weddingMarker;
+
+    kakaoGeocoder.addressSearch(
+        weddingAddress,
+        function(result, status){
+
+            if(
+                status === kakao.maps.services.Status.OK
+            ){
+
+                const coords =
+                    new kakao.maps.LatLng(
+                        result[0].y,
+                        result[0].x
+                    );
+
+                kakaoWeddingMap =
+                    new kakao.maps.Map(
+                        kakaoMapContainer,
+                        {
+                            center:coords,
+                            level:3
+                        }
+                    );
+
+                weddingMarker =
+                    new kakao.maps.Marker({
+                        map:kakaoWeddingMap,
+                        position:coords
+                    });
+            }
+        }
+    );
+
+    document
+        .getElementById('mapZoomIn')
+        .addEventListener(
+            'click',
+            function(){
+
+                if(!kakaoWeddingMap){
+                    return;
+                }
+
+                kakaoWeddingMap.setLevel(
+                    kakaoWeddingMap.getLevel() - 1
+                );
+            }
+        );
+
+    document
+        .getElementById('mapZoomOut')
+        .addEventListener(
+            'click',
+            function(){
+
+                if(!kakaoWeddingMap){
+                    return;
+                }
+
+                kakaoWeddingMap.setLevel(
+                    kakaoWeddingMap.getLevel() + 1
+                );
+            }
+        );
+
+    document
+        .getElementById('mapReset')
+        .addEventListener(
+            'click',
+            function(){
+
+                if(!kakaoWeddingMap){
+                    return;
+                }
+
+                kakaoGeocoder.addressSearch(
+                    weddingAddress,
+                    function(result, status){
+
+                        if(
+                            status ===
+                            kakao.maps.services.Status.OK
+                        ){
+
+                            const coords =
+                                new kakao.maps.LatLng(
+                                    result[0].y,
+                                    result[0].x
+                                );
+
+                            kakaoWeddingMap.setCenter(coords);
+                            kakaoWeddingMap.setLevel(3);
+                        }
+                    }
+                );
+            }
+        );
+
+});
 </script>
 
 <!-- ==================================================
      방명록 작성 팝업
 ================================================== -->
-<div
-    class="guestbook-form-screen"
-    id="guestbook-form-screen"
->
-
-    <div class="guestbook-form-inner">
-
-        <div class="guestbook-form-header">
-
-            <div class="guestbook-form-title">
+<div class="guestbook-form-screen" id="guestbook-form-screen">
+<div class="guestbook-form-inner">
+<div class="guestbook-form-header">
+<div class="guestbook-form-title">
                 방명록 작성하기
             </div>
-
-            <button
-                type="button"
-                class="guestbook-form-close"
-                id="guestbook-form-close"
-            >×</button>
-
-        </div>
-
-        <div class="guestbook-form-body">
-
-            <div class="guestbook-form-item">
-
-                <label>
-                    <span>*</span> 이름
+<button class="guestbook-form-close" id="guestbook-form-close" type="button">×</button>
+</div>
+<div class="guestbook-form-body">
+<div class="guestbook-form-item">
+<label>
+<span>*</span> 이름
                 </label>
-
-                <input
-                    type="text"
-                    id="guestbook-name"
-                    placeholder="이름을 입력해 주세요."
-                >
-
-            </div>
-
-            <div class="guestbook-form-item">
-
-                <label>
-                    <span>*</span> 내용
+<input id="guestbook-name" placeholder="이름을 입력해 주세요." type="text"/>
+</div>
+<div class="guestbook-form-item">
+<label>
+<span>*</span> 내용
                 </label>
-
-                <textarea
-                    id="guestbook-content"
-                    placeholder="내용을 작성해 주세요. (최대 500자)"
-                    maxlength="500"
-                ></textarea>
-
-            </div>
-
-            <div class="guestbook-form-item">
-
-                <label>
-                    <span>*</span> 비밀번호
+<textarea id="guestbook-content" maxlength="500" placeholder="내용을 작성해 주세요. (최대 500자)"></textarea>
+</div>
+<div class="guestbook-form-item">
+<label>
+<span>*</span> 비밀번호
                 </label>
-
-                <input
-                    type="password"
-                    id="guestbook-password"
-                    placeholder="비밀번호를 입력해 주세요."
-                >
-
-            </div>
-
-            <button
-                type="button"
-                class="guestbook-submit-button"
-                id="guestbook-submit-button"
-            >
+<input id="guestbook-password" placeholder="비밀번호를 입력해 주세요." type="password"/>
+</div>
+<button class="guestbook-submit-button" id="guestbook-submit-button" type="button">
                 작성완료
             </button>
-
-        </div>
-
-    </div>
-
 </div>
-
+</div>
+</div>
 <!-- ==================================================
      MIDDLE2
 ================================================== -->
-<section class="middle2-section scroll-reveal">
-
-    <img
-        src="images/middle2/middle2.png"
-        alt=""
-        class="middle2-image"
-    >
-
-</section>
 
 <!-- ==================================================
      계좌번호
 ================================================== -->
-<section class="account-section scroll-reveal">
-
-    <div class="section-kicker">ACCOUNT</div>
-
-    <h2 class="section-title">
-        마음 전하실 곳
-    </h2>
-
-    <p class="account-description">
-        참석이 어려우신 분들을 위해<br>
-        계좌번호를 개재하였습니다.<br>
-        너그러운 마음으로 양해 부탁드립니다.
-    </p>
-
-    <div class="account-accordion">
-
-        <div class="account-box">
-
-            <button
-                type="button"
-                class="account-button"
-            >
-                신랑측
-            </button>
-
-            <div class="account-info">
-
-                <div class="account-person">
-
-                    <div class="account-person-copy">
-
-                        <div class="account-bank-title">
-                            신랑 <span>민경진</span>
-                        </div>
-
-                        <div class="account-bank">
-                            신한은행 · 110-508-795337
-                        </div>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        class="account-copy-button"
-                        data-account="110508795337"
-                        aria-label="계좌번호 복사"
-                    >
-                        <img
-                            src="images/account/copy-icon.png"
-                            alt="계좌번호 복사"
-                        >
-                    </button>
-
-                </div>
-
-                <div class="account-person">
-
-                    <div class="account-person-copy">
-
-                        <div class="account-bank-title">
-                            아버지 <span>민도선</span>
-                        </div>
-
-                        <div class="account-bank">
-                            우리은행 · 1002-033-848184
-                        </div>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        class="account-copy-button"
-                        data-account="1002033848184"
-                        aria-label="계좌번호 복사"
-                    >
-                        <img
-                            src="images/account/copy-icon.png"
-                            alt="계좌번호 복사"
-                        >
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="account-box">
-
-            <button
-                type="button"
-                class="account-button"
-            >
-                신부측
-            </button>
-
-            <div class="account-info">
-
-                <div class="account-person">
-
-                    <div class="account-person-copy">
-
-                        <div class="account-bank-title">
-                            신부 <span>YANHONGYAN</span>
-                        </div>
-
-                        <div class="account-bank">
-                            NH농협은행 · 302-0757-9934-11
-                        </div>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        class="account-copy-button"
-                        data-account="3020757993411"
-                        aria-label="계좌번호 복사"
-                    >
-                        <img
-                            src="images/account/copy-icon.png"
-                            alt="계좌번호 복사"
-                        >
-                    </button>
-
-                </div>
-
-                <div class="account-person">
-
-                    <div class="account-person-copy">
-
-                        <div class="account-bank-title">
-                            어머니 <span>ZHENGZHENZI</span>
-                        </div>
-
-                        <div class="account-bank">
-                            신한은행 · 110-400-976752
-                        </div>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        class="account-copy-button"
-                        data-account="110400976752"
-                        aria-label="계좌번호 복사"
-                    >
-                        <img
-                            src="images/account/copy-icon.png"
-                            alt="계좌번호 복사"
-                        >
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
 
 <!-- ==================================================
      방명록
 ================================================== -->
-<section class="guestbook-section scroll-reveal">
-
-    <div class="guestbook-header">
-
-        <div class="section-kicker">
-            GUESTBOOK
-        </div>
-
-        <h2 class="section-title">
-            방명록
-        </h2>
-
-        <p class="guestbook-description">
-            신랑, 신부의<br>
-            결혼을 축하해주세요.
-        </p>
-
-    </div>
-
-    <div
-        class="guestbook-list-screen"
-        id="guestbook-list-screen"
-    >
-        <button
-            type="button"
-            class="guestbook-write-button"
-        >
-            방명록 작성하기
-        </button>
-    </div>
-
-    <div
-        class="guestbook-written-screen"
-        id="guestbook-written-screen"
-        style="display:none"
-    >
-
-        <div
-            class="guestbook-entry-list"
-            id="guestbook-entry-list"
-        ></div>
-
-        <button
-            type="button"
-            class="guestbook-write-again-button"
-        >
-            작성하기
-        </button>
-
-    </div>
-
-</section>
 
 <!-- 계좌 복사 팝업 -->
-<div
-    class="copy-popup"
-    id="copy-popup"
->
-
-    <div class="copy-popup-content">
-
-        <div class="copy-popup-message">
+<div class="copy-popup" id="copy-popup">
+<div class="copy-popup-content">
+<div class="copy-popup-message">
             계좌번호가 복사되었습니다.
         </div>
-
-        <button
-            type="button"
-            class="copy-confirm-button"
-            id="copy-confirm-button"
-        >
+<button class="copy-confirm-button" id="copy-confirm-button" type="button">
             확인
         </button>
-
-    </div>
-
 </div>
-
+</div>
 <!-- ==================================================
      연락하기 팝업
 ================================================== -->
-<div
-    class="contact-popup"
-    id="contact-popup"
->
-
-    <div class="contact-popup-content">
-
-        <div class="contact-popup-header">
-
-            <h2 class="contact-popup-header-title">
+<div class="contact-popup" id="contact-popup">
+<div class="contact-popup-content">
+<div class="contact-popup-header">
+<h2 class="contact-popup-header-title">
                 연락하기
             </h2>
-
-            <button
-                type="button"
-                class="contact-popup-close"
-                id="contact-popup-close"
-            >×</button>
-
-        </div>
-
-        <div class="contact-group">
-
-            <h3 class="contact-group-title">
+<button class="contact-popup-close" id="contact-popup-close" type="button">×</button>
+</div>
+<div class="contact-group">
+<h3 class="contact-group-title">
                 신랑측
             </h3>
-
-            <div class="contact-group-line"></div>
-
-            <div class="contact-person">
-
-                <span class="contact-person-name">
-                    <span class="contact-relation">신랑</span>
-                    <span class="contact-name">민경진</span>
-                </span>
-
-                <div class="contact-actions">
-
-                    <a
-                        href="tel:010-4727-1657"
-                        class="contact-action-button"
-                    >
-                        <img
-                            src="images/contact/phone.png"
-                            alt="전화"
-                        >
-                    </a>
-
-                    <a
-                        href="sms:010-4727-1657"
-                        class="contact-action-button"
-                    >
-                        <img
-                            src="images/contact/message.png"
-                            alt="문자"
-                        >
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="contact-person">
-
-                <span class="contact-person-name">
-                    <span class="contact-relation">아버지</span>
-                    <span class="contact-name">민도선</span>
-                </span>
-
-                <div class="contact-actions">
-
-                    <a
-                        href="tel:010-3431-7079"
-                        class="contact-action-button"
-                    >
-                        <img
-                            src="images/contact/phone.png"
-                            alt="전화"
-                        >
-                    </a>
-
-                    <a
-                        href="sms:010-3431-7079"
-                        class="contact-action-button"
-                    >
-                        <img
-                            src="images/contact/message.png"
-                            alt="문자"
-                        >
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="contact-group">
-
-            <h3 class="contact-group-title">
+<div class="contact-group-line"></div>
+<div class="contact-person">
+<span class="contact-person-name">
+<span class="contact-relation">신랑</span>
+<span class="contact-name">민경진</span>
+</span>
+<div class="contact-actions">
+<a class="contact-action-button" href="tel:010-4727-1657">
+<img alt="전화" src="images/contact/phone.png"/>
+</a>
+<a class="contact-action-button" href="sms:010-4727-1657">
+<img alt="문자" src="images/contact/message.png"/>
+</a>
+</div>
+</div>
+<div class="contact-person">
+<span class="contact-person-name">
+<span class="contact-relation">아버지</span>
+<span class="contact-name">민도선</span>
+</span>
+<div class="contact-actions">
+<a class="contact-action-button" href="tel:010-3431-7079">
+<img alt="전화" src="images/contact/phone.png"/>
+</a>
+<a class="contact-action-button" href="sms:010-3431-7079">
+<img alt="문자" src="images/contact/message.png"/>
+</a>
+</div>
+</div>
+</div>
+<div class="contact-group">
+<h3 class="contact-group-title">
                 신부측
             </h3>
-
-            <div class="contact-group-line"></div>
-
-            <div class="contact-person">
-
-                <span class="contact-person-name">
-                    <span class="contact-relation">신부</span>
-                    <span class="contact-name">엄홍연</span>
-                </span>
-
-                <div class="contact-actions">
-
-                    <a
-                        href="tel:010-7320-6612"
-                        class="contact-action-button"
-                    >
-                        <img
-                            src="images/contact/phone.png"
-                            alt="전화"
-                        >
-                    </a>
-
-                    <a
-                        href="sms:010-7320-6612"
-                        class="contact-action-button"
-                    >
-                        <img
-                            src="images/contact/message.png"
-                            alt="문자"
-                        >
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="contact-person">
-
-                <span class="contact-person-name">
-                    <span class="contact-relation">아버지</span>
-                    <span class="contact-name">엄룡범</span>
-                </span>
-
-                <div class="contact-actions">
-
-                    <a
-                        href="tel:010-8520-6612"
-                        class="contact-action-button"
-                    >
-                        <img
-                            src="images/contact/phone.png"
-                            alt="전화"
-                        >
-                    </a>
-
-                    <a
-                        href="sms:010-8520-6612"
-                        class="contact-action-button"
-                    >
-                        <img
-                            src="images/contact/message.png"
-                            alt="문자"
-                        >
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="contact-person">
-
-                <span class="contact-person-name">
-                    <span class="contact-relation">어머니</span>
-                    <span class="contact-name">정정자</span>
-                </span>
-
-                <div class="contact-actions">
-
-                    <a
-                        href="tel:010-5689-6618"
-                        class="contact-action-button"
-                    >
-                        <img
-                            src="images/contact/phone.png"
-                            alt="전화"
-                        >
-                    </a>
-
-                    <a
-                        href="sms:010-5689-6618"
-                        class="contact-action-button"
-                    >
-                        <img
-                            src="images/contact/message.png"
-                            alt="문자"
-                        >
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
+<div class="contact-group-line"></div>
+<div class="contact-person">
+<span class="contact-person-name">
+<span class="contact-relation">신부</span>
+<span class="contact-name">엄홍연</span>
+</span>
+<div class="contact-actions">
+<a class="contact-action-button" href="tel:010-7320-6612">
+<img alt="전화" src="images/contact/phone.png"/>
+</a>
+<a class="contact-action-button" href="sms:010-7320-6612">
+<img alt="문자" src="images/contact/message.png"/>
+</a>
 </div>
-
+</div>
+<div class="contact-person">
+<span class="contact-person-name">
+<span class="contact-relation">아버지</span>
+<span class="contact-name">엄룡범</span>
+</span>
+<div class="contact-actions">
+<a class="contact-action-button" href="tel:010-8520-6612">
+<img alt="전화" src="images/contact/phone.png"/>
+</a>
+<a class="contact-action-button" href="sms:010-8520-6612">
+<img alt="문자" src="images/contact/message.png"/>
+</a>
+</div>
+</div>
+<div class="contact-person">
+<span class="contact-person-name">
+<span class="contact-relation">어머니</span>
+<span class="contact-name">정정자</span>
+</span>
+<div class="contact-actions">
+<a class="contact-action-button" href="tel:010-5689-6618">
+<img alt="전화" src="images/contact/phone.png"/>
+</a>
+<a class="contact-action-button" href="sms:010-5689-6618">
+<img alt="문자" src="images/contact/message.png"/>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ==================================================
      마지막 이미지
 ================================================== -->
-<section class="end-section">
-
-    <div class="end-stage">
-
-        <img
-            src="images/end/end.png"
-            alt="마지막 이미지"
-            class="end-image"
-        >
-
-
-        <img
-            src="images/end/end-text.png"
-            alt=""
-            class="end-text-image"
-        >
-
-    </div>
-
-</section>
 
 <!-- ==================================================
      공유하기
 ================================================== -->
-<section class="share-section scroll-reveal">
-
-    <button
-        type="button"
-        class="share-button"
-        id="shareButton"
-    >
-        <img
-            src="images/share/share-button.png"
-            alt="공유하기"
-        >
-    </button>
-
-    <div
-        class="share-menu"
-        id="shareMenu"
-    >
-
-        <div class="share-menu-header">
-
-            <h3>공유하기</h3>
-
-            <button
-                type="button"
-                class="share-menu-close"
-                id="shareMenuClose"
-            >×</button>
-
-        </div>
-
-        <div class="share-menu-line"></div>
-
-        <div class="share-menu-buttons">
-
-            <button
-                type="button"
-                class="share-menu-button"
-                id="shareKakaoButton"
-            >
-                <img
-                    src="images/share/share-kakao.png"
-                    alt="카카오톡"
-                >
-            </button>
-
-            <button
-                type="button"
-                class="share-menu-button"
-                id="shareSmsButton"
-            >
-                <img
-                    src="images/share/share-sms.png"
-                    alt="문자"
-                >
-            </button>
-
-            <button
-                type="button"
-                class="share-menu-button"
-                id="shareCopyButton"
-            >
-                <img
-                    src="images/share/share-copy.png"
-                    alt="링크 복사"
-                >
-            </button>
-
-            <button
-                type="button"
-                class="share-menu-button"
-                id="shareMoreButton"
-            >
-                <img
-                    src="images/share/share-more.png"
-                    alt="더보기"
-                >
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
 
 <script>
 
@@ -3399,7 +3116,7 @@ function setupEndTransition(){
     }
 
     const imageHeight =
-        endImage.getBoundingClientRect().height;
+        endImage.offsetHeight;
 
     /* end.png와 같은 높이로 유지 */
     endStage.style.height =
@@ -5028,6 +4745,181 @@ document.addEventListener(
 );
 
 </script>
+<script>
+/* ==================================================
+   PC 화면 860px 비율 유지
+   - 모바일은 기존 vw 그대로
+   - PC에서는 전체 디자인을 860px 폭으로 축소
+================================================== */
 
-</body>
+function setDesktopInvitationScale(){
+
+    const pcPage = document.getElementById("pcPage");
+    const scaleTargets = [
+        document.getElementById("intro"),
+        document.getElementById("galleryModal"),
+        document.getElementById("locationMapModal"),
+        document.getElementById("guestbook-form-screen"),
+        document.getElementById("copy-popup"),
+        document.getElementById("contact-popup")
+    ];
+
+    if(!pcPage){
+        return;
+    }
+
+const isDesktop =
+    window.innerWidth > 860 &&
+    navigator.maxTouchPoints === 0;
+
+if(isDesktop){
+
+        const scale = 860 / window.innerWidth;
+        const left = (window.innerWidth - 860) / (2 * scale);
+
+        document.documentElement.style.setProperty(
+            "--pc-scale",
+            String(scale)
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-left",
+            left + "px"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-600",
+            (600 / scale) + "px"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-520",
+            (520 / scale) + "px"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-500",
+            (500 / scale) + "px"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-430",
+            (430 / scale) + "px"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-300",
+            (300 / scale) + "px"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-map-width",
+            (850 / scale) + "px"
+        );
+
+
+        pcPage.style.marginLeft = left + "px";
+
+        scaleTargets.forEach(el=>{
+
+            if(!el){
+                return;
+            }
+
+            el.style.left = left + "px";
+            el.style.right = "auto";
+            el.style.width = "100vw";
+            el.style.height =
+                (window.innerHeight / scale) + "px";
+
+        });
+
+        const introInner =
+            document.querySelector(".intro-inner");
+
+        if(introInner){
+    introInner.style.width = "100vw";
+    introInner.style.maxWidth = "none";
+    introInner.style.height = (window.innerHeight / scale) + "px";
+}
+
+    }else{
+
+        document.documentElement.style.setProperty(
+            "--pc-scale",
+            "1"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-left",
+            "0px"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-600",
+            "600px"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-520",
+            "520px"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-500",
+            "500px"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-430",
+            "430px"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-300",
+            "300px"
+        );
+
+        document.documentElement.style.setProperty(
+            "--pc-map-width",
+            "860px"
+        );
+
+
+
+        pcPage.style.marginLeft = "0px";
+
+        scaleTargets.forEach(el=>{
+
+            if(!el){
+                return;
+            }
+
+            el.style.left = "";
+            el.style.right = "";
+            el.style.width = "";
+            el.style.height = "";
+
+        });
+
+        const introInner =
+            document.querySelector(".intro-inner");
+
+        if(introInner){
+            introInner.style.width = "";
+            introInner.style.maxWidth = "";
+            introInner.style.height = "";
+        }
+
+    }
+
+}
+
+window.addEventListener(
+    "resize",
+    setDesktopInvitationScale
+);
+
+setDesktopInvitationScale();
+</script></body>
 </html>
