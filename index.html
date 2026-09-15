@@ -4822,41 +4822,9 @@ document
         "click",
         ()=>{
 
-            Kakao.Share.sendDefault({
-
-                objectType:"feed",
-
-                content:{
-                    title:"우리의 결혼식",
-                    description:"저희 결혼식에 초대합니다.",
-                    imageUrl:
-                        window.location.origin+
-                        "/images/intro/intro-01.jpg",
-
-                    link:{
-                        mobileWebUrl:
-                            window.location.href,
-
-                        webUrl:
-                            window.location.href
-                    }
-                },
-
-                buttons:[{
-
-                    title:"청첩장 보러가기",
-
-                    link:{
-                        mobileWebUrl:
-                            window.location.href,
-
-                        webUrl:
-                            window.location.href
-                    }
-
-                }]
-
-            });
+           Kakao.Share.sendCustom({
+    templateId:1572380
+});
 
             shareMenu.classList.remove(
                 "open"
