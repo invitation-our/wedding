@@ -2669,7 +2669,7 @@ body.hero-lock{
      인트로
 ================================================== -->
 <audio id="weddingBgm" loop preload="auto">
-    <source src="images/music/wedding-01.mp3" type="audio/mpeg">
+    <source src="images/music/wedding.mp3" type="audio/mpeg">
 </audio>
 
 <button type="button" id="musicButton" class="music-button">
@@ -3157,7 +3157,7 @@ function setMusicStopped(){
 /* 처음부터 음악 재생 시도 */
 if(weddingBgm){
 
-    weddingBgm.volume = 0.2;
+    weddingBgm.volume = 0.3;
 
     weddingBgm.play()
         .then(()=>{
